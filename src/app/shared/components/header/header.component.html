@@ -1,0 +1,66 @@
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="site-header" [class.hide]="hidden" [class.at-top]="atTop" role="banner">
+  <div class="container header-inner">
+    <a class="brand" routerLink="/" aria-label="EcoLATAM - inicio">
+      <img src="/ecolatam-logo.png" alt="{{ logoAlt }}" height="34" />
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav desktop" aria-label="Navegación principal">
+      <ng-container *ngFor="let item of menu">
+        <!-- Internos -->
+        <a *ngIf="item.path; else ext"
+           [routerLink]="item.path"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: !!item.exact }"
+           #rla="routerLinkActive"
+           [attr.aria-current]="rla.isActive ? 'page' : null"
+           (click)="closeMobile()">
+          {{ item.label }}
+        </a>
+        <!-- Externos -->
+        <ng-template #ext>
+          <a [href]="item.external!"
+             target="_blank" rel="noopener"
+             class="external">
+            {{ item.label }}
+          </a>
+        </ng-template>
+      </ng-container>
+    </nav>
+
+    <!-- Toggle móvil -->
+    <button class="nav-toggle" type="button"
+            aria-label="Abrir menú"
+            aria-haspopup="true"
+            [attr.aria-expanded]="mobileOpen"
+            (click)="toggleMobile()">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-drawer" [class.open]="mobileOpen" (click)="closeMobile()">
+    <nav class="nav mobile" aria-label="Navegación móvil" (click)="$event.stopPropagation()">
+      <ng-container *ngFor="let item of menu">
+        <a *ngIf="item.path; else extM"
+           [routerLink]="item.path"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{ exact: !!item.exact }"
+           #rlaM="routerLinkActive"
+           [attr.aria-current]="rlaM.isActive ? 'page' : null"
+           (click)="closeMobile()">
+          {{ item.label }}
+        </a>
+        <ng-template #extM>
+          <a [href]="item.external!"
+             target="_blank" rel="noopener"
+             class="external">
+            {{ item.label }}
+          </a>
+        </ng-template>
+      </ng-container>
+    </nav>
+  </div>
+</header>

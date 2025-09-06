@@ -1,0 +1,249 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Legal</div>
+      <h1>Aviso de Licenciamiento Musical (ACAM)</h1>
+      <p class="lead">
+        Guía práctica para el uso de música en EcoLATAM Radio/TV, transmisiones en vivo, VOD y contenidos de usuarios.
+        Explica cuándo necesitas licencia, qué cubre y cómo reportar obras (cue sheets).
+      </p>
+      <p class="muted small">Última actualización: 28 de agosto de 2025</p>
+      <div class="cta-row">
+        <button class="btn" type="button"
+          (click)="openMail('Solicitud de licencia musical – ACAM / EcoLATAM', solicitudACAM)">
+          Solicitar licencia (correo)
+        </button>
+        <button class="btn btn-ghost" type="button" (click)="copy(solicitudACAM)">Copiar solicitud</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container layout">
+    <aside class="toc card" aria-label="Índice de contenidos">
+      <nav>
+        <a href="#responsable">1. Responsable y alcance</a>
+        <a href="#que-es-acam">2. ¿Qué es ACAM y por qué importa?</a>
+        <a href="#cuando-licencia">3. ¿Cuándo necesito licencia?</a>
+        <a href="#que-cubre">4. ¿Qué cubre la licencia?</a>
+        <a href="#no-cubre">5. ¿Qué no cubre?</a>
+        <a href="#procedimiento">6. Procedimiento con EcoLATAM</a>
+        <a href="#reportes">7. Reportes y cue sheets</a>
+        <a href="#tarifas">8. Tarifas y pagos</a>
+        <a href="#ugc">9. Contenidos de usuarios (UGC)</a>
+        <a href="#privacidad">10. Privacidad de datos en reportes</a>
+        <a href="#faq">11. Preguntas frecuentes</a>
+        <a href="#cambios">12. Cambios a este aviso</a>
+        <a href="#contacto">13. Contacto</a>
+        <a href="#anexo-solicitud">Anexo A: Plantilla de solicitud a ACAM</a>
+        <a href="#anexo-cue">Anexo B: Plantilla de Cue Sheet</a>
+        <a href="#recomendaciones">Anexo C: Recomendaciones prácticas</a>
+        <a href="#nota">Nota importante</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section id="responsable">
+        <h2>1) Responsable y alcance</h2>
+        <p>
+          Este aviso explica nuestra forma de gestionar el licenciamiento musical con ACAM para los productos de
+          EcoLATAM. Es informativo, no sustituye asesoría legal. Si tienes dudas específicas, consúltalas con ACAM o con
+          un profesional.
+        </p>
+      </section>
+
+      <section id="que-es-acam">
+        <h2>2) ¿Qué es ACAM y por qué importa?</h2>
+        <p>
+          ACAM es la entidad colectiva que gestiona derechos de autor de obras musicales en Costa Rica. Cuando comunicas
+          música al público (por ejemplo, en streaming), normalmente necesitas una licencia que cubra esos derechos.
+        </p>
+      </section>
+
+      <section id="cuando-licencia">
+        <h2>3) ¿Cuándo necesito licencia?</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Escenario</th>
+              <th>Ejemplos</th>
+              <th>¿Requiere licencia de ACAM?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Radio/TV online</td>
+              <td>EcoLATAM Radio (Icecast MP3), EcoLATAM TV (m3u8), simulcast</td>
+              <td>Sí, para comunicación pública/puesta a disposición.</td>
+            </tr>
+            <tr>
+              <td>VOD/Clips</td>
+              <td>Videos en ecolatam.com, grabaciones de programas</td>
+              <td>Usualmente sí, según el repertorio usado.</td>
+            </tr>
+            <tr>
+              <td>Podcast</td>
+              <td>Episodios con música de terceros</td>
+              <td>Generalmente sí.</td>
+            </tr>
+            <tr>
+              <td>Eventos/Streams en vivo</td>
+              <td>Conciertos, programas con música de fondo</td>
+              <td>Generalmente sí.</td>
+            </tr>
+            <tr>
+              <td>UGC sin música de terceros</td>
+              <td>Obra 100% original del usuario</td>
+              <td>No por ACAM (salvo se utilicen obras de terceros).</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="que-cubre">
+        <h2>4) ¿Qué cubre la licencia?</h2>
+        <ul>
+          <li><strong>Comunicación pública</strong> y <strong>puesta a disposición</strong> de obras musicales.</li>
+          <li>En algunos casos, ACAM puede gestionar también licencias relacionadas según su esquema vigente.</li>
+          <li>La cobertura exacta depende del uso, el repertorio y la modalidad (radio, TV online, VOD, podcast, etc.).</li>
+        </ul>
+      </section>
+
+      <section id="no-cubre">
+        <h2>5) ¿Qué no cubre?</h2>
+        <ul>
+          <li><strong>Derechos conexos</strong> (intérpretes y productores fonográficos) y <strong>derechos de máster</strong> del fonograma.</li>
+          <li><strong>Sincronización</strong> (sincronizar música con video) cuando el titular así lo exige.</li>
+          <li>Logos, marcas o acuerdos privados con sellos/bibliotecas que requieran permisos adicionales.</li>
+        </ul>
+        <p class="muted">Si usas grabaciones comerciales, podrías necesitar permisos de los titulares de fonogramas e intérpretes, además de ACAM.</p>
+      </section>
+
+      <section id="procedimiento">
+        <h2>6) Procedimiento con EcoLATAM</h2>
+        <ol>
+          <li>
+            <strong>Decláranos si habrá música:</strong> al solicitar espacio en EcoLATAM Radio/TV o cargar VOD, indica si usarás obras de terceros.
+          </li>
+          <li>
+            <strong>Define el repertorio:</strong> obras propias, bibliotecas, comerciales o mixto. Aporta lista preliminar si la tienes.
+          </li>
+          <li>
+            <strong>Trámite:</strong> coordinamos con ACAM la licencia aplicable para nuestras transmisiones y/o te orientamos para tu caso.
+          </li>
+          <li>
+            <strong>UGC:</strong> si eres un usuario/negocio que sube contenido, eres responsable de contar con permisos necesarios.
+          </li>
+          <li>
+            <strong>Reportes periódicos:</strong> enviamos/recibimos cue sheets y mantenemos registros mínimos para auditoría.
+          </li>
+        </ol>
+      </section>
+
+      <section id="reportes">
+        <h2>7) Reportes y cue sheets</h2>
+        <p>
+          Los <em>cue sheets</em> detallan las obras utilizadas: título, autor, intérprete, identificadores (ISWC/ISRC),
+          tiempo y tipo de uso. Puedes usar esta plantilla:
+        </p>
+        <pre class="card code">{{ cueSheet }}</pre>
+        <div class="cta-row">
+          <button class="btn" type="button" (click)="copy(cueSheet)">Copiar Cue Sheet</button>
+          <button class="btn btn-ghost" type="button"
+            (click)="openMail('Envío de Cue Sheet – EcoLATAM', cueSheet)">
+            Enviar por correo
+          </button>
+        </div>
+      </section>
+
+      <section id="tarifas">
+        <h2>8) Tarifas y pagos</h2>
+        <p>
+          Las tarifas dependen del tipo de uso, alcance y repertorio. ACAM publica sus esquemas tarifarios y condiciones.
+          No detallamos montos aquí: coordinaremos el proceso y te indicaremos los pasos a seguir.
+        </p>
+      </section>
+
+      <section id="ugc">
+        <h2>9) Contenidos de usuarios (UGC)</h2>
+        <p>
+          Si subes o emites contenido con música de terceros, asegúrate de tener las licencias necesarias. Nuestro
+          <a href="/takedown">proceso de Takedown/Safe Harbor</a> aplica ante reportes válidos: podemos retirar, limitar
+          o desindexar contenidos, y dejar de pinear CIDs en nuestro gateway IPFS cuando corresponda.
+        </p>
+      </section>
+
+      <section id="privacidad">
+        <h2>10) Privacidad de datos en reportes</h2>
+        <p>
+          Los datos de contacto y registros que acompañan a licencias/reporte de obras se tratan conforme a la
+          <a href="/privacy">Política de Privacidad</a>, limitados al propósito de gestión y cumplimiento.
+        </p>
+      </section>
+
+      <section id="faq">
+        <h2>11) Preguntas frecuentes (rápidas)</h2>
+        <details>
+          <summary>¿La música “royalty-free” necesita licencia?</summary>
+          <p>Depende de los términos. “Royalty-free” no significa “sin derechos”. Revisa la licencia de la biblioteca.</p>
+        </details>
+        <details>
+          <summary>¿Y obras con Creative Commons?</summary>
+          <p>Respeta la licencia (atribución, uso no comercial, etc.). Algunas CC no permiten usos comerciales.</p>
+        </details>
+        <details>
+          <summary>¿Puedo usar solo 10 segundos sin permiso?</summary>
+          <p>No hay una regla universal. Aun fragmentos cortos pueden requerir permiso según el caso.</p>
+        </details>
+      </section>
+
+      <section id="cambios">
+        <h2>12) Cambios a este aviso</h2>
+        <p>Si hay cambios relevantes, lo indicaremos de forma destacada en el sitio o por correo.</p>
+      </section>
+
+      <section id="contacto">
+        <h2>13) Contacto</h2>
+        <p>Correo: <a href="mailto:hola@ecolatam.com">hola&#64;ecolatam.com</a></p>
+        <div class="cta-row">
+          <button class="btn" type="button"
+            (click)="openMail('Solicitud de licencia musical – ACAM / EcoLATAM', solicitudACAM)">
+            Enviar solicitud a ACAM
+          </button>
+          <button class="btn btn-ghost" type="button" (click)="copy(solicitudACAM)">Copiar solicitud</button>
+        </div>
+      </section>
+
+      <section id="anexo-solicitud">
+        <h2>Anexo A — Plantilla de solicitud a ACAM</h2>
+        <pre class="card code">{{ solicitudACAM }}</pre>
+        <button class="btn" type="button" (click)="copy(solicitudACAM)">Copiar plantilla</button>
+      </section>
+
+      <section id="anexo-cue">
+        <h2>Anexo B — Plantilla de Cue Sheet</h2>
+        <pre class="card code">{{ cueSheet }}</pre>
+        <button class="btn" type="button" (click)="copy(cueSheet)">Copiar plantilla</button>
+      </section>
+
+      <section id="recomendaciones">
+        <h2>Anexo C — Recomendaciones prácticas</h2>
+        <ul>
+          <li>Mantén una carpeta con facturas/licencias de tus bibliotecas o acuerdos.</li>
+          <li>Registra hora exacta y duración real de cada uso musical.</li>
+          <li>Prefiere fuentes con metadatos completos (ISWC/ISRC) para facilitar reportes.</li>
+          <li>Evita subir música en claro a IPFS si no tienes derechos suficientes.</li>
+        </ul>
+      </section>
+
+      <section id="nota">
+        <h2>Nota importante</h2>
+        <p class="muted">
+          Este aviso es informativo y no constituye asesoría legal. Para detalles sobre tarifas, alcance y procedimientos,
+          consulta directamente con ACAM.
+        </p>
+      </section>
+    </article>
+  </div>
+</section>

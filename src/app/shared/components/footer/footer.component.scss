@@ -1,0 +1,17 @@
+:host { display:block; }
+
+.site-footer{
+  border-top: 1px solid var(--line, rgba(255,255,255,.08));
+  background: rgba(0,0,0,.35);
+  padding: 18px 0;
+}
+.footer-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  p{ margin:0; color: var(--muted, #a8b4c7); }
+}
+.footer-nav{ display:flex; gap:12px; flex-wrap:wrap;
+  a{
+    color: var(--txt, #eaf1f6); text-decoration:none; padding:6px 8px; border-radius:10px;
+  }
+  a:hover{ background: rgba(255,255,255,.06); text-decoration:none; }
+}

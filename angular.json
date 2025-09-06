@@ -62,6 +62,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {},
           "configurations": {
             "production": {
               "buildTarget": "ecolatam-web:build:production"
@@ -98,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "2cbc3656-3a9e-4e02-994a-b251d578bcef"
   }
 }

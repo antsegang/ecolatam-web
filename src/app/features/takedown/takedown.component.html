@@ -1,0 +1,246 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Legal</div>
+      <h1>Política de Takedown / Safe Harbor</h1>
+      <p class="lead">
+        Cómo reportar contenido que infringe derechos, cómo funciona la contranotificación y qué puede ocurrir en casos
+        de reincidencia. Incluye consideraciones para contenidos con <strong>CIDs</strong> en IPFS.
+      </p>
+      <p class="muted small">Última actualización: 28 de agosto de 2025</p>
+      <div class="cta-row">
+        <button class="btn" type="button" (click)="openMail('Aviso de infracción – EcoLATAM')">
+          Enviar aviso por correo
+        </button>
+        <button class="btn btn-ghost" type="button" (click)="openMail('Contranotificación – EcoLATAM')">
+          Enviar contranotificación
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container layout">
+    <aside class="toc card" aria-label="Índice de contenidos">
+      <nav>
+        <a href="#introduccion">1. Introducción y alcance</a>
+        <a href="#definiciones">2. Definiciones básicas</a>
+        <a href="#rol">3. Nuestro rol como intermediario</a>
+        <a href="#prohibidos">4. Contenidos prohibidos</a>
+        <a href="#procedimiento">5. Procedimiento de aviso (takedown)</a>
+        <a href="#requisitos">6. Requisitos de un aviso válido</a>
+        <a href="#medidas">7. Medidas que podemos tomar</a>
+        <a href="#contra">8. Contranotificación</a>
+        <a href="#reincidencia">9. Política de reincidencia</a>
+        <a href="#ipfs">10. Consideraciones especiales para IPFS</a>
+        <a href="#registros">11. Conservación de registros y transparencia</a>
+        <a href="#datos">12. Datos personales en el proceso</a>
+        <a href="#abuso">13. No abuso del proceso</a>
+        <a href="#cambios">14. Cambios a esta política</a>
+        <a href="#contacto">15. Contacto</a>
+        <a href="#anexo-aviso">Anexo A: Plantilla de aviso</a>
+        <a href="#anexo-contra">Anexo B: Plantilla de contranotificación</a>
+        <a href="#anexo-ejemplos">Anexo C: Ejemplos de evidencias útiles</a>
+        <a href="#descargo">Nota importante</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section id="introduccion">
+        <h2>1) Introducción y alcance</h2>
+        <p>
+          Esta política describe cómo puedes pedir la retirada, desindexación o limitación de alcance de contenidos que
+          presuntamente infringen derechos (autor, marca, imagen, privacidad u otros) en nuestros servicios:
+          ecolatam.com, EcoGuía, Plataforma Social, APIs y, cuando aplique, nuestro gateway/pinning IPFS.
+        </p>
+      </section>
+
+      <section id="definiciones">
+        <h2>2) Definiciones básicas</h2>
+        <ul>
+          <li><strong>Titular:</strong> quien tiene derechos sobre una obra, marca o contenido.</li>
+          <li><strong>Agente autorizado:</strong> persona con poder para actuar en nombre del titular.</li>
+          <li><strong>CGU:</strong> contenido generado por usuarios (texto, imágenes, archivos, CIDs).</li>
+          <li><strong>CID:</strong> identificador de contenido en IPFS.</li>
+          <li><strong>Aviso:</strong> comunicación formal pidiendo medidas sobre un contenido concreto.</li>
+        </ul>
+      </section>
+
+      <section id="rol">
+        <h2>3) Nuestro rol como intermediario</h2>
+        <p>
+          EcoLATAM ofrece infraestructura y espacios de publicación. No podemos revisar todo el contenido de antemano,
+          pero actuaremos de forma diligente frente a avisos claros y completos.
+        </p>
+      </section>
+
+      <section id="prohibidos">
+        <h2>4) Contenidos prohibidos (resumen)</h2>
+        <ul>
+          <li>Infracciones a derechos de autor, marcas, imagen o privacidad.</li>
+          <li>Explotación de menores, violencia extrema, terrorismo.</li>
+          <li>Malware, phishing, instrucciones para delinquir o evadir controles.</li>
+          <li>Suplantación de identidad y divulgación de datos sensibles sin base legal.</li>
+        </ul>
+      </section>
+
+      <section id="procedimiento">
+        <h2>5) Procedimiento de aviso (takedown)</h2>
+        <p>
+          Envía tu aviso a <a href="mailto:hola@ecolatam.com">hola&#64;ecolatam.com</a> con la información indicada
+          abajo. Revisaremos el caso y podremos aplicar medidas provisionales mientras evaluamos.
+        </p>
+      </section>
+
+      <section id="requisitos">
+        <h2>6) Requisitos de un aviso válido</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Campo</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Titular/Agente</td>
+              <td>Nombre completo y cómo acredita su representación (si aplica).</td>
+            </tr>
+            <tr>
+              <td>Contacto</td>
+              <td>Correo y teléfono para seguimiento.</td>
+            </tr>
+            <tr>
+              <td>Identificación del contenido</td>
+              <td>URL precisas y/o CIDs (incluye capturas o hash si corresponde).</td>
+            </tr>
+            <tr>
+              <td>Derecho afectado</td>
+              <td>Breve explicación (autor, marca, imagen, privacidad, otro).</td>
+            </tr>
+            <tr>
+              <td>Prueba de titularidad</td>
+              <td>Documentos, registros, contratos o links oficiales.</td>
+            </tr>
+            <tr>
+              <td>Declaración de buena fe</td>
+              <td>Indicar que el uso no está autorizado por titular/ley.</td>
+            </tr>
+            <tr>
+              <td>Declaración de veracidad</td>
+              <td>Confirmar que la información es precisa.</td>
+            </tr>
+            <tr>
+              <td>Firma</td>
+              <td>Nombre y fecha (firma digital si es posible).</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="medidas">
+        <h2>7) Medidas que podemos tomar</h2>
+        <ul>
+          <li>Ocultar o despublicar el contenido en nuestras interfaces.</li>
+          <li>Desindexar de nuestro buscador o gateway.</li>
+          <li>Suspender temporalmente la cuenta o funcionalidades asociadas.</li>
+          <li>Retirar pinning bajo nuestro control. <em>Nota:</em> no podemos eliminar copias que terceros mantengan en IPFS.</li>
+          <li>Solicitar aclaraciones o pruebas adicionales a las partes.</li>
+        </ul>
+      </section>
+
+      <section id="contra">
+        <h2>8) Contranotificación</h2>
+        <p>
+          Si crees que hubo un error, puedes enviar una contranotificación para pedir la restauración del contenido.
+          Evalúaremos ambos lados y podremos revertir medidas cuando proceda.
+        </p>
+      </section>
+
+      <section id="reincidencia">
+        <h2>9) Política de reincidencia</h2>
+        <p>
+          Las cuentas con infracciones reiteradas o graves pueden recibir sanciones progresivas (limitaciones, suspensiones
+          o cierre), según la naturaleza y frecuencia de los incumplimientos.
+        </p>
+      </section>
+
+      <section id="ipfs">
+        <h2>10) Consideraciones especiales para IPFS</h2>
+        <ul>
+          <li>Un <strong>CID</strong> puede resolverse desde múltiples gateways fuera de nuestro control.</li>
+          <li>La retirada de nuestro pinning o bloqueo local <strong>no</strong> garantiza la eliminación global.</li>
+          <li>Recomendamos cifrado del lado del cliente y evitar subir PII en claro.</li>
+        </ul>
+      </section>
+
+      <section id="registros">
+        <h2>11) Conservación de registros y transparencia</h2>
+        <p>
+          Conservamos un registro mínimo de avisos y acciones para fines de auditoría y cumplimiento. Podemos publicar
+          informes agregados de transparencia sin datos personales.
+        </p>
+      </section>
+
+      <section id="datos">
+        <h2>12) Datos personales en el proceso</h2>
+        <p>
+          Los datos enviados con avisos o contranotificaciones se tratan conforme a nuestra
+          <a href="/privacy">Política de Privacidad</a>, limitados al propósito de verificar y gestionar la solicitud.
+        </p>
+      </section>
+
+      <section id="abuso">
+        <h2>13) No abuso del proceso</h2>
+        <p>
+          No uses el proceso para retirar contenidos legítimos o silenciar críticas lícitas. Los avisos fraudulentos
+          pueden acarrear medidas y, si corresponde, responsabilidad.
+        </p>
+      </section>
+
+      <section id="cambios">
+        <h2>14) Cambios a esta política</h2>
+        <p>Publicaremos la versión vigente y avisaremos de forma destacada cuando haya cambios relevantes.</p>
+      </section>
+
+      <section id="contacto">
+        <h2>15) Contacto</h2>
+        <p>Correo: <a href="mailto:hola@ecolatam.com">hola&#64;ecolatam.com</a></p>
+        <div class="cta-row">
+          <button class="btn" type="button" (click)="openMail('Aviso de infracción – EcoLATAM')">Aviso de infracción</button>
+          <button class="btn btn-ghost" type="button" (click)="openMail('Contranotificación – EcoLATAM')">Contranotificación</button>
+        </div>
+      </section>
+
+      <section id="anexo-aviso">
+        <h2>Anexo A — Plantilla de aviso (copiar y completar)</h2>
+        <pre class="card code">{{ avisoTemplate }}</pre>
+        <button class="btn" type="button" (click)="copy(avisoTemplate)">Copiar plantilla</button>
+      </section>
+
+      <section id="anexo-contra">
+        <h2>Anexo B — Plantilla de contranotificación (copiar y completar)</h2>
+        <pre class="card code">{{ counterTemplate }}</pre>
+        <button class="btn" type="button" (click)="copy(counterTemplate)">Copiar plantilla</button>
+      </section>
+
+      <section id="anexo-ejemplos">
+        <h2>Anexo C — Ejemplos de evidencias útiles</h2>
+        <ul>
+          <li>Registro de obra o marca; contrato de licencia.</li>
+          <li>Capturas con fecha/hora y URL; hash o CID del contenido original.</li>
+          <li>Enlaces a publicaciones oficiales o repositorios del titular.</li>
+        </ul>
+      </section>
+
+      <section id="descargo">
+        <h2>Nota importante</h2>
+        <p class="muted">
+          Este documento es informativo y no constituye asesoría legal. Las referencias a IPFS describen limitaciones
+          técnicas comunes. Si tienes dudas legales específicas, consulta a un profesional.
+        </p>
+      </section>
+    </article>
+  </div>
+</section>

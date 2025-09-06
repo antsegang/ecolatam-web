@@ -1,0 +1,146 @@
+<section class="section">
+  <div class="container">
+    @if (loading()) {
+      <div class="skeleton profile" aria-live="polite"></div>
+    } @else {
+      @if (user(); as u) {
+
+        <article class="profile-card">
+          <!-- Cover / banner -->
+          <div class="cover">
+            <div class="cover-overlay"></div>
+          </div>
+
+          <!-- Header sticky -->
+          <header class="profile-header">
+            <div class="avatar">
+              <img src="/avatar-placeholder.png"
+                   [alt]="(u.name || '') + ' ' + (u.lastname || '')" />
+            </div>
+
+            <div class="head-copy">
+              <h1 class="title">
+                {{ (u.name || u.lastname) ? (u.name + ' ' + (u.lastname || '')) :
+                   (u.username ? '@' + u.username : 'Usuario') }}
+              </h1>
+
+              <p class="ident">
+                <span *ngIf="u.username" class="badge">&#64;{{ u.username }}</span>
+                <ng-container *ngIf="u.username && u.email"> · </ng-container>
+                <a *ngIf="u.email" [href]="'mailto:' + u.email">{{ u.email }}</a>
+              </p>
+
+              <ul class="meta">
+                <li *ngIf="locationLabel() as loc"><i></i>{{ loc }}</li>
+                <li *ngIf="u.createdAt"><i></i>Miembro desde {{ u.createdAt | date:'longDate':'UTC' }}</li>
+              </ul>
+            </div>
+
+            <div class="actions">
+              <button class="btn-ghost sm">Seguir</button>
+              <button class="btn-ghost sm">Mensaje</button>
+            </div>
+          </header>
+
+          <!-- Stats -->
+          <section class="stats">
+            <div class="stat"><span class="num">{{ stats().posts }}</span><span class="lbl">Publicaciones</span></div>
+            <div class="stat"><span class="num">{{ stats().followers }}</span><span class="lbl">Seguidores</span></div>
+            <div class="stat"><span class="num">{{ stats().following }}</span><span class="lbl">Siguiendo</span></div>
+          </section>
+
+          <!-- Tabs -->
+          <nav class="tabs" role="tablist" aria-label="Secciones del perfil">
+            <button class="tab" [class.active]="isTab('posts')"    (click)="setTab('posts')"    role="tab">Publicaciones</button>
+            <button class="tab" [class.active]="isTab('about')"    (click)="setTab('about')"    role="tab">Información</button>
+            <button class="tab" [class.active]="isTab('activity')" (click)="setTab('activity')" role="tab">Actividad</button>
+          </nav>
+
+          <!-- Body -->
+          <div class="profile-body">
+            @if (isTab('posts')) {
+              <!-- Composer aprovisionado -->
+              <section class="card composer">
+                <div class="avatar-xs">
+                  <img src="/avatar-placeholder.png" [alt]="u.name || u.username || 'Usuario'"/>
+                </div>
+                <input type="text" placeholder="¿Qué estás pensando?" disabled />
+                <button class="btn" disabled>Publicar</button>
+              </section>
+
+              <!-- Lista de posts -->
+              @if ((posts() || []).length > 0) {
+                <section class="feed">
+                  <article class="card post" *ngFor="let p of posts();">
+                    <header class="post-head">
+                      <div class="avatar-xs">
+                        <img src="/avatar-placeholder.png" [alt]="u.name || u.username || 'Usuario'"/>
+                      </div>
+                      <div class="who">
+                        <strong>{{ u.name }} {{ u.lastname }}</strong>
+                        <span class="muted">&#64;{{ u.username }}</span>
+                        <span class="dot">•</span>
+                        <time class="muted">{{ p.createdAt | date:'mediumDate':'UTC' }}</time>
+                      </div>
+                    </header>
+                    <div class="post-body">
+                      <p>{{ p.content }}</p>
+                    </div>
+                  </article>
+                </section>
+              } @else {
+                <section class="empty-feed card">
+                  <div class="illo"></div>
+                  <h3>Sin publicaciones aún</h3>
+                  <p class="muted">Cuando este usuario publique, lo verás aquí.</p>
+                </section>
+              }
+            }
+
+            @if (isTab('about')) {
+              <div class="grid two">
+                <section class="panel">
+                  <h2>Detalles</h2>
+                  <dl class="kv">
+                    <div *ngIf="u.birthdate"><dt>Nacimiento</dt><dd>{{ u.birthdate | date:'longDate':'UTC' }}</dd></div>
+                    <div *ngIf="u.location"><dt>Ubicación</dt><dd>{{ u.location }}</dd></div>
+                    <div *ngIf="u.zip"><dt>Código Postal</dt><dd>{{ u.zip }}</dd></div>
+                  </dl>
+                </section>
+
+                <section class="panel">
+                  <h2>Contacto</h2>
+                  <dl class="kv">
+                    <div *ngIf="u.email"><dt>Correo</dt><dd><a [href]="'mailto:' + u.email">{{ u.email }}</a></dd></div>
+                    <div *ngIf="u.cellphone"><dt>Celular</dt><dd>{{ u.cellphone }}</dd></div>
+                    <div *ngIf="u.phone"><dt>Teléfono</dt><dd>{{ u.phone }}</dd></div>
+                  </dl>
+                </section>
+              </div>
+
+              <section class="panel">
+                <h2>Ubicación (Catálogos)</h2>
+                <dl class="kv kv-ids">
+                  <div *ngIf="getPaisLabel()"><dt>País</dt><dd>{{ getPaisLabel() }}</dd></div>
+                  <div *ngIf="getProvinciaLabel()"><dt>Provincia</dt><dd>{{ getProvinciaLabel() }}</dd></div>
+                  <div *ngIf="getCantonLabel()"><dt>Cantón</dt><dd>{{ getCantonLabel() }}</dd></div>
+                  <div *ngIf="getDistritoLabel()"><dt>Distrito</dt><dd>{{ getDistritoLabel() }}</dd></div>
+                </dl>
+              </section>
+            }
+
+            @if (isTab('activity')) {
+              <section class="panel">
+                <h2>Actividad reciente</h2>
+                <p class="muted">Próximamente verás reseñas, interacciones y cambios relevantes.</p>
+              </section>
+            }
+          </div>
+        </article>
+
+      } @else {
+        <p class="muted">No se encontró el usuario.</p>
+      }
+    }
+  </div>
+</section>

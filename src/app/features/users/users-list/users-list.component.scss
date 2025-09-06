@@ -1,0 +1,120 @@
+:host{ display:block; }
+
+/* Hero */
+.hero { padding: 32px 0 8px; }
+.hero-inner{ display:block; }
+.eyebrow{
+  display:inline-block; font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color: var(--accent-3); background: rgba(52,211,153,.10);
+  border:1px solid rgba(52,211,153,.25); padding:6px 10px; border-radius: var(--radius-pill);
+  margin-bottom: 10px;
+}
+h1{ font-size: clamp(26px, 5.5vw, 36px); margin: 6px 0 8px; }
+.lead{ color: var(--muted); }
+
+/* Sección */
+.section{ padding: 24px 0 44px; } /* + aire abajo */
+
+/* Buscador */
+.search-row{
+  display:flex; gap:12px; margin: 0 0 22px; flex-wrap:wrap; /* + aire debajo */
+  input{ flex:1 1 280px; }
+  .btn{ white-space:nowrap; }
+}
+
+/* Grid */
+.grid.cards{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px; /* + separación entre cards */
+  margin-top: 6px;
+}
+
+/* Card tile cuadradita (imagen 1:1 arriba) */
+.card.user-tile{
+  display:flex; flex-direction:column;
+  background: var(--surface);
+  border:1px solid var(--line);
+  border-radius: 10px; /* menos redondo → look cuadrado */
+  box-shadow: var(--shadow-1);
+  overflow:hidden; /* para que la imagen respete el radio */
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  backdrop-filter: blur(10px);
+
+  &:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+
+  .cover{
+    display:block; position:relative; overflow:hidden; border-bottom:1px solid var(--line);
+    aspect-ratio: 1 / 1; /* cuadrado perfecto */
+    img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      transform: scale(1.0); transition: transform .25s ease;
+    }
+  }
+  &:hover .cover img{ transform: scale(1.03); }
+
+  .body{
+    padding: 14px 14px 12px; display:flex; flex-direction:column; gap: 8px;
+
+    .title{ margin:0; font-size: 16px; line-height:1.25; }
+    .title a{ color: var(--txt); text-decoration:none; }
+    .title a:hover{ text-decoration:underline; }
+
+    .sub{
+      margin:0; color: var(--muted); font-size: 13px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+      .badge{
+        display:inline-block; padding:4px 8px; border-radius: 999px;
+        background: rgba(255,255,255,.05);
+        border:1px solid rgba(120,180,140,.35);
+        font-weight:600; color: var(--txt); font-size:12px;
+      }
+      a{ color: var(--accent); }
+    }
+
+    .meta{
+      list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px;
+      li{ color: var(--muted); font-size: 12px; display:flex; gap:8px; align-items:flex-start; }
+      i{
+        display:inline-block; width:14px; height:14px; margin-top:2px; opacity:.7;
+        background:
+          radial-gradient(circle at 50% 50%, var(--accent) 0 2px, transparent 2px),
+          linear-gradient(var(--muted), var(--muted));
+        background-repeat:no-repeat;
+        background-position: center, center;
+        background-size: 4px 4px, 100% 1px;
+        border-radius:999px;
+      }
+    }
+
+    .actions{
+      margin-top: 6px;
+      .sm{ padding:6px 10px; font-size: 13px; border-radius: 10px; }
+    }
+  }
+}
+
+/* Skeletons del grid */
+.skeleton{
+  height: 320px; /* altura aprox de la tile (1:1 + body) */
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.08), rgba(255,255,255,.04));
+  animation: shimmer 1.2s infinite linear;
+  border:1px solid var(--line);
+}
+@keyframes shimmer{ 0%{background-position:-200px 0} 100%{background-position:200px 0} }
+
+/* Empty */
+.empty-state{ text-align:center; margin: 24px 0; }
+
+/* Pager (fuera del grid) */
+.pager{
+  display:flex; gap:12px; align-items:center; justify-content:center; margin-top: 20px;
+  .btn-ghost{ min-width:120px; }
+  .muted{ color: var(--muted); }
+}
+
+/* Responsive */
+@media (max-width: 560px){
+  .grid.cards{ gap: 14px; }
+  .card.user-tile .body{ padding: 12px; }
+}

@@ -1,0 +1,59 @@
+<section class="auth-page">
+  <div class="card auth-card">
+    <a class="brand" routerLink="/" aria-label="EcoLATAM - inicio">
+      <img src="/ecolatam-logo.png" alt="EcoLATAM" height="36" />
+    </a>
+
+    <h1>Iniciar sesión</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <label class="field">
+        <span>Correo o usuario</span>
+        <input
+          type="text"
+          formControlName="identity"
+          autocomplete="username"
+          [class.invalid]="submitted && form.controls.identity.invalid"
+          placeholder="tu@email.com o tu_usuario" />
+        <small class="hint" *ngIf="!submitted || form.controls.identity.valid">
+          Usa tu correo o tu nombre de usuario.
+        </small>
+        <small class="error" *ngIf="submitted && form.controls.identity.errors?.['required']">
+          Este campo es obligatorio.
+        </small>
+        <small class="error" *ngIf="submitted && form.controls.identity.errors?.['minlength']">
+          Debe tener al menos 3 caracteres.
+        </small>
+      </label>
+
+      <label class="field">
+        <span>Contraseña</span>
+        <div class="password-row">
+          <input
+            [type]="showPwd ? 'text' : 'password'"
+            formControlName="password"
+            autocomplete="current-password"
+            [class.invalid]="submitted && form.controls.password.invalid"
+            placeholder="••••••••" />
+          <button type="button" class="btn-ghost eye" (click)="togglePwd()" aria-label="Mostrar/ocultar contraseña">
+            {{ showPwd ? 'Ocultar' : 'Ver' }}
+          </button>
+        </div>
+        <small class="error" *ngIf="submitted && form.controls.password.errors?.['required']">
+          La contraseña es obligatoria.
+        </small>
+        <small class="error" *ngIf="submitted && form.controls.password.errors?.['minlength']">
+          Mínimo 6 caracteres.
+        </small>
+      </label>
+
+      <div class="actions">
+        <button class="btn" type="submit" [disabled]="loading || form.invalid">
+          {{ loading ? 'Ingresando…' : 'Entrar' }}
+        </button>
+      </div>
+
+      <p class="error global" *ngIf="error" aria-live="polite">{{ error }}</p>
+    </form>
+  </div>
+</section>

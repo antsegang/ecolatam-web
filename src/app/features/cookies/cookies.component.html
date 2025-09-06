@@ -1,0 +1,184 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Legal</div>
+      <h1>Política de Cookies</h1>
+      <p class="lead">
+        Explicamos qué son las cookies, cuáles usamos y cómo puedes cambiar tus preferencias en cualquier momento.
+      </p>
+      <p class="muted small">Última actualización: 28 de agosto de 2025</p>
+      <button class="btn" type="button" (click)="openPreferences()">Gestionar preferencias</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container layout">
+    <aside class="toc card" aria-label="Índice de contenidos">
+      <nav>
+        <a href="#que-son">1. ¿Qué son las cookies?</a>
+        <a href="#alcance">2. Alcance de esta política</a>
+        <a href="#tipos">3. Tipos de cookies que usamos</a>
+        <a href="#base-legal">4. Base legal y consentimiento</a>
+        <a href="#conservacion">5. Plazos de conservación</a>
+        <a href="#gestionar">6. Cómo gestionar tus cookies</a>
+        <a href="#tecnologias">7. Tecnologías similares</a>
+        <a href="#terceros">8. Proveedores y terceros</a>
+        <a href="#cambios">9. Cambios a esta política</a>
+        <a href="#contacto">10. Contacto</a>
+        <a href="#anexo">Anexo A: Resumen por categoría</a>
+      </nav>
+    </aside>
+
+    <article class="content">
+      <section id="que-son">
+        <h2>1) ¿Qué son las cookies?</h2>
+        <p>
+          Son pequeños archivos que se almacenan en tu navegador para recordar información básica: tu sesión,
+          preferencias, medición de uso y seguridad, entre otros. Algunas son esenciales para que el sitio funcione.
+        </p>
+      </section>
+
+      <section id="alcance">
+        <h2>2) Alcance de esta política</h2>
+        <p>Aplica a ecolatam.com, la EcoGuía, la Plataforma Social y las áreas públicas de nuestros portales y APIs.</p>
+        <p class="muted small">
+          En Costa Rica, seguimos buenas prácticas alineadas con la Ley 8968 (protección de datos) y las directrices de
+          PRODHAB, además de estándares internacionales cuando correspondan.
+        </p>
+      </section>
+
+      <section id="tipos">
+        <h2>3) Tipos de cookies que usamos</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Finalidad</th>
+              <th>Ejemplos típicos</th>
+              <th>Activación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Necesarias</strong></td>
+              <td>Hacen posible funciones básicas: inicio de sesión, seguridad, carga de páginas y equilibrio de carga.</td>
+              <td>Sesión del usuario, token de autenticación, preferencia de idioma.</td>
+              <td>Siempre activas (sin ellas el servicio no funciona).</td>
+            </tr>
+            <tr>
+              <td><strong>Funcionales</strong></td>
+              <td>Recuerdan tus elecciones para mejorar la experiencia.</td>
+              <td>Guardar tema oscuro, recordar filtros o la última sección visitada.</td>
+              <td>Con tu consentimiento cuando sea requerido.</td>
+            </tr>
+            <tr>
+              <td><strong>Analítica</strong></td>
+              <td>Nos ayudan a entender el uso del sitio de forma agregada para mejorarlo.</td>
+              <td>Métricas de páginas vistas y eventos anónimos o seudonimizados.</td>
+              <td>Opt-in/opt-out según preferencias.</td>
+            </tr>
+            <tr>
+              <td><strong>Marketing</strong></td>
+              <td>Permiten medir campañas y, cuando aplique, personalizar anuncios en sitios de terceros.</td>
+              <td>Etiquetas de seguimiento de campañas.</td>
+              <td>Opt-in/opt-out según preferencias.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="muted">
+          La lista concreta puede cambiar con el tiempo. El panel de <em>Gestionar preferencias</em> muestra la versión
+          vigente por categoría y proveedor.
+        </p>
+      </section>
+
+      <section id="base-legal">
+        <h2>4) Base legal y consentimiento</h2>
+        <ul>
+          <li><strong>Necesarias:</strong> interés legítimo/ejecución del servicio.</li>
+          <li><strong>Funcionales, Analítica y Marketing:</strong> tu consentimiento cuando la normativa lo exija.</li>
+        </ul>
+        <p>Puedes retirar tu consentimiento en cualquier momento desde el botón “Gestionar preferencias”.</p>
+      </section>
+
+      <section id="conservacion">
+        <h2>5) Plazos de conservación</h2>
+        <ul>
+          <li><strong>Sesión:</strong> se eliminan al cerrar el navegador o tras inactividad.</li>
+          <li><strong>Persistentes:</strong> entre 1 y 24 meses en general (según categoría y proveedor).</li>
+        </ul>
+        <p class="muted">En la <a href="/privacy">Política de Privacidad</a> explicamos los plazos de tratamiento de datos personales.</p>
+      </section>
+
+      <section id="gestionar">
+        <h2>6) Cómo gestionar tus cookies</h2>
+        <p>
+          Puedes configurar o cambiar tu selección desde el panel:
+          <button class="btn btn-ghost" type="button" (click)="openPreferences()">Abrir preferencias</button>
+        </p>
+        <details>
+          <summary>Gestionarlas desde tu navegador</summary>
+          <p>
+            La mayoría de navegadores permiten bloquear/eliminar cookies desde su menú de configuración (privacidad o
+            seguridad). Si las bloqueas totalmente, algunas funciones podrían dejar de operar.
+          </p>
+        </details>
+      </section>
+
+      <section id="tecnologias">
+        <h2>7) Tecnologías similares</h2>
+        <p>
+          Usamos tecnologías afines, como almacenamiento local del navegador, identificadores de sesión y etiquetas de
+          medición en el lado del cliente. Se rigen por los mismos principios que esta política.
+        </p>
+      </section>
+
+      <section id="terceros">
+        <h2>8) Proveedores y terceros</h2>
+        <p>
+          Trabajamos con servicios de infraestructura, analítica y comunicaciones. Compartimos solo lo necesario para su
+          función y bajo obligaciones de confidencialidad. Consulta la
+          <a href="/privacy">Política de Privacidad</a> para más detalle.
+        </p>
+      </section>
+
+      <section id="cambios">
+        <h2>9) Cambios a esta política</h2>
+        <p>
+          Si actualizamos categorías o proveedores, lo indicaremos aquí y, si el cambio es relevante, lo anunciaremos en
+          el producto. Te invitamos a revisar periódicamente el panel de preferencias.
+        </p>
+      </section>
+
+      <section id="contacto">
+        <h2>10) Contacto</h2>
+        <p>
+          ¿Dudas o solicitudes? Escríbenos a <a href="mailto:hola@ecolatam.com">hola&#64;ecolatam.com</a>. También puedes
+          ejercer tus derechos siguiendo el proceso de la <a href="/privacy">Política de Privacidad</a>.
+        </p>
+      </section>
+
+      <section id="anexo">
+        <h2>Anexo A — Resumen por categoría (referencia rápida)</h2>
+        <div class="grid">
+          <div class="card k">
+            <span class="badge">Necesarias</span>
+            <p>Autenticación, seguridad, balanceo, disponibilidad.</p>
+          </div>
+          <div class="card k">
+            <span class="badge">Funcionales</span>
+            <p>Preferencias de usuario y personalización básica.</p>
+          </div>
+          <div class="card k">
+            <span class="badge">Analítica</span>
+            <p>Medición agregada de uso y calidad del servicio.</p>
+          </div>
+          <div class="card k">
+            <span class="badge">Marketing</span>
+            <p>Medición de campañas y, cuando aplique, personalización publicitaria.</p>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+</section>
