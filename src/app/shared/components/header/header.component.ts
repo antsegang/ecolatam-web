@@ -55,6 +55,8 @@ export class HeaderComponent implements OnDestroy {
 
   mobileOpen = false;
   openGroups: Record<number, boolean> = {};
+  desktopOpen: Record<number, boolean> = {};
+  private hoverTimers: Record<number, ReturnType<typeof setTimeout>> = {};
 
   // Buscar en header
   searchOpen = false;
@@ -93,6 +95,15 @@ export class HeaderComponent implements OnDestroy {
   toggleMobile() { this.mobileOpen = !this.mobileOpen; }
   closeMobile()  { this.mobileOpen = false; }
   toggleGroup(i: number) { this.openGroups[i] = !this.openGroups[i]; }
+
+  openSubmenu(i: number) {
+    clearTimeout(this.hoverTimers[i]);
+    this.desktopOpen[i] = true;
+  }
+
+  closeSubmenu(i: number) {
+    this.hoverTimers[i] = setTimeout(() => this.desktopOpen[i] = false, 200);
+  }
 
   openSearch() { this.searchOpen = true; }
   closeSearch() { this.searchOpen = false; }

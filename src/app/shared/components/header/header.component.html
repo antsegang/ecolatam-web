@@ -10,8 +10,12 @@
     <nav class="nav desktop" aria-label="Navegación principal">
       <ng-container *ngFor="let item of menu; index as i">
         <!-- Con submenú -->
-        <div class="menu-group" *ngIf="item.children?.length; else leaf">
-          <button class="group-btn" type="button" aria-haspopup="true" aria-expanded="false">{{ item.label }}</button>
+        <div class="menu-group" *ngIf="item.children?.length; else leaf"
+             (mouseenter)="openSubmenu(i)" (mouseleave)="closeSubmenu(i)"
+             (focusin)="openSubmenu(i)" (focusout)="closeSubmenu(i)"
+             [class.open]="desktopOpen[i]">
+          <button class="group-btn" type="button" aria-haspopup="true"
+                  [attr.aria-expanded]="desktopOpen[i] ? 'true' : 'false'">{{ item.label }}</button>
           <div class="submenu card">
             <ng-container *ngFor="let c of item.children">
               <a *ngIf="c.path; else ext2"

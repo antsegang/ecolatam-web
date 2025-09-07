@@ -54,7 +54,7 @@
 .group-btn{ background: transparent; color: var(--txt); border:0; padding:8px 10px; border-radius:10px; cursor:pointer }
 .group-btn:hover{ background: rgba(255,255,255,.06) }
 .submenu{ position:absolute; top: 110%; left:0; min-width: 200px; padding:8px; border-radius:var(--radius-1); border:1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-1); display:none; }
-.menu-group:hover .submenu{ display:block }
+.menu-group.open .submenu{ display:block }
 .submenu a{ display:block; padding:8px 10px; border-radius:10px; }
 .submenu a:hover{ background: rgba(255,255,255,.06) }
 
