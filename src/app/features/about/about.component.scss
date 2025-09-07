@@ -37,7 +37,7 @@ h1{
 .kpi-label{ display:block; color: var(--muted-2, #94a3b8); font-size:12px }
 .kpi-value{ display:block; font-size:18px; font-weight:800 }
 .hero-art img{
-  width:100%; height:auto; border-radius:16px;
+  width:100%; height:auto; border-radius:var(--radius-2);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-2);
   display:block; object-fit:cover;
@@ -52,14 +52,6 @@ h1{
 .cards-4{ display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
 .cards-3{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
 
-.card{
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: var(--shadow-1);
-  backdrop-filter: blur(10px);
-}
 .muted{ color: var(--muted); }
 .tick{ margin: 10px 0 0 18px; li{ margin: 6px 0 } }
 .roadmap{ margin: 10px 0 0 18px; li{ margin: 6px 0 } }
@@ -69,7 +61,7 @@ h1{
 .member{
   display:flex; gap:12px; align-items:center;
   img{
-    width:72px; height:72px; border-radius:12px; object-fit:cover;
+    width:72px; height:72px; border-radius:var(--radius-1); object-fit:cover;
     border:1px solid var(--line);
   }
   .info h3{ margin: 0 0 4px; }
@@ -81,7 +73,7 @@ h1{
 details{
   background:rgba(255,255,255,.05);
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:var(--radius-1);
   padding:10px 12px;
   margin:10px 0;
 }

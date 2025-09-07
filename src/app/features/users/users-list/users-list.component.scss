@@ -33,13 +33,9 @@ h1{ font-size: clamp(26px, 5.5vw, 36px); margin: 6px 0 8px; }
 /* Card tile cuadradita (imagen 1:1 arriba) */
 .card.user-tile{
   display:flex; flex-direction:column;
-  background: var(--surface);
-  border:1px solid var(--line);
   border-radius: 10px; /* menos redondo → look cuadrado */
-  box-shadow: var(--shadow-1);
-  overflow:hidden; /* para que la imagen respete el radio */
+  padding:0;
   transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-  backdrop-filter: blur(10px);
 
   &:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
 

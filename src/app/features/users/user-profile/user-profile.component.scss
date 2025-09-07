@@ -4,7 +4,7 @@
 /* === Shell de perfil tipo "muro" === */
 .profile-card{
   position: relative;
-  border-radius: 12px;
+  border-radius: var(--radius-1);
   overflow: hidden;
   border:1px solid var(--line);
   background: var(--surface);
@@ -110,7 +110,7 @@
   display:flex; align-items:center; gap:10px; margin-bottom: 12px;
   background: rgba(255,255,255,.03);
   border:1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius-1);
   padding: 10px;
   .avatar-xs{
     width:36px; height:36px; border-radius:10px; overflow:hidden; border:1px solid var(--line);
@@ -125,7 +125,7 @@
 
 /* Post card */
 .post{
-  padding: 12px; border:1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.03);
+  padding: 12px; border:1px solid var(--line); border-radius: var(--radius-1); background: rgba(255,255,255,.03);
   & + .post{ margin-top: 10px; }
 }
 .post-head{
@@ -145,7 +145,7 @@
 
 /* Empty state */
 .empty-feed{
-  text-align:center; padding: 22px; border:1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.03);
+  text-align:center; padding: 22px; border:1px solid var(--line); border-radius: var(--radius-1); background: rgba(255,255,255,.03);
   .illo{
     width:100%; height:110px; margin: 0 0 10px;
     background:
@@ -153,7 +153,7 @@
       radial-gradient(120px 60px at 70% 40%, rgba(34,197,94,.16), transparent 60%),
       linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
     border:1px dashed rgba(255,255,255,.12);
-    border-radius: 12px;
+    border-radius: var(--radius-1);
   }
   h3{ margin: 0 0 6px; }
   .muted{ color: var(--muted); }
@@ -164,7 +164,7 @@
 .panel{
   background: rgba(255,255,255,.03);
   border:1px solid var(--line);
-  border-radius: 12px; padding: 12px;
+  border-radius: var(--radius-1); padding: 12px;
   h2{ margin:0 0 10px; font-size: 14px; letter-spacing:.08em; text-transform:uppercase; color: var(--muted); }
 }
 .kv{
@@ -178,7 +178,7 @@
 
 /* Skeleton */
 .skeleton.profile{
-  height: 320px; border-radius: 12px;
+  height: 320px; border-radius: var(--radius-1);
   background: linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,255,255,.08), rgba(255,255,255,.04));
   animation: shimmer 1.2s infinite linear;
   border:1px solid var(--line);

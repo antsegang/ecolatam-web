@@ -6,7 +6,7 @@
 }
 .skip-link:focus{
   left:16px; top:10px; width:auto; height:auto; z-index:1000;
-  padding:8px 12px; border-radius:12px;
+  padding:8px 12px; border-radius:var(--radius-1);
   background:rgba(255,255,255,.95); color:#111; text-decoration:none;
   box-shadow: var(--shadow-1);
 }
@@ -53,7 +53,7 @@
 .menu-group{ position:relative }
 .group-btn{ background: transparent; color: var(--txt); border:0; padding:8px 10px; border-radius:10px; cursor:pointer }
 .group-btn:hover{ background: rgba(255,255,255,.06) }
-.submenu{ position:absolute; top: 110%; left:0; min-width: 200px; padding:8px; border-radius:12px; border:1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-1); display:none; }
+.submenu{ position:absolute; top: 110%; left:0; min-width: 200px; padding:8px; border-radius:var(--radius-1); border:1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-1); display:none; }
 .menu-group:hover .submenu{ display:block }
 .submenu a{ display:block; padding:8px 10px; border-radius:10px; }
 .submenu a:hover{ background: rgba(255,255,255,.06) }
@@ -78,7 +78,7 @@
   position:absolute; right:12px; top:12px; width:min(92vw, 320px);
   background: var(--surface);
   border:1px solid var(--line);
-  border-radius:16px; padding:12px;
+  border-radius:var(--radius-2); padding:12px;
   box-shadow: var(--shadow-1);
   display:flex; flex-direction:column; gap:6px;
   a{ padding:10px 12px; border-radius:10px; }

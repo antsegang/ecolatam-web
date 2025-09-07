@@ -14,7 +14,7 @@
     background: rgba(244,63,94,.08);
     border: 1px solid rgba(244,63,94,.25);
     color: #fecaca; /* soft red */
-    padding:10px 12px; border-radius:12px; margin-bottom:12px;
+    padding:10px 12px; border-radius:var(--radius-1); margin-bottom:12px;
   }
 
   .table-wrapper{ overflow:auto }
