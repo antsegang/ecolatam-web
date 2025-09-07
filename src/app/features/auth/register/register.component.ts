@@ -176,9 +176,10 @@ export class RegisterComponent {
       next: () => {
         // login automático
         this.authApi.login(raw.username, raw.password).subscribe({
-          next: ({ token, user }) => {
+          next: ({ token, user, id }) => {
             this.auth.setToken(token);
-            this.auth.setUser(user);
+            const withId = (user && typeof user === 'object') ? { ...(user as any), id } : { id } as any;
+            this.auth.setUser(withId);
             const redirect = this.route.snapshot.queryParamMap.get('redirectTo') || '/users';
             this.router.navigateByUrl(redirect);
           },

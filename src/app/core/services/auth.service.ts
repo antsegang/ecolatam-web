@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-type StoredUser = { id: string; name: string; email?: string; roles?: string[] } | null;
+type StoredUser = { id: number | string; name?: string; email?: string; roles?: string[] } | null;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -28,8 +28,16 @@ export class AuthService {
   private decodeJwtPayload(token: string): any | null {
     try {
       const payload = token.split('.')[1];
-      const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
-      return JSON.parse(decodeURIComponent(escape(json)));
+      if (!payload) return null;
+      // base64url -> base64 con padding
+      let b64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const pad = b64.length % 4;
+      if (pad) b64 += '='.repeat(4 - pad);
+      const bin = atob(b64);
+      // Decodificar como UTF-8 de forma segura
+      const bytes = new Uint8Array([...bin].map(c => c.charCodeAt(0)));
+      const text = new TextDecoder().decode(bytes);
+      return JSON.parse(text);
     } catch { return null; }
   }
 
@@ -44,6 +52,18 @@ export class AuthService {
     const p = this.decodeJwtPayload(t);
     const fromClaim = p?.roles ?? p?.role ?? [];
     return Array.isArray(fromClaim) ? fromClaim : (fromClaim ? [fromClaim] : []);
+  }
+
+  // --- Helpers públicos ---
+  getUserId(): number | undefined {
+    const u = this.getUser();
+    const fromUser = u && (u as any).id != null ? Number((u as any).id) : undefined;
+    if (fromUser && !Number.isNaN(fromUser)) return fromUser;
+    const t = this.getToken();
+    if (!t) return undefined;
+    const p = this.decodeJwtPayload(t);
+    const fromToken = p?.id != null ? Number(p.id) : undefined;
+    return fromToken && !Number.isNaN(fromToken) ? fromToken : undefined;
   }
 
   hasRole(required: string | string[], mode: 'any' | 'all' = 'any'): boolean {

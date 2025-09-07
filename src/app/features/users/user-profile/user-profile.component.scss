@@ -197,3 +197,11 @@
   }
   .kv{ grid-template-columns: 1fr; }
 }
+
+/* Modal básico */
+.modal-backdrop{ position:fixed; inset:0; background: rgba(0,0,0,.55); backdrop-filter: blur(2px); z-index:1000 }
+.modal{ position:fixed; inset:0; display:grid; place-items:center; padding:20px; z-index:1001 }
+.modal-content{ width:min(640px, 100%); }
+.modal-header{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px }
+.btn-icon{ padding:8px 10px }
+.modal-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:16px }

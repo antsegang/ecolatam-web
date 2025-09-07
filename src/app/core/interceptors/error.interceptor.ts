@@ -11,6 +11,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) =>
         const snippet = typeof err.error === 'string' ? err.error.slice(0, 200) : err.error;
         console.error('[HTTP ERR]', req.method, req.url, { status: err.status, message: err.message, snippet });
       }
+      // Errores de red (status 0): no redirigir, solo propagar
+      if (err.status === 0) {
+        return throwError(() => err);
+      }
       if (err.status === 401) {
         const router = inject(Router);
         inject(AuthService).logout();

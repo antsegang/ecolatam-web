@@ -1,80 +1,75 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from '@core/services/api.service';
 import { map } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import {
-  ApiEnvelope,
-  LoginPayloadDTO, LoginResponseDTO, LoginBodyDTO,
+  LoginPayloadDTO,
   MeResponseDTO,
-  RefreshResponseDTO, RegisterBodyDTO, RegisterPayloadDTO, RegisterResponseDTO
+  RefreshResponseDTO,
+  RegisterBodyDTO,
+  RegisterPayloadDTO,
+  RegisterResponseDTO,
 } from './auth.dto';
 
-/**
- * Servicio de acceso al API de Auth (feature-first).
- * Nota: no usamos HttpContext(SKIP_AUTH) porque el interceptor solo
- * agrega Authorization si hay token; en login normalmente no hay.
- * Si algún día necesitas forzar "no token", lo agregamos sin tocar UI.
- */
 @Injectable({ providedIn: 'root' })
 export class AuthApi {
   private api = inject(ApiService);
 
-  /**
-   * Login estricto (username + password).
-   * Devuelve un objeto plano { token, user } listo para guardar en AuthService.
-   */
+  // Login estricto (username + password)
   login(username: string, password: string): Observable<{ token: string; user: any; id: number }> {
     const payload: LoginPayloadDTO = { username, password };
-    return this.api.post<LoginResponseDTO>('/auth/login', payload).pipe(
-      map((env: ApiEnvelope<LoginBodyDTO>) => {
-        if (env.error || !env.body?.token) {
-          throw { message: 'Login inválido', env };
+    return this.api.post<any>('/auth/login', payload).pipe(
+      map((resp: any) => {
+        // Soporta respuesta plana { token, id, datos } o envelope { body: {...} }
+        const body = resp && resp.body != null ? resp.body : resp;
+        const token = body?.token;
+        const id = Number(body?.id);
+        const user = body?.datos ?? body?.data ?? body?.user ?? {};
+        if (!token || !Number.isFinite(id)) {
+          throw { message: 'Login invalido', resp };
         }
-        return { token: env.body.token, user: env.body.data, id: env.body.id };
+        return { token, user, id };
       })
     );
   }
 
-  /**
-   * Login flexible (correo o usuario en el mismo campo).
-   * Si el user ingresa email, lo mandamos igual como "username" (backend decide).
-   */
+  // Login flexible (correo o usuario)
   loginFlexible(identity: string, password: string) {
     return this.login(identity, password);
   }
 
-  /**
-   * Devuelve el usuario autenticado (según token enviado por interceptor).
-   */
+  // Usuario autenticado (según token)
   me(): Observable<any> {
     return this.api.get<MeResponseDTO>('/auth/me').pipe(
       map((env) => {
-        if (env.error) { throw env; }
-        return env.body;
+        const e: any = env as any;
+        if (e?.error) { throw env; }
+        return e.body;
       })
     );
   }
 
-  /**
-   * (Opcional) Refresh token si tu backend lo soporta.
-   */
+  // Refresh token
   refresh(): Observable<string> {
     return this.api.post<RefreshResponseDTO>('/auth/refresh', {}).pipe(
       map((env) => {
-        if (env.error || !env.body?.token) { throw env; }
-        return env.body.token;
+        const e: any = env as any;
+        if (e?.error || !e?.body?.token) { throw env; }
+        return e.body.token as string;
       })
     );
   }
 
+  // Registro
   register(payload: RegisterPayloadDTO): Observable<{ token?: string; user: any; id: number }> {
     return this.api.post<RegisterResponseDTO>('/users', payload).pipe(
       map((env) => {
-        if (env.error || !env.body?.data || typeof env.body.id !== 'number') {
-          throw { message: 'Registro inválido', env };
+        const e: any = env as any;
+        if (e?.error || !e?.body?.data || typeof e?.body?.id !== 'number') {
+          throw { message: 'Registro invalido', env };
         }
-        const { token, data, id } = env.body as RegisterBodyDTO;
+        const { token, data, id } = e.body as RegisterBodyDTO;
         return { token, user: data, id };
       })
     );

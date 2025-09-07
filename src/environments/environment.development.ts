@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiBase: 'https://dev.ecolatam.com/api/v1'
+  // Base relativa en dev para funcionar detrás de un proxy local
+  apiBase: '/api/v1'
 };

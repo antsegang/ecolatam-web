@@ -41,9 +41,10 @@ export class LoginComponent {
     const { identity, password } = this.form.getRawValue();
 
     this.api.loginFlexible(identity, password).subscribe({
-      next: ({ token, user }) => {
+      next: ({ token, user, id }) => {
         this.auth.setToken(token);
-        this.auth.setUser(user);
+        const withId = (user && typeof user === 'object') ? { ...(user as any), id } : { id } as any;
+        this.auth.setUser(withId);
         const redirect = this.route.snapshot.queryParamMap.get('redirectTo') || '/users';
         this.router.navigateByUrl(redirect);
       },

@@ -1,0 +1,65 @@
+:host{ display:block }
+
+.admin-categories{
+  h1{ margin:0 }
+
+  .page-header{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    margin-bottom:16px;
+  }
+
+  .loading{ color:var(--muted); padding:12px 0 }
+
+  .alert.error{
+    background: rgba(244,63,94,.08);
+    border: 1px solid rgba(244,63,94,.25);
+    color: #fecaca; /* soft red */
+    padding:10px 12px; border-radius:12px; margin-bottom:12px;
+  }
+
+  .table-wrapper{ overflow:auto }
+  .table{ width:100%; border-collapse:separate; border-spacing:0; }
+  .table thead th{
+    text-align:left; font-weight:700; padding:12px; color:var(--muted);
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:var(--surface);
+  }
+  .table tbody td{ padding:12px; border-bottom:1px solid var(--line); vertical-align:top }
+  .table tbody tr:hover{ background: rgba(255,255,255,.02) }
+  .table .cell-strong{ font-weight:700 }
+  .table .actions-col{ width: 1%; white-space: nowrap }
+  .table .actions{ display:flex; gap:8px; align-items:center }
+  .table .empty{ text-align:center; color:var(--muted); padding:20px }
+
+  .pagination{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding-top:12px;
+  }
+  .pagination .summary{ color:var(--muted) }
+
+  /* Modal */
+  .modal-backdrop{
+    position:fixed; inset:0; background: rgba(0,0,0,.55);
+    backdrop-filter: blur(2px);
+    z-index:1000;
+  }
+  .modal{
+    position:fixed; inset:0; display:grid; place-items:center; padding:20px; z-index:1001;
+  }
+  .modal-content{ width:min(640px, 100%); }
+  .modal-header{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px }
+  .btn-icon{ padding:8px 10px }
+
+  .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:12px }
+  .field-error{ color:#fecaca; font-size:.875rem }
+
+  .modal-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:16px }
+
+  /* Local danger variant */
+  .btn-danger{
+    background: rgba(244,63,94,.08);
+    color:#fecaca; border:1px solid rgba(244,63,94,.25);
+    border-radius: var(--radius-1); padding:10px 14px; cursor:pointer;
+  }
+  .btn-danger:hover{ filter:none; transform:none; background: rgba(244,63,94,.14) }
+}
