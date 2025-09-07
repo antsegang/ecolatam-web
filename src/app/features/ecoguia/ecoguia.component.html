@@ -1,0 +1,144 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">EcoGuía</div>
+      <h1>Negocios, productos y servicios</h1>
+      <p class="lead">Explora perfiles de empresa y sus ofertas con enfoque sostenible.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section dashboard">
+  <div class="container dash-grid" [formGroup]="form">
+    <!-- Sidebar filtros -->
+    <aside class="filters card">
+      <h3>Filtros</h3>
+      <label>
+        <span class="muted">Buscar</span>
+        <input formControlName="q" placeholder="Nombre, categoría o ubicación…" aria-label="Buscar en EcoGuía" />
+      </label>
+      <label>
+        <span class="muted">Categoría</span>
+        <input formControlName="category" placeholder="Ej. turismo, reciclaje…" />
+      </label>
+      <div class="divider"></div>
+      <div class="grid-2">
+        <label>
+          <span class="muted">País</span>
+          <select formControlName="idPais">
+            <option [ngValue]="undefined">Todos</option>
+            <option *ngFor="let o of paises" [ngValue]="o.id">{{ o.label }}</option>
+          </select>
+        </label>
+        <label>
+          <span class="muted">Provincia</span>
+          <select formControlName="idProvincia">
+            <option [ngValue]="undefined">Todas</option>
+            <option *ngFor="let o of provincias" [ngValue]="o.id">{{ o.label }}</option>
+          </select>
+        </label>
+        <label>
+          <span class="muted">Cantón</span>
+          <select formControlName="idCanton">
+            <option [ngValue]="undefined">Todos</option>
+            <option *ngFor="let o of cantones" [ngValue]="o.id">{{ o.label }}</option>
+          </select>
+        </label>
+        <label>
+          <span class="muted">Distrito</span>
+          <select formControlName="idDistrito">
+            <option [ngValue]="undefined">Todos</option>
+            <option *ngFor="let o of distritos" [ngValue]="o.id">{{ o.label }}</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn" type="button" (click)="onSubmit()" [disabled]="loading()">Aplicar</button>
+    </aside>
+
+    <!-- Contenido principal -->
+    <section class="main">
+      <div class="kpis">
+        <div class="card kpi"><div class="kpi-label">Negocios</div><div class="kpi-value">{{ (pageBusinesses()?.total) || ((pageBusinesses()?.items || []).length) || 0 }}</div></div>
+        <div class="card kpi"><div class="kpi-label">Productos</div><div class="kpi-value">{{ (pageProducts()?.total) || ((pageProducts()?.items || []).length) || 0 }}</div></div>
+        <div class="card kpi"><div class="kpi-label">Servicios</div><div class="kpi-value">{{ (pageServices()?.total) || ((pageServices()?.items || []).length) || 0 }}</div></div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab" [class.active]="tab()==='business'" (click)="setTab('business')">Negocios</button>
+        <button class="tab" [class.active]="tab()==='products'" (click)="setTab('products')">Productos</button>
+        <button class="tab" [class.active]="tab()==='services'" (click)="setTab('services')">Servicios</button>
+      </div>
+
+      @if (tab()==='business') {
+        @if (!loading()) {
+          @if (pageBusinesses(); as page) {
+            <div class="grid cards" [attr.aria-busy]="loading()">
+              <article class="card business-tile" *ngFor="let b of page.items; trackBy: trackById">
+                <div class="cover">
+                  <img [src]="b.coverUrl || '/placeholder-image-broken-square.png'" [alt]="b.name" loading="lazy" />
+                </div>
+                <div class="body">
+                  <h3 class="title">{{ b.name }}</h3>
+                  <p class="sub">{{ b.categoryLabel || '—' }}</p>
+                  <ul class="meta">
+                    <li *ngIf="b.locationLabel"><i></i>{{ b.locationLabel }}</li>
+                  </ul>
+                  <div class="actions">
+                    <a class="btn-ghost sm" [routerLink]="['/ecoguia', b.id]">Ver perfil</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="pager">
+              <button class="btn-ghost" (click)="prev()" [disabled]="page.offset === 0 || loading()">← Anterior</button>
+              <span class="muted">Mostrando {{ page.offset + 1 }} – {{ page.offset + (page.items.length || 0) }}<ng-container *ngIf="page.total as t"> de {{ t }}</ng-container></span>
+              <button class="btn-ghost" (click)="next()" [disabled]="!page.hasMore || loading()">Siguiente →</button>
+            </div>
+          } @else {
+            <p class="muted empty-state">No hay resultados.</p>
+          }
+        } @else {
+          <div class="grid cards" aria-live="polite">
+            <div class="card skeleton" *ngFor="let x of [0,1,2,3,4,5,6,7,8,9,10,11]"></div>
+          </div>
+        }
+      }
+
+      @if (tab()==='products') {
+        @if (pageProducts(); as page) {
+          <div class="grid cards">
+            <article class="card item" *ngFor="let it of page.items">
+              <img [src]="it.imageUrl || '/placeholder-image-broken-square.png'" [alt]="it.name" />
+              <div class="body"><h3>{{ it.name }}</h3><p class="muted">{{ it.short }}</p></div>
+            </article>
+          </div>
+          <div class="pager">
+            <button class="btn-ghost" (click)="prev()" [disabled]="page.offset === 0 || loading()">← Anterior</button>
+            <span class="muted">Mostrando {{ page.offset + 1 }} – {{ page.offset + (page.items.length || 0) }}<ng-container *ngIf="page.total as t"> de {{ t }}</ng-container></span>
+            <button class="btn-ghost" (click)="next()" [disabled]="!page.hasMore || loading()">Siguiente →</button>
+          </div>
+        } @else {
+          <p class="muted">Sin productos.</p>
+        }
+      }
+
+      @if (tab()==='services') {
+        @if (pageServices(); as page) {
+          <div class="grid cards">
+            <article class="card item" *ngFor="let it of page.items">
+              <img [src]="it.imageUrl || '/placeholder-image-broken-square.png'" [alt]="it.name" />
+              <div class="body"><h3>{{ it.name }}</h3><p class="muted">{{ it.short }}</p></div>
+            </article>
+          </div>
+          <div class="pager">
+            <button class="btn-ghost" (click)="prev()" [disabled]="page.offset === 0 || loading()">← Anterior</button>
+            <span class="muted">Mostrando {{ page.offset + 1 }} – {{ page.offset + (page.items.length || 0) }}<ng-container *ngIf="page.total as t"> de {{ t }}</ng-container></span>
+            <button class="btn-ghost" (click)="next()" [disabled]="!page.hasMore || loading()">Siguiente →</button>
+          </div>
+        } @else {
+          <p class="muted">Sin servicios.</p>
+        }
+      }
+    </section>
+  </div>
+</section>

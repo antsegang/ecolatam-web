@@ -1,0 +1,17 @@
+@if (data(); as d) {
+  <section class="section">
+    <div class="container">
+      <a class="back" routerLink="/ecoguia">← Volver a EcoGuía</a>
+      <div class="grid">
+        <img class="image" [src]="d.imageUrl || '/placeholder-image-broken-square.png'" [alt]="d.name" />
+        <div class="info">
+          <h1>{{ d.name }}</h1>
+          <p class="muted">{{ d.short }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+} @else {
+  <section class="section"><div class="container"><p class="muted">Cargando…</p></div></section>
+}
+

@@ -1,0 +1,112 @@
+<section class="section">
+  <div class="container">
+    <a class="back" [routerLink]="['/users', routeId()]">← Volver al perfil</a>
+
+    <div class="grid">
+      <form class="card form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+        <h1>Editar perfil</h1>
+
+        <div class="row2">
+          <label>
+            <span>Nombre</span>
+            <input formControlName="name" />
+          </label>
+          <label>
+            <span>Apellido</span>
+            <input formControlName="lastname" />
+          </label>
+        </div>
+
+        <div class="row2">
+          <label>
+            <span>Usuario</span>
+            <input formControlName="username" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" formControlName="email" />
+          </label>
+        </div>
+
+        <div class="row2">
+          <label>
+            <span>Nacimiento</span>
+            <input type="date" formControlName="birthdate" />
+          </label>
+          <label>
+            <span>Teléfono</span>
+            <input formControlName="phone" />
+          </label>
+        </div>
+
+        <div class="row2">
+          <label>
+            <span>Celular</span>
+            <input formControlName="cellphone" />
+          </label>
+          <label>
+            <span>Código Postal</span>
+            <input formControlName="zip" />
+          </label>
+        </div>
+
+        <label>
+          <span>Ubicación (texto)</span>
+          <input formControlName="location" />
+        </label>
+
+        <div class="row2">
+          <label>
+            <span>País</span>
+            <select formControlName="idPais">
+              <option [ngValue]="undefined">Selecciona…</option>
+              <option *ngFor="let o of paises" [ngValue]="o.id">{{ o.label }}</option>
+            </select>
+          </label>
+          <label>
+            <span>Provincia</span>
+            <select formControlName="idProvincia">
+              <option [ngValue]="undefined">Selecciona…</option>
+              <option *ngFor="let o of provincias" [ngValue]="o.id">{{ o.label }}</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="row2">
+          <label>
+            <span>Cantón</span>
+            <select formControlName="idCanton">
+              <option [ngValue]="undefined">Selecciona…</option>
+              <option *ngFor="let o of cantones" [ngValue]="o.id">{{ o.label }}</option>
+            </select>
+          </label>
+          <label>
+            <span>Distrito</span>
+            <select formControlName="idDistrito">
+              <option [ngValue]="undefined">Selecciona…</option>
+              <option *ngFor="let o of distritos" [ngValue]="o.id">{{ o.label }}</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit" [disabled]="saving() || form.invalid">Guardar cambios</button>
+          <button class="btn-ghost" type="button" [disabled]="saving()" [routerLink]="['/users', routeId()]">Cancelar</button>
+        </div>
+
+        <p *ngIf="ok()" class="ok">Cambios guardados correctamente.</p>
+        <p *ngIf="error()" class="error">{{ error() }}</p>
+      </form>
+
+      <aside class="card tips">
+        <h3>Consejos</h3>
+        <ul>
+          <li>Usa tu nombre real para facilitar KYC básico.</li>
+          <li>Completa ubicación por catálogos si aplica a tu país.</li>
+          <li>La visibilidad en EcoGuía mejora con datos completos.</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+

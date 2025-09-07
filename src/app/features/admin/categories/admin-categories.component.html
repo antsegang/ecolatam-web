@@ -1,0 +1,80 @@
+<section class="section admin-categories">
+  <div class="container">
+    <header class="page-header">
+      <h1>Categorías de negocio</h1>
+      <button class="btn" (click)="openNew()">Nueva categoría</button>
+    </header>
+
+    <div *ngIf="loading()" class="loading">Cargando…</div>
+    <div *ngIf="!loading() && error()" class="alert error">{{ error() }}</div>
+
+    <div class="card" *ngIf="!loading()">
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th class="actions-col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let it of display()">
+              <td class="cell-strong">{{ it.name }}</td>
+              <td>{{ it.description || '—' }}</td>
+              <td class="actions">
+                <button class="btn-ghost" (click)="openEdit(it)">Editar</button>
+                <button class="btn-danger" (click)="del(it)">Eliminar</button>
+              </td>
+            </tr>
+            <tr *ngIf="display().length === 0">
+              <td colspan="3" class="empty">No hay categorías para mostrar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination" *ngIf="total() > 0">
+        <div class="summary">
+          Mostrando {{ offset() + 1 }}–{{ (offset() + display().length) }} de {{ total() }}
+        </div>
+        <div class="controls">
+          <button class="btn-ghost" [disabled]="offset() === 0" (click)="prev()">Anterior</button>
+          <button class="btn-ghost" [disabled]="!hasMore()" (click)="next()">Siguiente</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" *ngIf="modalOpen()" (click)="closeModal()"></div>
+    <div class="modal" *ngIf="modalOpen()" role="dialog" aria-modal="true">
+      <div class="modal-content card" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2>{{ isEdit() ? 'Editar categoría' : 'Nueva categoría' }}</h2>
+          <button class="btn-ghost btn-icon" (click)="closeModal()" aria-label="Cerrar">✕</button>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="save()">
+          <div class="field">
+            <label for="name">Nombre</label>
+            <input id="name" type="text" formControlName="name" placeholder="Ej. Energías renovables" />
+            <div class="field-error" *ngIf="form.controls.name.touched && form.controls.name.invalid">
+              El nombre es obligatorio (mín. 2 caracteres).
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="description">Descripción</label>
+            <textarea id="description" rows="3" formControlName="description" placeholder="Breve descripción (opcional)"></textarea>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn-ghost" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn" [disabled]="form.invalid || loading()">
+              {{ isEdit() ? 'Guardar cambios' : 'Crear categoría' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

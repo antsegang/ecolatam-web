@@ -1,0 +1,106 @@
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<header class="site-header" [class.hide]="hidden" [class.at-top]="atTop" role="banner">
+  <div class="container header-inner">
+    <a class="brand" routerLink="/" aria-label="EcoLATAM - inicio">
+      <img src="/ecolatam-logo.png" alt="{{ logoAlt }}" height="44" />
+    </a>
+
+    <!-- Desktop nav con submenús -->
+    <nav class="nav desktop" aria-label="Navegación principal">
+      <ng-container *ngFor="let item of menu; index as i">
+        <!-- Con submenú -->
+        <div class="menu-group" *ngIf="item.children?.length; else leaf">
+          <button class="group-btn" type="button" aria-haspopup="true" aria-expanded="false">{{ item.label }}</button>
+          <div class="submenu card">
+            <ng-container *ngFor="let c of item.children">
+              <a *ngIf="c.path; else ext2"
+                 [routerLink]="c.path" (click)="closeMobile()">{{ c.label }}</a>
+              <ng-template #ext2>
+                <a [href]="c.external!" target="_blank" rel="noopener">{{ c.label }}</a>
+              </ng-template>
+            </ng-container>
+          </div>
+        </div>
+        <!-- Hoja -->
+        <ng-template #leaf>
+          <a *ngIf="item.path; else ext"
+             [routerLink]="item.path"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{ exact: !!item.exact }"
+             #rla="routerLinkActive"
+             [attr.aria-current]="rla.isActive ? 'page' : null"
+             (click)="closeMobile()">
+            {{ item.label }}
+          </a>
+          <ng-template #ext>
+            <a [href]="item.external!" target="_blank" rel="noopener" class="external">{{ item.label }}</a>
+          </ng-template>
+        </ng-template>
+      </ng-container>
+    </nav>
+
+    <!-- Search desktop -->
+    <form class="site-search" [formGroup]="searchForm" (ngSubmit)="submitSearch()" role="search" aria-label="Buscar">
+      <input type="search" formControlName="q" placeholder="Buscar en EcoGuía…" (focus)="openSearch()" aria-label="Buscar" />
+      <button class="btn-ghost sm" type="submit" aria-label="Buscar">Buscar</button>
+      <div class="search-panel card" *ngIf="searchOpen" (mouseleave)="closeSearch()">
+        <ul class="results" role="listbox">
+          <li *ngFor="let r of results" role="option">
+            <a [routerLink]="r.route" (click)="closeSearch()">
+              <span class="pill type">{{ r.type }}</span>
+              <span class="title">{{ r.title }}</span>
+              <span class="sub" *ngIf="r.subtitle">{{ r.subtitle }}</span>
+            </a>
+          </li>
+          <li class="see-all" *ngIf="(searchForm.value.q || '').length >= 2">
+            <a [routerLink]="['/ecoguia']" [queryParams]="{ q: searchForm.value.q }" (click)="closeSearch()">Ver todos los resultados</a>
+          </li>
+        </ul>
+      </div>
+    </form>
+
+    <!-- Toggle móvil -->
+    <button class="nav-toggle" type="button"
+            aria-label="Abrir menú"
+            aria-haspopup="true"
+            [attr.aria-expanded]="mobileOpen"
+            (click)="toggleMobile()">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-drawer" [class.open]="mobileOpen" (click)="closeMobile()">
+    <nav class="nav mobile" aria-label="Navegación móvil" (click)="$event.stopPropagation()">
+      <ng-container *ngFor="let item of menu; index as i">
+        <ng-container *ngIf="item.children?.length; else leafM">
+          <button class="group-toggle" type="button" (click)="toggleGroup(i)">
+            {{ item.label }}
+            <span class="chev" [class.open]="openGroups[i]">▾</span>
+          </button>
+          <div class="submenuM" [class.open]="openGroups[i]">
+            <ng-container *ngFor="let c of item.children">
+              <a *ngIf="c.path; else extM2" [routerLink]="c.path" (click)="closeMobile()">{{ c.label }}</a>
+              <ng-template #extM2>
+                <a [href]="c.external!" target="_blank" rel="noopener">{{ c.label }}</a>
+              </ng-template>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-template #leafM>
+          <a *ngIf="item.path; else extM"
+             [routerLink]="item.path" (click)="closeMobile()">{{ item.label }}</a>
+          <ng-template #extM>
+            <a [href]="item.external!" target="_blank" rel="noopener" class="external">{{ item.label }}</a>
+          </ng-template>
+        </ng-template>
+      </ng-container>
+      <!-- Search en móvil -->
+      <form class="site-search mobile" [formGroup]="searchForm" (ngSubmit)="submitSearch()" role="search" aria-label="Buscar en móvil">
+        <input type="search" formControlName="q" placeholder="Buscar personas, negocios…" aria-label="Buscar" />
+        <button class="btn" type="submit">Buscar</button>
+      </form>
+    </nav>
+  </div>
+</header>

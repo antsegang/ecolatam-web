@@ -1,0 +1,88 @@
+﻿<section class="section">
+  <div class="container">
+    <a class="back" routerLink="/ecoguia">← Volver a EcoGuía</a>
+
+    <div class="card builder">
+      <h1>Crear negocio</h1>
+      <p class="muted small">Completa los datos básicos. Luego, te pediremos KYC. Puedes hacerlo más tarde, pero tu negocio no será visible ni podrá agregar productos/servicios hasta completarlo.</p>
+
+      <div class="divider"></div>
+
+      @if (step() === 1) {
+        <form [formGroup]="formBasic" (ngSubmit)="nextFromBasic()" autocomplete="off" novalidate>
+          <div class="grid2">
+            <label><span>Nombre</span><input formControlName="name" required /></label>
+            <label><span>Teléfono</span><input formControlName="phone" required /></label>
+          </div>
+
+          <h3>Categoría y dirección</h3>
+          <div class="grid3">
+            <label><span>Categoría</span>
+              <select formControlName="idCategory"><option [ngValue]="undefined">—</option><option *ngFor="let o of categorias" [ngValue]="o.id">{{ o.label }}</option></select>
+            </label>
+            <label><span>Dirección</span><input formControlName="location" placeholder="Calle y número" /></label>
+            <label><span>Código postal</span><input formControlName="zip" placeholder="Ej. 10101" /></label>
+          </div>
+
+          <h3>Ubicación</h3>
+          <div class="grid4">
+            <label><span>País</span>
+              <select formControlName="idPais"><option [ngValue]="undefined">—</option><option *ngFor="let o of paises" [ngValue]="o.id">{{ o.label }}</option></select>
+            </label>
+            <label><span>Provincia</span>
+              <select formControlName="idProvincia"><option [ngValue]="undefined">—</option><option *ngFor="let o of provincias" [ngValue]="o.id">{{ o.label }}</option></select>
+            </label>
+            <label><span>Cantón</span>
+              <select formControlName="idCanton"><option [ngValue]="undefined">—</option><option *ngFor="let o of cantones" [ngValue]="o.id">{{ o.label }}</option></select>
+            </label>
+            <label><span>Distrito</span>
+              <select formControlName="idDistrito"><option [ngValue]="undefined">—</option><option *ngFor="let o of distritos" [ngValue]="o.id">{{ o.label }}</option></select>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit" [disabled]="loading() || formBasic.invalid">Guardar y continuar</button>
+          </div>
+          <p class="error" *ngIf="error()">{{ error() }}</p>
+        </form>
+      }
+
+      @if (step() === 2) {
+        <section class="kyc-step">
+          <h2>Verificación KYC</h2>
+          <p class="muted small">Completa KYC para que tu negocio sea visible y habilitar productos/servicios. Puedes hacerlo luego, pero hasta entonces permanecerá en estado no visible.</p>
+          <form [formGroup]="formKyc" (ngSubmit)="submitKyc()" autocomplete="off" novalidate>
+            <div class="grid3">
+              <label><span>Nombre legal</span><input formControlName="legal_name" /></label>
+              <label><span>Identificación fiscal</span><input formControlName="tax_id" /></label>
+              <label><span>Dirección fiscal</span><input formControlName="address" /></label>
+            </div>
+            <div class="grid2">
+              <label><span>Representante</span><input formControlName="representative_name" /></label>
+              <label><span>ID Representante</span><input formControlName="representative_id" /></label>
+            </div>
+            <div class="actions">
+              <button class="btn" type="submit" [disabled]="loading()">Enviar KYC</button>
+              <button class="btn-ghost" type="button" (click)="skipKyc()">Hacerlo después</button>
+            </div>
+            <p class="error" *ngIf="error()">{{ error() }}</p>
+          </form>
+        </section>
+      }
+
+      @if (step() === 3) {
+        <section class="done">
+          <h2>¡Listo!</h2>
+          <p *ngIf="!infoKycPostpuesto(); else withKyc" class="muted">Tu negocio fue creado, pero aún no será visible. Completa KYC para publicarlo y habilitar productos/servicios.</p>
+          <ng-template #withKyc>
+            <p class="muted">Tu negocio está verificado y listo. Ahora puedes agregar productos y servicios.</p>
+          </ng-template>
+          <div class="actions">
+            <a class="btn" [routerLink]="['/ecoguia', createdId()]">Ir a mi negocio</a>
+            <a class="btn-ghost" routerLink="/ecoguia">Volver a EcoGuía</a>
+          </div>
+        </section>
+      }
+    </div>
+  </div>
+</section>

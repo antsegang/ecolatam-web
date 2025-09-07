@@ -1,0 +1,149 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Sobre nosotros</div>
+      <h1>EcoLATAM — Plataforma Social y EcoGuía sobre IPFS</h1>
+      <p class="lead">
+        Aceleramos la transición sostenible en Latinoamérica con infraestructura <em>IPFS</em>, procesos de
+        <abbr title="Monitoreo, Reporte y Verificación">MRV</abbr> ambiental y un ecosistema que une
+        <strong>personas, empresas y comunidades</strong>.
+      </p>
+
+      <ul class="kpis" aria-label="Indicadores">
+        <li>
+          <span class="kpi-label">Región</span>
+          <span class="kpi-value">Latinoamérica</span>
+        </li>
+        <li>
+          <span class="kpi-label">Ejes</span>
+          <span class="kpi-value">Plataforma Social · EcoGuía · IPFS/MRV</span>
+        </li>
+        <li>
+          <span class="kpi-label">Colaboración</span>
+          <span class="kpi-value">Academia · Gobierno · Startups</span>
+        </li>
+      </ul>
+
+      <div class="hero-ctas">
+        <a class="btn" routerLink="/contact">Contacto</a>
+        <a class="btn btn-ghost" routerLink="/ecoguia">Explorar EcoGuía</a>
+        <a class="btn btn-ghost" href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">Gateway IPFS</a>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <img src="/about/hero.webp" alt="Personas colaborando con datos verificables sobre una red IPFS" loading="eager" />
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-2">
+    <article class="card">
+      <h2>Misión</h2>
+      <p class="muted">
+        Construir infraestructura y herramientas abiertas que impulsen transparencia, colaboración y resiliencia
+        en la región, conectando tecnología con territorio.
+      </p>
+    </article>
+    <article class="card">
+      <h2>Visión</h2>
+      <p class="muted">
+        Ser referente de innovación sostenible: una comunidad donde perfiles, empresas y entidades públicas
+        publican y verifican información con impacto real.
+      </p>
+    </article>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="card">
+      <h2>Valores</h2>
+      <div class="cards-4">
+        <article class="mini" *ngFor="let v of values">
+          <h3>{{ v.title }}</h3>
+          <p class="muted">{{ v.text }}</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container cards-3">
+    <article class="card focus">
+      <h2>Áreas de trabajo</h2>
+      <ul class="tick">
+        <li><strong>Plataforma Social:</strong> perfiles, publicaciones y validaciones comunitarias.</li>
+        <li><strong>EcoGuía:</strong> directorio de negocios y servicios con perfiles de empresa.</li>
+        <li><strong>IPFS/MRV:</strong> publicación por <abbr title="Content Identifier">CID</abbr>,
+          trazabilidad y auditorías abiertas cuando aplique.</li>
+      </ul>
+    </article>
+
+    <article class="card focus">
+      <h2>Cómo trabajamos</h2>
+      <ul class="tick">
+        <li>Diseño responsable y accesible.</li>
+        <li>Buenas prácticas de seguridad y privacidad.</li>
+        <li>Alianzas con academia, gobierno y sector productivo.</li>
+      </ul>
+    </article>
+
+    <article class="card focus">
+      <h2>Hoja de ruta</h2>
+      <ol class="roadmap">
+        <li><b>Infraestructura:</b> nodo/gateway IPFS y pinning.</li>
+        <li><b>Producto:</b> Social + EcoGuía con procesos de verificación.</li>
+        <li><b>Datos:</b> MRV ambiental y metadatos verificables.</li>
+      </ol>
+      <p class="small-note">* Evolucionamos con demandas reales de la región y de la comunidad.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Equipo</h2>
+    <div class="cards-3 team">
+      <article class="card member" *ngFor="let m of team">
+        <img [src]="m.img" [alt]="m.name + ' – ' + m.role" loading="lazy"/>
+        <div class="info">
+          <h3>{{ m.name }}</h3>
+          <p class="muted">{{ m.role }}</p>
+          <a class="link" [href]="m.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container card">
+    <h2>Preguntas frecuentes</h2>
+    <details>
+      <summary>¿Necesito ser empresa para aparecer en EcoGuía?</summary>
+      <p>No. Cualquier usuario puede crear su perfil. El perfil de empresa es opcional y suma visibilidad tras una revisión básica.</p>
+    </details>
+    <details>
+      <summary>¿Publican todo en IPFS?</summary>
+      <p>No todo. Usamos IPFS para contenidos que se benefician de direccionamiento por <em>CID</em> y trazabilidad. Cifrado del lado del cliente recomendado para datos sensibles.</p>
+    </details>
+    <details>
+      <summary>¿Cómo reporto un problema de contenido?</summary>
+      <p>Consulta nuestro <a routerLink="/takedown">Takedown/Safe Harbor</a> para avisos y contranotificaciones.</p>
+    </details>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container card">
+    <h2>¿Conectamos?</h2>
+    <p class="muted">Buscamos aliados para proyectos de impacto. Escríbenos y conversemos.</p>
+    <div class="cta-row">
+      <a class="btn" routerLink="/contact">Contacto</a>
+      <a class="btn btn-ghost" href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">Gateway IPFS</a>
+    </div>
+  </div>
+</section>

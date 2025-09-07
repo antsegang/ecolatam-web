@@ -1,0 +1,16 @@
+:host{ display:block }
+.admin-catalogs h1{ margin-top:0 }
+.tabs{ display:flex; gap:8px; align-items:center; margin: 8px 0 12px }
+.tab{ background: rgba(255,255,255,.04); border:1px solid var(--line); border-radius:999px; padding:8px 12px; color: var(--txt); cursor:pointer }
+.tab.active{ background: rgba(255,255,255,.08) }
+.tabs .spacer{ flex:1 }
+.list table{ width:100%; border-collapse: collapse }
+.list th, .list td{ padding:10px; border-bottom:1px solid var(--line) }
+.list .actions{ display:flex; gap:6px; justify-content:flex-end }
+.modal{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:90 }
+.overlay{ position:absolute; inset:0; background: rgba(0,0,0,.5); backdrop-filter: blur(2px) }
+.dialog{ position:relative; width:min(92vw, 680px); padding:16px }
+.grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:10px }
+.grid3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px }
+.actions{ display:flex; gap:8px; justify-content:flex-end; margin-top: 12px }
+.pager{ display:flex; gap:12px; align-items:center; justify-content:space-between; padding:10px 0 }

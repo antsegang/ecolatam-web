@@ -1,0 +1,41 @@
+:host { display:block; }
+.auth-page{
+  min-height: calc(100dvh - 64px);
+  display:grid; place-items:center; padding: 32px 16px;
+  background: radial-gradient(1000px 700px at 12% 0%, var(--bg-1) 0, var(--bg-2) 45%, var(--bg-0) 100%);
+}
+.auth-card{
+  width: min(640px, 92vw);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-2);
+  padding: 20px;
+  box-shadow: var(--shadow-1);
+  backdrop-filter: blur(10px);
+}
+.brand{ display:inline-flex; align-items:center; gap:8px; margin-bottom: 6px; }
+h1{ margin: 6px 0 14px; font-size: clamp(22px, 4.5vw, 28px); }
+
+.grid.two{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 680px){ .grid.two{ grid-template-columns: 1fr; } }
+
+.field{ display:block; margin: 12px 0; }
+.field > span{ display:block; margin-bottom: 6px; color: var(--muted-2); font-size: 13px; }
+input[type="text"], input[type="email"], input[type="password"]{
+  width:100%; background: var(--surface-2); color: var(--txt);
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+input.invalid{ border-color: rgba(255,120,120,.55); box-shadow: 0 0 0 2px rgba(255,120,120,.15); }
+
+.password-row{ display:flex; gap:8px; align-items:center; }
+.eye{ padding: 8px 10px; border-radius: 10px; }
+
+.check{ display:flex; align-items:center; gap:10px; margin-top: 6px; }
+.check input{ width:16px; height:16px; }
+
+.hint{ color: var(--muted-2); font-size: 12px; margin-top: 6px; display:block; }
+.error{ color: #ffb4b4; font-size: 12px; margin-top: 6px; }
+.error.global{ margin-top: 12px; }
+
+.actions{ margin-top: 16px; display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }

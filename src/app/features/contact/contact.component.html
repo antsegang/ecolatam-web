@@ -1,0 +1,75 @@
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Contacto</div>
+      <h1>Hablemos</h1>
+      <p class="lead">
+        ¿Proyecto, alianza o prensa? Escríbenos y te respondemos pronto.
+      </p>
+      <ul class="kpis">
+        <li>
+          <span class="kpi-label">Correo</span>
+          <span class="kpi-value"><a href="mailto:info@ecolatam.com">info&#64;ecolatam.com</a></span>
+        </li>
+        <li>
+          <span class="kpi-label">Región</span>
+          <span class="kpi-value">Latinoamérica</span>
+        </li>
+        <li>
+          <span class="kpi-label">Idiomas</span>
+          <span class="kpi-value">ES · EN</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero-art">
+      <img [routerLink]="['home']" src="/home/hero.png" alt="Innovación sostenible" loading="eager" />
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card contact-card">
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <!-- Honeypot (oculto) -->
+        <input type="text" formControlName="website" class="hp" tabindex="-1" autocomplete="off" />
+
+        <div class="grid-2">
+          <div class="form-field">
+            <label for="name">Nombre</label>
+            <input id="name" type="text" formControlName="name" [class.invalid]="f.name.touched && f.name.invalid" placeholder="Tu nombre" />
+            <small class="err" *ngIf="f.name.touched && f.name.errors?.['required']">Requerido</small>
+            <small class="err" *ngIf="f.name.touched && f.name.errors?.['minlength']">Mínimo 2 caracteres</small>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Correo</label>
+            <input id="email" type="email" inputmode="email" formControlName="email" [class.invalid]="f.email.touched && f.email.invalid" placeholder="tu@email.com" />
+            <small class="err" *ngIf="f.email.touched && f.email.errors?.['required']">Requerido</small>
+            <small class="err" *ngIf="f.email.touched && f.email.errors?.['email']">Correo inválido</small>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="organization">Organización (opcional)</label>
+          <input id="organization" type="text" formControlName="organization" placeholder="Empresa / institución" />
+        </div>
+
+        <div class="form-field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" rows="5" formControlName="message" [class.invalid]="f.message.touched && f.message.invalid" placeholder="Cuéntanos brevemente tu necesidad"></textarea>
+          <small class="err" *ngIf="f.message.touched && f.message.errors?.['required']">Requerido</small>
+          <small class="err" *ngIf="f.message.touched && f.message.errors?.['minlength']">Mínimo 10 caracteres</small>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit" [disabled]="submitting">Enviar</button>
+          <span class="muted" *ngIf="submitting">Enviando…</span>
+          <span class="ok" *ngIf="sent">¡Mensaje enviado! Te contactaremos pronto.</span>
+          <span class="err" *ngIf="!submitting && errorMsg">{{ errorMsg }}</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

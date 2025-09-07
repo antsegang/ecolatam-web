@@ -1,0 +1,160 @@
+<section class="auth-page">
+  <div class="card auth-card">
+    <a class="brand" routerLink="/" aria-label="EcoLATAM - inicio">
+      <img src="/ecolatam-logo.png" alt="EcoLATAM" height="36" />
+    </a>
+
+    <h1>Crea tu cuenta</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <!-- Nombre / Apellidos -->
+      <div class="grid two">
+        <label class="field">
+          <span>Nombre</span>
+          <input type="text" formControlName="name" [class.invalid]="submitted() && form.controls.name.invalid" />
+          <small class="error" *ngIf="submitted() && form.controls.name.errors?.['required']">Obligatorio.</small>
+        </label>
+        <label class="field">
+          <span>Apellidos</span>
+          <input type="text" formControlName="lastname" [class.invalid]="submitted() && form.controls.lastname.invalid" />
+          <small class="error" *ngIf="submitted() && form.controls.lastname.errors?.['required']">Obligatorio.</small>
+        </label>
+      </div>
+
+      <!-- Fecha / Dirección -->
+      <div class="grid two">
+        <label class="field">
+          <span>Fecha de nacimiento</span>
+          <input type="date" formControlName="birthdate" [class.invalid]="submitted() && form.controls.birthdate.invalid" />
+          <small class="error" *ngIf="submitted() && form.controls.birthdate.errors?.['required']">Obligatoria.</small>
+        </label>
+        <label class="field">
+          <span>Dirección</span>
+          <input type="text" formControlName="location" [class.invalid]="submitted() && form.controls.location.invalid" placeholder="Dirección o referencia" />
+          <small class="error" *ngIf="submitted() && form.controls.location.errors?.['required']">Obligatoria.</small>
+        </label>
+      </div>
+
+      <!-- País / Provincia -->
+      <div class="grid two">
+        <label class="field">
+          <span>País</span>
+          <select formControlName="id_pais" [class.invalid]="submitted() && form.controls.id_pais.invalid">
+            <option value="" disabled selected>Selecciona país…</option>
+            <option *ngFor="let p of paises()" [value]="p.id">{{ p.label }}</option>
+          </select>
+          <small class="error" *ngIf="submitted() && form.controls.id_pais.errors?.['required']">Obligatorio.</small>
+        </label>
+
+        <label class="field">
+          <span>Provincia</span>
+          <select formControlName="id_provincia" [class.invalid]="submitted() && form.controls.id_provincia.invalid">
+            <option value="" disabled selected>Selecciona provincia…</option>
+            <option *ngFor="let pr of provincias()" [value]="pr.id">{{ pr.label }}</option>
+          </select>
+          <small class="error" *ngIf="submitted() && form.controls.id_provincia.errors?.['required']">Obligatoria.</small>
+        </label>
+      </div>
+
+      <!-- Cantón / Distrito -->
+      <div class="grid two">
+        <label class="field">
+          <span>Cantón</span>
+          <select formControlName="id_canton" [class.invalid]="submitted() && form.controls.id_canton.invalid">
+            <option value="" disabled selected>Selecciona cantón…</option>
+            <option *ngFor="let c of cantones()" [value]="c.id">{{ c.label }}</option>
+          </select>
+          <small class="error" *ngIf="submitted() && form.controls.id_canton.errors?.['required']">Obligatorio.</small>
+        </label>
+
+        <label class="field">
+          <span>Distrito</span>
+          <select formControlName="id_distrito" [class.invalid]="submitted() && form.controls.id_distrito.invalid">
+            <option value="" disabled selected>Selecciona distrito…</option>
+            <option *ngFor="let d of distritos()" [value]="d.id">{{ d.label }}</option>
+          </select>
+          <small class="error" *ngIf="submitted() && form.controls.id_distrito.errors?.['required']">Obligatorio.</small>
+        </label>
+      </div>
+
+      <!-- Contacto -->
+      <div class="grid two">
+        <label class="field">
+          <span>ZIP / Código Postal</span>
+          <input type="text" formControlName="zip" [class.invalid]="submitted() && form.controls.zip.invalid" />
+          <small class="error" *ngIf="submitted() && form.controls.zip.errors?.['required']">Obligatorio.</small>
+        </label>
+        <label class="field">
+          <span>Teléfono</span>
+          <input type="text" formControlName="phone" maxlength="11" [class.invalid]="submitted() && form.controls.phone.invalid" placeholder="50622223333" />
+          <small class="error" *ngIf="submitted() && form.controls.phone.errors?.['required']">Obligatorio.</small>
+          <small class="error" *ngIf="submitted() && form.controls.phone.errors?.['pattern']">Formato no válido.</small>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Celular</span>
+        <input type="text" formControlName="cellphone" maxlength="11" [class.invalid]="submitted() && form.controls.cellphone.invalid" placeholder="50688889999" />
+        <small class="error" *ngIf="submitted() && form.controls.cellphone.errors?.['required']">Obligatorio.</small>
+        <small class="error" *ngIf="submitted() && form.controls.cellphone.errors?.['pattern']">Formato no válido.</small>
+      </label>
+
+      <!-- Credenciales -->
+      <div class="grid two">
+        <label class="field">
+          <span>Usuario</span>
+          <input type="text" formControlName="username" autocomplete="username"
+                 [class.invalid]="submitted() && form.controls.username.invalid" placeholder="tu_usuario" />
+          <small class="error" *ngIf="submitted() && form.controls.username.errors?.['required']">Obligatorio.</small>
+          <small class="error" *ngIf="submitted() && form.controls.username.errors?.['minlength']">Mínimo 3.</small>
+          <small class="error" *ngIf="submitted() && form.controls.username.errors?.['pattern']">Solo letras, números y ._-</small>
+        </label>
+
+        <label class="field">
+          <span>Correo</span>
+          <input type="email" formControlName="email" autocomplete="email"
+                 [class.invalid]="submitted() && form.controls.email.invalid" placeholder="tu@email.com" />
+          <small class="error" *ngIf="submitted() && form.controls.email.errors?.['required']">Obligatorio.</small>
+          <small class="error" *ngIf="submitted() && form.controls.email.errors?.['email']">Correo no válido.</small>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Contraseña</span>
+        <div class="password-row">
+          <input [type]="showPwd() ? 'text' : 'password'" formControlName="password" autocomplete="new-password"
+                 [class.invalid]="submitted() && form.controls.password.invalid" placeholder="••••••••" />
+          <button type="button" class="btn-ghost eye" (click)="togglePwd()">{{ showPwd() ? 'Ocultar' : 'Ver' }}</button>
+        </div>
+        <small class="error" *ngIf="submitted() && form.controls.password.errors?.['required']">Obligatoria.</small>
+        <small class="error" *ngIf="submitted() && form.controls.password.errors?.['minlength']">Mínimo 6.</small>
+      </label>
+
+      <label class="field">
+        <span>Confirmar contraseña</span>
+        <div class="password-row">
+          <input [type]="showCnf() ? 'text' : 'password'" formControlName="confirm" autocomplete="new-password"
+                 [class.invalid]="submitted() && form.controls.confirm.invalid" placeholder="••••••••" />
+          <button type="button" class="btn-ghost eye" (click)="toggleCnf()">{{ showCnf() ? 'Ocultar' : 'Ver' }}</button>
+        </div>
+        <small class="error" *ngIf="submitted() && form.controls.confirm.errors?.['required']">Obligatoria.</small>
+        <small class="error" *ngIf="submitted() && form.controls.confirm.errors?.['mismatch']">No coincide.</small>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" formControlName="acceptTos" />
+        <span>Acepto los <a routerLink="/terms">Términos</a> y la <a routerLink="/privacy">Privacidad</a>.</span>
+      </label>
+      <small class="error" *ngIf="submitted() && form.controls.acceptTos.errors?.['requiredTrue']">
+        Debes aceptar los términos para continuar.
+      </small>
+
+      <div class="actions">
+        <button class="btn" type="submit" [disabled]="loading()">{{ loading() ? 'Creando…' : 'Crear cuenta' }}</button>
+        <a class="btn-ghost" routerLink="/login">Ya tengo cuenta</a>
+      </div>
+
+      <p class="error global" *ngIf="error()" aria-live="polite">{{ error() }}</p>
+    </form>
+  </div>
+</section>

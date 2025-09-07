@@ -1,0 +1,83 @@
+@if (detail(); as d) {
+  <section class="hero">
+    <div class="container">
+      <a class="back" routerLink="/ecoguia">← Volver a EcoGuía</a>
+      <div class="header">
+        <img class="cover" [src]="d.coverUrl || '/placeholder-image-broken-square.png'" [alt]="d.name" />
+        <div class="info">
+          <div class="top-row">
+            <img class="logo" *ngIf="d.logoUrl" [src]="d.logoUrl" [alt]="d.name + ' logo'" />
+            <div>
+              <h1>{{ d.name }}</h1>
+              <p class="muted">
+                <span class="badge" *ngIf="d.categoryLabel">{{ d.categoryLabel }}</span>
+                <span *ngIf="d.locationLabel"> · {{ d.locationLabel }}</span>
+              </p>
+            </div>
+          </div>
+          <div class="actions">
+            <a *ngIf="d.website" class="btn-ghost sm" [href]="d.website" target="_blank" rel="noopener">Sitio web</a>
+            <a *ngIf="d.email" class="btn-ghost sm" [href]="'mailto:'+d.email">Email</a>
+            <a *ngIf="d.phone" class="btn-ghost sm" [href]="'tel:'+d.phone">Teléfono</a>
+          </div>
+          <div class="social" *ngIf="d.social">
+            <a *ngIf="d.social.x" [href]="d.social.x" target="_blank" rel="noopener">X</a>
+            <a *ngIf="d.social.instagram" [href]="d.social.instagram" target="_blank" rel="noopener">Instagram</a>
+            <a *ngIf="d.social.facebook" [href]="d.social.facebook" target="_blank" rel="noopener">Facebook</a>
+            <a *ngIf="d.social.linkedin" [href]="d.social.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+            <a *ngIf="d.social.youtube" [href]="d.social.youtube" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="desc" *ngIf="d.description">
+        {{ d.description }}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Productos</h2>
+      @if (products(); as p) {
+        <div class="grid cards">
+          <article class="card item" *ngFor="let it of p.items" [routerLink]="['/ecoguia/product', it.id]">
+            <img [src]="it.imageUrl || '/placeholder-image-broken-square.png'" [alt]="it.name" />
+            <div class="body">
+              <h3>{{ it.name }}</h3>
+              <p class="muted">{{ it.short }}</p>
+            </div>
+          </article>
+        </div>
+        <div class="pager">
+          <button class="btn-ghost" (click)="loadProducts(Math.max(0, p.offset - (p.limit||8)))" [disabled]="p.offset===0">← Anterior</button>
+          <span class="muted">Mostrando {{ p.offset + 1 }} – {{ p.offset + (p.items.length||0) }}</span>
+          <button class="btn-ghost" (click)="loadProducts(p.offset + (p.limit||8))" [disabled]="!p.hasMore">Siguiente →</button>
+        </div>
+      } @else {
+        <p class="muted">Sin productos.</p>
+      }
+
+      <h2>Servicios</h2>
+      @if (services(); as s) {
+        <div class="grid cards">
+          <article class="card item" *ngFor="let it of s.items" [routerLink]="['/ecoguia/service', it.id]">
+            <img [src]="it.imageUrl || '/placeholder-image-broken-square.png'" [alt]="it.name" />
+            <div class="body">
+              <h3>{{ it.name }}</h3>
+              <p class="muted">{{ it.short }}</p>
+            </div>
+          </article>
+        </div>
+        <div class="pager">
+          <button class="btn-ghost" (click)="loadServices(Math.max(0, s.offset - (s.limit||8)))" [disabled]="s.offset===0">← Anterior</button>
+          <span class="muted">Mostrando {{ s.offset + 1 }} – {{ s.offset + (s.items.length||0) }}</span>
+          <button class="btn-ghost" (click)="loadServices(s.offset + (s.limit||8))" [disabled]="!s.hasMore">Siguiente →</button>
+        </div>
+      } @else {
+        <p class="muted">Sin servicios.</p>
+      }
+    </div>
+  </section>
+} @else {
+  <section class="section"><div class="container"><p class="muted">Cargando…</p></div></section>
+}
