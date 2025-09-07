@@ -1,7 +1,11 @@
 import { Component, OnInit, inject, signal, DestroyRef, computed } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { ProfileHeaderComponent } from './profile-header/profile-header.component';
+import { ProfileStatsComponent } from './profile-stats/profile-stats.component';
+import { ProfileTabsComponent } from './profile-tabs/profile-tabs.component';
+import { ProfileCoverComponent } from './profile-cover/profile-cover.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { UsersApi } from '../data/users.api';
 import { UserDetail } from '../data/users.models';
@@ -22,7 +26,7 @@ type Tab = 'posts' | 'about' | 'activity';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, DatePipe, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ProfileHeaderComponent, ProfileStatsComponent, ProfileTabsComponent, ProfileCoverComponent],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })

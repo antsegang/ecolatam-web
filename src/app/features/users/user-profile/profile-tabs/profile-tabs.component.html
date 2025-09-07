@@ -1,0 +1,82 @@
+<nav class="tabs" role="tablist" aria-label="Secciones del perfil">
+  <button class="tab" [class.active]="tab==='posts'" (click)="tabChange.emit('posts')" role="tab">Publicaciones</button>
+  <button class="tab" [class.active]="tab==='about'" (click)="tabChange.emit('about')" role="tab">Información</button>
+  <button class="tab" [class.active]="tab==='activity'" (click)="tabChange.emit('activity')" role="tab">Actividad</button>
+</nav>
+
+<div class="profile-body">
+  <div *ngIf="tab==='posts'" @tabAnim>
+    <section class="card reveal composer">
+      <div class="avatar-xs"><img src="/avatar-placeholder.png" [alt]="user.name || user.username || 'Usuario'"/></div>
+      <input type="text" placeholder="¿Qué estás pensando?" disabled />
+      <button class="btn" disabled>Publicar</button>
+    </section>
+    <ng-container *ngIf="posts.length > 0; else emptyFeed">
+      <section class="feed">
+        <article class="card reveal post" *ngFor="let p of posts" @tabAnim>
+          <header class="post-head">
+            <div class="avatar-xs"><img src="/avatar-placeholder.png" [alt]="user.name || user.username || 'Usuario'"/></div>
+            <div class="who">
+              <strong>{{ user.name }} {{ user.lastname }}</strong>
+              <span class="muted">{{ '@' + user.username }}</span>
+              <span class="dot">·</span>
+              <time class="muted">{{ p.createdAt | date:'mediumDate':'UTC' }}</time>
+            </div>
+          </header>
+          <div class="post-body"><p>{{ p.content }}</p></div>
+        </article>
+      </section>
+    </ng-container>
+    <ng-template #emptyFeed>
+      <section class="empty-feed card">
+        <div class="illo"></div>
+        <h3>Sin publicaciones aún</h3>
+        <p class="muted">Cuando este usuario publique, lo verás aquí.</p>
+      </section>
+    </ng-template>
+  </div>
+
+  <div *ngIf="tab==='about'" @tabAnim>
+    <div class="grid two">
+      <section class="panel">
+        <h2>Detalles</h2>
+        <dl class="kv">
+          <div *ngIf="user.birthdate"><dt>Nacimiento</dt><dd>{{ user.birthdate | date:'longDate':'UTC' }}</dd></div>
+          <div *ngIf="user.location"><dt>Ubicación</dt><dd>{{ user.location }}</dd></div>
+          <div *ngIf="user.zip"><dt>Código Postal</dt><dd>{{ user.zip }}</dd></div>
+        </dl>
+      </section>
+      <section class="panel">
+        <h2>Contacto</h2>
+        <dl class="kv">
+          <div *ngIf="user.email"><dt>Correo</dt><dd><a [href]="'mailto:' + user.email">{{ user.email }}</a></dd></div>
+          <div *ngIf="user.cellphone"><dt>Celular</dt><dd>{{ user.cellphone }}</dd></div>
+          <div *ngIf="user.phone"><dt>Teléfono</dt><dd>{{ user.phone }}</dd></div>
+        </dl>
+      </section>
+    </div>
+    <section class="panel">
+      <h2>Negocios y Productos</h2>
+      <p class="muted">Este usuario aún no tiene negocios registrados ni productos destacados.</p>
+      <ng-container *ngIf="isSelf">
+        <a class="btn" [routerLink]="['/ecoguia']">Crear mi primer negocio</a>
+      </ng-container>
+    </section>
+    <section class="panel">
+      <h2>Ubicación (Catálogos)</h2>
+      <dl class="kv kv-ids">
+        <div *ngIf="paisLabel"><dt>País</dt><dd>{{ paisLabel }}</dd></div>
+        <div *ngIf="provinciaLabel"><dt>Provincia</dt><dd>{{ provinciaLabel }}</dd></div>
+        <div *ngIf="cantonLabel"><dt>Cantón</dt><dd>{{ cantonLabel }}</dd></div>
+        <div *ngIf="distritoLabel"><dt>Distrito</dt><dd>{{ distritoLabel }}</dd></div>
+      </dl>
+    </section>
+  </div>
+
+  <div *ngIf="tab==='activity'" @tabAnim>
+    <section class="panel">
+      <h2>Actividad reciente</h2>
+      <p class="muted">Próximamente verás reseñas, interacciones y cambios relevantes.</p>
+    </section>
+  </div>
+</div>

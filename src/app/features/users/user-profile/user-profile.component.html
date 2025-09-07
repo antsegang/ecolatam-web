@@ -7,129 +7,13 @@
     <ng-template #ready>
       <ng-container *ngIf="user() as u; else noUser">
         <article class="profile-card">
-          <div class="cover"><div class="cover-overlay"></div></div>
+          <app-profile-cover [canEdit]="isSelf()"></app-profile-cover>
 
-          <header class="profile-header">
-            <div class="avatar">
-              <img src="/avatar-placeholder.png" [alt]="(u.name || '') + ' ' + (u.lastname || '')" />
-            </div>
-            <div class="head-copy">
-              <h1 class="title">{{ (u.name || u.lastname) ? (u.name + ' ' + (u.lastname || '')) : (u.username ? '@' + u.username : 'Usuario') }}</h1>
-              <p class="ident">
-                <span *ngIf="u.username" class="badge">{{ '@' + u.username }}</span>
-                <ng-container *ngIf="u.username && u.email"> · </ng-container>
-                <a *ngIf="u.email" [href]="'mailto:' + u.email">{{ u.email }}</a>
-              </p>
-              <ul class="meta">
-                <li *ngIf="locationLabel() as loc"><i></i>{{ loc }}</li>
-                <li *ngIf="u.createdAt"><i></i>Miembro desde {{ u.createdAt | date:'longDate':'UTC' }}</li>
-              </ul>
-            </div>
+          <app-profile-header [user]="u" [isSelf]="isSelf()" [myRoles]="myRoles()" [kycPassed]="kycPassed()" [locationLabel]="locationLabel()" (kycClick)="openKycModal()"></app-profile-header>
 
-            <div class="actions">
-              <ng-container *ngIf="!isSelf(); else selfActions">
-                <button class="btn-ghost sm">Seguir</button>
-                <button class="btn-ghost sm">Mensaje</button>
-              </ng-container>
-              <ng-template #selfActions>
-                <a class="btn-ghost sm" [routerLink]="['/users', u.id, 'edit']">Editar perfil</a>
-                <a class="btn-ghost sm" [routerLink]="['/ecoguia/create']">Crear negocio</a>
-                <a class="btn-ghost sm" [routerLink]="['/settings']">Configuración</a>
-                <button class="btn sm" *ngIf="!kycPassed()" (click)="openKycModal()">Presentar KYC</button>
-              </ng-template>
-            </div>
-          </header>
+          <app-profile-stats [stats]="stats()" [kycPassed]="kycPassed()" [myRoles]="myRoles()"></app-profile-stats>
 
-          <section class="stats">
-            <div class="stat"><span class="num">{{ stats().posts }}</span><span class="lbl">Publicaciones</span></div>
-            <div class="stat"><span class="num">{{ stats().followers }}</span><span class="lbl">Seguidores</span></div>
-            <div class="stat"><span class="num">{{ stats().following }}</span><span class="lbl">Siguiendo</span></div>
-            <div class="stat kyc" [class.ok]="kycPassed()"><span class="num">{{ kycPassed() ? '✔' : '✖' }}</span><span class="lbl">KYC</span></div>
-            <div class="stat role"><span class="num">{{ (myRoles() || [])[0] || 'Usuario' }}</span><span class="lbl">Rol</span></div>
-          </section>
-
-          <nav class="tabs" role="tablist" aria-label="Secciones del perfil">
-            <button class="tab" [class.active]="isTab('posts')" (click)="setTab('posts')" role="tab">Publicaciones</button>
-            <button class="tab" [class.active]="isTab('about')" (click)="setTab('about')" role="tab">Información</button>
-            <button class="tab" [class.active]="isTab('activity')" (click)="setTab('activity')" role="tab">Actividad</button>
-          </nav>
-
-          <div class="profile-body">
-            <ng-container *ngIf="isTab('posts')">
-              <section class="card reveal composer">
-                <div class="avatar-xs"><img src="/avatar-placeholder.png" [alt]="u.name || u.username || 'Usuario'"/></div>
-                <input type="text" placeholder="¿Qué estás pensando?" disabled />
-                <button class="btn" disabled>Publicar</button>
-              </section>
-              <ng-container *ngIf="(posts() || []).length > 0; else emptyFeed">
-                <section class="feed">
-                  <article class="card reveal post" *ngFor="let p of posts();">
-                    <header class="post-head">
-                      <div class="avatar-xs"><img src="/avatar-placeholder.png" [alt]="u.name || u.username || 'Usuario'"/></div>
-                      <div class="who">
-                        <strong>{{ u.name }} {{ u.lastname }}</strong>
-                        <span class="muted">{{ '@' + u.username }}</span>
-                        <span class="dot">·</span>
-                        <time class="muted">{{ p.createdAt | date:'mediumDate':'UTC' }}</time>
-                      </div>
-                    </header>
-                    <div class="post-body"><p>{{ p.content }}</p></div>
-                  </article>
-                </section>
-              </ng-container>
-              <ng-template #emptyFeed>
-                <section class="empty-feed card">
-                  <div class="illo"></div>
-                  <h3>Sin publicaciones aún</h3>
-                  <p class="muted">Cuando este usuario publique, lo verás aquí.</p>
-                </section>
-              </ng-template>
-            </ng-container>
-
-            <ng-container *ngIf="isTab('about')">
-              <div class="grid two">
-                <section class="panel">
-                  <h2>Detalles</h2>
-                  <dl class="kv">
-                    <div *ngIf="u.birthdate"><dt>Nacimiento</dt><dd>{{ u.birthdate | date:'longDate':'UTC' }}</dd></div>
-                    <div *ngIf="u.location"><dt>Ubicación</dt><dd>{{ u.location }}</dd></div>
-                    <div *ngIf="u.zip"><dt>Código Postal</dt><dd>{{ u.zip }}</dd></div>
-                  </dl>
-                </section>
-                <section class="panel">
-                  <h2>Contacto</h2>
-                  <dl class="kv">
-                    <div *ngIf="u.email"><dt>Correo</dt><dd><a [href]="'mailto:' + u.email">{{ u.email }}</a></dd></div>
-                    <div *ngIf="u.cellphone"><dt>Celular</dt><dd>{{ u.cellphone }}</dd></div>
-                    <div *ngIf="u.phone"><dt>Teléfono</dt><dd>{{ u.phone }}</dd></div>
-                  </dl>
-                </section>
-              </div>
-              <section class="panel">
-                <h2>Negocios y Productos</h2>
-                <p class="muted">Este usuario aún no tiene negocios registrados ni productos destacados.</p>
-                <ng-container *ngIf="isSelf()">
-                  <a class="btn" [routerLink]="['/ecoguia']">Crear mi primer negocio</a>
-                </ng-container>
-              </section>
-              <section class="panel">
-                <h2>Ubicación (Catálogos)</h2>
-                <dl class="kv kv-ids">
-                  <div *ngIf="getPaisLabel()"><dt>País</dt><dd>{{ getPaisLabel() }}</dd></div>
-                  <div *ngIf="getProvinciaLabel()"><dt>Provincia</dt><dd>{{ getProvinciaLabel() }}</dd></div>
-                  <div *ngIf="getCantonLabel()"><dt>Cantón</dt><dd>{{ getCantonLabel() }}</dd></div>
-                  <div *ngIf="getDistritoLabel()"><dt>Distrito</dt><dd>{{ getDistritoLabel() }}</dd></div>
-                </dl>
-              </section>
-            </ng-container>
-
-            <ng-container *ngIf="isTab('activity')">
-              <section class="panel">
-                <h2>Actividad reciente</h2>
-                <p class="muted">Próximamente verás reseñas, interacciones y cambios relevantes.</p>
-              </section>
-            </ng-container>
-          </div>
+          <app-profile-tabs [tab]="tab()" (tabChange)="setTab($event)" [user]="u" [posts]="posts()" [isSelf]="isSelf()" [paisLabel]="getPaisLabel()" [provinciaLabel]="getProvinciaLabel()" [cantonLabel]="getCantonLabel()" [distritoLabel]="getDistritoLabel()"></app-profile-tabs>
         </article>
       </ng-container>
       <ng-template #noUser>

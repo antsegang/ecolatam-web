@@ -1,0 +1,5 @@
+<div class="cover" [style.background-image]="(previewUrl || imageUrl) ? 'url(' + (previewUrl || imageUrl) + ')' : ''">
+  <div class="cover-overlay"></div>
+  <button *ngIf="canEdit" class="change-btn" (click)="fileInput.click()">Cambiar imagen</button>
+  <input #fileInput type="file" accept="image/*" (change)="onFileChange($event)" hidden />
+</div>

@@ -1,0 +1,69 @@
+.profile-header{
+  position: relative;
+  display:flex;
+  align-items:flex-end;
+  gap:16px;
+  padding: 0 18px 12px;
+  margin-top: -48px;
+
+  .avatar{
+    width:96px;
+    height:96px;
+    border-radius: 14px;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,.2);
+    box-shadow: var(--shadow-2);
+    img{ width:100%; height:100%; object-fit:cover; display:block; }
+  }
+
+  .head-copy{
+    flex:1;
+    min-width:0;
+    .title{ margin:0 0 4px; font-size: clamp(20px, 4vw, 26px); line-height:1.2; color: var(--txt); }
+    .ident{
+      margin:0 0 4px;
+      color: var(--muted);
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      .badge{
+        display:inline-block;
+        padding:4px 8px;
+        border-radius: 999px;
+        background: var(--accent);
+        color:#fff;
+        font-weight:700;
+        font-size:12px;
+        transition: background .2s ease;
+      }
+      a{ color: var(--accent); }
+    }
+    .meta{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 16px;
+      li{ color: var(--muted); font-size: 13px; display:flex; gap:8px; align-items:center; }
+      i{
+        width:12px; height:12px; opacity:.75; border-radius:999px;
+        background: var(--accent);
+      }
+    }
+  }
+
+  .actions{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    .sm{ padding:6px 10px; font-size: 13px; border-radius: 10px; }
+    .btn-ghost{
+      transition: background .2s ease;
+    }
+    .btn-ghost:hover{
+      background: rgba(255,255,255,.1);
+    }
+  }
+}

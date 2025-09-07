@@ -1,0 +1,29 @@
+<header class="profile-header">
+  <div class="avatar">
+    <img src="/avatar-placeholder.png" [alt]="(user.name || '') + ' ' + (user.lastname || '')" />
+  </div>
+  <div class="head-copy">
+    <h1 class="title">{{ (user.name || user.lastname) ? (user.name + ' ' + (user.lastname || '')) : (user.username ? '@' + user.username : 'Usuario') }}</h1>
+    <p class="ident">
+      <span *ngIf="user.username" class="badge">{{ '@' + user.username }}</span>
+      <ng-container *ngIf="user.username && user.email"> · </ng-container>
+      <a *ngIf="user.email" [href]="'mailto:' + user.email">{{ user.email }}</a>
+    </p>
+    <ul class="meta">
+      <li *ngIf="locationLabel"><i></i>{{ locationLabel }}</li>
+      <li *ngIf="user.createdAt"><i></i>Miembro desde {{ user.createdAt | date:'longDate':'UTC' }}</li>
+    </ul>
+  </div>
+  <div class="actions">
+    <ng-container *ngIf="!isSelf; else selfActions">
+      <button class="btn-ghost sm">Seguir</button>
+      <button class="btn-ghost sm">Mensaje</button>
+    </ng-container>
+    <ng-template #selfActions>
+      <a class="btn-ghost sm" [routerLink]="['/users', user.id, 'edit']">Editar perfil</a>
+      <a class="btn-ghost sm" [routerLink]="['/ecoguia/create']">Crear negocio</a>
+      <a class="btn-ghost sm" [routerLink]="['/settings']">Configuración</a>
+      <button class="btn sm" *ngIf="!kycPassed" (click)="kycClick.emit()">Presentar KYC</button>
+    </ng-template>
+  </div>
+</header>

@@ -1,0 +1,20 @@
+.stats{
+  display:flex;
+  gap:24px;
+  padding: 10px 18px;
+  border-top:1px solid var(--line);
+  background: rgba(255,255,255,.05);
+  .stat{
+    display:flex;
+    gap:8px;
+    align-items:baseline;
+    transition: color .2s ease;
+  }
+  .stat:hover .num{ color: var(--accent); }
+  .num{ font-weight:800; color: var(--txt); font-size: 16px; }
+  .lbl{ color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing:.08em; }
+}
+
+@media (max-width: 920px){
+  .stats{ flex-wrap:wrap; gap:16px 24px; }
+}
