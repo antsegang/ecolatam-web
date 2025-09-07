@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 import { Title, Meta } from '@angular/platform-browser';
 import { ApiService } from '../../core/services/api.service'; // ajusta la ruta si difiere
 import { finalize } from 'rxjs/operators';
@@ -9,7 +10,7 @@ import { finalize } from 'rxjs/operators';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ScrollRevealDirective],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
 })

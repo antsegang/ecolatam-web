@@ -40,7 +40,7 @@
   </div>
 </section>
 
-<section class="section panel">
+<section class="section">
   <div class="container cards-4">
     <!-- Plataforma Social -->
     <article class="card feature" appScrollReveal="slide-up">
@@ -88,7 +88,7 @@
   </div>
 </section>
 
-<section class="section panel alt">
+<section class="section alt">
   <div class="container grid-2">
     <article class="card steps" appScrollReveal="slide-up">
       <h2>Cómo encaja todo</h2>
@@ -119,16 +119,16 @@
   </div>
 </section>
 
-<section class="section panel roles">
+<section class="section roles">
   <div class="container card roles-card" appScrollReveal="fade-in">
     <h2>Roles de la comunidad</h2>
     <ul class="roles-grid">
-      <li class="pill">Usuario</li>
-      <li class="pill">Empresa</li>
-      <li class="pill">Inspector</li>
-      <li class="pill">Voluntario</li>
-      <li class="pill">Guía turístico</li>
-      <li class="pill">Usuario VIP</li>
+      <li class="pill" appScrollReveal="slide-up">Usuario</li>
+      <li class="pill" appScrollReveal="slide-up">Empresa</li>
+      <li class="pill" appScrollReveal="slide-up">Inspector</li>
+      <li class="pill" appScrollReveal="slide-up">Voluntario</li>
+      <li class="pill" appScrollReveal="slide-up">Guía turístico</li>
+      <li class="pill" appScrollReveal="slide-up">Usuario VIP</li>
     </ul>
     <p class="muted small">
       La visibilidad en EcoGuía depende del cumplimiento de nuestras <a routerLink="/terms">Políticas de Uso</a>
@@ -137,14 +137,14 @@
   </div>
 </section>
 
-<section class="section panel newsletter">
+<section class="section newsletter">
   <div class="container card newsletter-card" appScrollReveal="fade-in">
     <div class="newsletter-copy">
       <h2>Únete a la comunidad</h2>
       <p class="muted">Noticias, convocatorias y recursos de innovación sostenible.</p>
     </div>
 
-    <form class="newsletter-form" (submit)="$event.preventDefault()" aria-label="Formulario de suscripción">
+    <form class="newsletter-form" (submit)="$event.preventDefault()" aria-label="Formulario de suscripción" appScrollReveal="slide-up">
       <label class="sr-only" for="email">Correo electrónico</label>
       <input id="email" name="email" type="email" inputmode="email" placeholder="tu@email.com" />
       <label class="consent">
@@ -155,7 +155,7 @@
   </div>
 </section>
 
-<section class="section panel seo">
+<section class="section seo">
   <div class="container">
     <div class="card" appScrollReveal="fade-in">
       <h2>Innovación sostenible en Latinoamérica</h2>
