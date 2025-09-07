@@ -1,2 +1,57 @@
 :host{ display:block }
 
+/* HERO */
+.hero { padding: 56px 0 24px; }
+.hero-inner{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap:28px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+}
+.eyebrow{
+  display:inline-block;
+  font-size:12px;
+  letter-spacing: 14em;
+  text-transform: uppercase;
+  color: var(--accent-3, #34d399);
+  background: rgba(52,211,153,.10);
+  border: 1px solid rgba(52,211,153,.25);
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 10px;
+}
+h1{
+  font-size: clamp(28px, 6vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  margin: 6px 0 8px;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+.lead{
+  color: var(--muted, #a8b4c7);
+  max-width: 70ch;
+  margin: 0 0 16px;
+  font-size: clamp(16px, 2.6vw, 18px);
+}
+.hero-ctas{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  justify-content: center;
+}
+.hero-art img{
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-2);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-2);
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 520px){
+  .hero { padding-top: 44px;}
+}

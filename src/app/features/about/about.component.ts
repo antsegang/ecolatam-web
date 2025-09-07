@@ -28,9 +28,9 @@ export class AboutComponent implements OnInit, OnDestroy {
   ];
 
   team = [
-    { name: 'Anthony Segura A.', role: 'CEO & CTO', img: 'assets/about/team-1.webp', linkedin: 'https://www.linkedin.com/in/anthony-segura-angulo-112202142' },
-    { name: 'Elías Cambronero S.', role: 'CMO',    img: 'assets/about/team-2.webp', linkedin: 'https://www.linkedin.com/in/gerardo-elías-cambronero-sibaja-34796a216' },
-    { name: 'Por anunciar',       role: 'Ecosistema', img: 'assets/about/team-3.webp', linkedin: '#' },
+    { name: 'Anthony Segura A.', role: 'CEO & CTO', img: '/placeholder-image-broken-square.png', linkedin: 'https://www.linkedin.com/in/anthony-segura-angulo-112202142' },
+    { name: 'Elías Cambronero S.', role: 'CMO',    img: '/placeholder-image-broken-square.png', linkedin: 'https://www.linkedin.com/in/gerardo-elías-cambronero-sibaja-34796a216' },
+    { name: 'Por anunciar',       role: 'Ecosistema', img: '/placeholder-image-broken-square.png', linkedin: '#' },
   ];
 
   ngOnInit(): void {

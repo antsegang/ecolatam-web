@@ -1,0 +1,7 @@
+@mixin hero-bg {
+    background-image: radial-gradient(circle at center, rgba(50, 50, 50, 0.6), rgba(50, 50, 50, 0));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}

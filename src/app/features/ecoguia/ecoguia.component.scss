@@ -1,4 +1,11 @@
+@use '../../../styles/mixins' as mixins;
+
 :host{ display:block }
+
+.hero {
+  @include mixins.hero-bg;
+  padding: 56px 0 24px;
+}
 
 .dashboard .dash-grid{ display:grid; grid-template-columns: 280px 1fr; gap: 20px; }
 .filters{ position:sticky; top: 88px; display:flex; flex-direction:column; gap:10px; }

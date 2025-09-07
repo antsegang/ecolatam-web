@@ -1,7 +1,12 @@
+@use '../../../styles/mixins' as mixins;
+
 :host { display:block; }
 
 /* Reutiliza el hero “bonis” */
-.hero { padding: 56px 0 24px; }
+.hero {
+  @include mixins.hero-bg;
+  padding: 56px 0 24px;
+}
 .hero-inner{
   display:grid; grid-template-columns: 1.15fr .85fr; gap:28px; align-items:center;
 }
