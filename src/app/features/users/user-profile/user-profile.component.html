@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section panel">
   <div class="container">
     <ng-container *ngIf="loading(); else ready">
       <div class="skeleton profile" aria-live="polite"></div>
@@ -56,14 +56,14 @@
 
           <div class="profile-body">
             <ng-container *ngIf="isTab('posts')">
-              <section class="card composer">
+              <section class="card reveal composer">
                 <div class="avatar-xs"><img src="/avatar-placeholder.png" [alt]="u.name || u.username || 'Usuario'"/></div>
                 <input type="text" placeholder="¿Qué estás pensando?" disabled />
                 <button class="btn" disabled>Publicar</button>
               </section>
               <ng-container *ngIf="(posts() || []).length > 0; else emptyFeed">
                 <section class="feed">
-                  <article class="card post" *ngFor="let p of posts();">
+                  <article class="card reveal post" *ngFor="let p of posts();">
                     <header class="post-head">
                       <div class="avatar-xs"><img src="/avatar-placeholder.png" [alt]="u.name || u.username || 'Usuario'"/></div>
                       <div class="who">

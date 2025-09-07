@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero reveal">
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="eyebrow">Contacto</div>
@@ -28,9 +28,9 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section panel">
   <div class="container">
-    <div class="card contact-card">
+    <div class="card reveal contact-card">
       <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
         <!-- Honeypot (oculto) -->
         <input type="text" formControlName="website" class="hp" tabindex="-1" autocomplete="off" />

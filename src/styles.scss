@@ -62,10 +62,16 @@ a:hover{text-decoration:underline}
 
 /* Secciones */
 .section{
+  padding:46px 0;
+}
+
+/* Paneles */
+.panel, .glass{
   background:var(--surface);
   border:1px solid var(--line);
   border-radius:var(--radius-2);
   box-shadow:var(--shadow-1);
+  backdrop-filter: blur(10px);
   overflow:hidden;
 }
 
@@ -127,6 +133,14 @@ input:disabled, select:disabled, textarea:disabled{opacity:.6; cursor:not-allowe
   background:rgba(255,255,255,.05); border:1px solid rgba(120,180,140,.35);
   font-weight:800;
 }
+
+/* Animaciones */
+@keyframes fade-in-up{
+  from{opacity:0; transform:translateY(8px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.reveal{animation:fade-in-up .4s ease both}
 
 /* Responsive helpers */
 @media (max-width:520px){

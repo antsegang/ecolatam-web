@@ -1,4 +1,4 @@
-<section class="section admin-categories">
+<section class="section panel admin-categories">
   <div class="container">
     <header class="page-header">
       <h1>Categorías de negocio</h1>
@@ -8,7 +8,7 @@
     <div *ngIf="loading()" class="loading">Cargando…</div>
     <div *ngIf="!loading() && error()" class="alert error">{{ error() }}</div>
 
-    <div class="card" *ngIf="!loading()">
+    <div class="card reveal" *ngIf="!loading()">
       <div class="table-wrapper">
         <table class="table">
           <thead>

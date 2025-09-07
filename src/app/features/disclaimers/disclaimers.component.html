@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero reveal">
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="eyebrow">Legal</div>
@@ -15,7 +15,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section panel">
   <div class="container layout">
     <aside class="toc card" aria-label="Índice de contenidos">
       <nav>
@@ -140,15 +140,15 @@
         <h2>Anexos — Versiones breves listas para copiar</h2>
 
         <h3>1) Banner compacto (sitio/app)</h3>
-        <pre class="card code">{{ bannerShort }}</pre>
+        <pre class="card reveal code">{{ bannerShort }}</pre>
         <button class="btn" type="button" (click)="copy(bannerShort)">Copiar banner</button>
 
         <h3>2) Newsletter/Email</h3>
-        <pre class="card code">{{ newsletterShort }}</pre>
+        <pre class="card reveal code">{{ newsletterShort }}</pre>
         <button class="btn" type="button" (click)="copy(newsletterShort)">Copiar newsletter</button>
 
         <h3>3) Redes sociales (muy corto)</h3>
-        <pre class="card code">{{ socialShort }}</pre>
+        <pre class="card reveal code">{{ socialShort }}</pre>
         <button class="btn" type="button" (click)="copy(socialShort)">Copiar redes</button>
 
         <details class="mt">

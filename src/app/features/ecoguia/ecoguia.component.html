@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero reveal">
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="eyebrow">EcoGuía</div>
@@ -8,7 +8,7 @@
   </div>
 </section>
 
-<section class="section dashboard">
+<section class="section panel dashboard">
   <div class="container dash-grid" [formGroup]="form">
     <!-- Sidebar filtros -->
     <aside class="filters card">
@@ -58,9 +58,9 @@
     <!-- Contenido principal -->
     <section class="main">
       <div class="kpis">
-        <div class="card kpi"><div class="kpi-label">Negocios</div><div class="kpi-value">{{ (pageBusinesses()?.total) || ((pageBusinesses()?.items || []).length) || 0 }}</div></div>
-        <div class="card kpi"><div class="kpi-label">Productos</div><div class="kpi-value">{{ (pageProducts()?.total) || ((pageProducts()?.items || []).length) || 0 }}</div></div>
-        <div class="card kpi"><div class="kpi-label">Servicios</div><div class="kpi-value">{{ (pageServices()?.total) || ((pageServices()?.items || []).length) || 0 }}</div></div>
+        <div class="card reveal kpi"><div class="kpi-label">Negocios</div><div class="kpi-value">{{ (pageBusinesses()?.total) || ((pageBusinesses()?.items || []).length) || 0 }}</div></div>
+        <div class="card reveal kpi"><div class="kpi-label">Productos</div><div class="kpi-value">{{ (pageProducts()?.total) || ((pageProducts()?.items || []).length) || 0 }}</div></div>
+        <div class="card reveal kpi"><div class="kpi-label">Servicios</div><div class="kpi-value">{{ (pageServices()?.total) || ((pageServices()?.items || []).length) || 0 }}</div></div>
       </div>
 
       <div class="tabs">
@@ -73,7 +73,7 @@
         @if (!loading()) {
           @if (pageBusinesses(); as page) {
             <div class="grid cards" [attr.aria-busy]="loading()">
-              <article class="card business-tile" *ngFor="let b of page.items; trackBy: trackById">
+              <article class="card reveal business-tile" *ngFor="let b of page.items; trackBy: trackById">
                 <div class="cover">
                   <img [src]="b.coverUrl || '/placeholder-image-broken-square.png'" [alt]="b.name" loading="lazy" />
                 </div>
@@ -99,7 +99,7 @@
           }
         } @else {
           <div class="grid cards" aria-live="polite">
-            <div class="card skeleton" *ngFor="let x of [0,1,2,3,4,5,6,7,8,9,10,11]"></div>
+            <div class="card reveal skeleton" *ngFor="let x of [0,1,2,3,4,5,6,7,8,9,10,11]"></div>
           </div>
         }
       }
@@ -107,7 +107,7 @@
       @if (tab()==='products') {
         @if (pageProducts(); as page) {
           <div class="grid cards">
-            <article class="card item" *ngFor="let it of page.items">
+            <article class="card reveal item" *ngFor="let it of page.items">
               <img [src]="it.imageUrl || '/placeholder-image-broken-square.png'" [alt]="it.name" />
               <div class="body"><h3>{{ it.name }}</h3><p class="muted">{{ it.short }}</p></div>
             </article>
@@ -125,7 +125,7 @@
       @if (tab()==='services') {
         @if (pageServices(); as page) {
           <div class="grid cards">
-            <article class="card item" *ngFor="let it of page.items">
+            <article class="card reveal item" *ngFor="let it of page.items">
               <img [src]="it.imageUrl || '/placeholder-image-broken-square.png'" [alt]="it.name" />
               <div class="body"><h3>{{ it.name }}</h3><p class="muted">{{ it.short }}</p></div>
             </article>

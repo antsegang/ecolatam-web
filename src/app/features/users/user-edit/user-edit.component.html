@@ -1,9 +1,9 @@
-<section class="section">
+<section class="section panel">
   <div class="container">
     <a class="back" [routerLink]="['/users', routeId()]">← Volver al perfil</a>
 
     <div class="grid">
-      <form class="card form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+      <form class="card reveal form" [formGroup]="form" (ngSubmit)="save()" novalidate>
         <h1>Editar perfil</h1>
 
         <div class="row2">
@@ -98,7 +98,7 @@
         <p *ngIf="error()" class="error">{{ error() }}</p>
       </form>
 
-      <aside class="card tips">
+      <aside class="card reveal tips">
         <h3>Consejos</h3>
         <ul>
           <li>Usa tu nombre real para facilitar KYC básico.</li>

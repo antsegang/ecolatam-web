@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero reveal">
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="eyebrow">Legal</div>
@@ -19,7 +19,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section panel">
   <div class="container layout">
     <aside class="toc card" aria-label="Índice de contenidos">
       <nav>
@@ -147,7 +147,7 @@
           Los <em>cue sheets</em> detallan las obras utilizadas: título, autor, intérprete, identificadores (ISWC/ISRC),
           tiempo y tipo de uso. Puedes usar esta plantilla:
         </p>
-        <pre class="card code">{{ cueSheet }}</pre>
+        <pre class="card reveal code">{{ cueSheet }}</pre>
         <div class="cta-row">
           <button class="btn" type="button" (click)="copy(cueSheet)">Copiar Cue Sheet</button>
           <button class="btn btn-ghost" type="button"
@@ -217,13 +217,13 @@
 
       <section id="anexo-solicitud">
         <h2>Anexo A — Plantilla de solicitud a ACAM</h2>
-        <pre class="card code">{{ solicitudACAM }}</pre>
+        <pre class="card reveal code">{{ solicitudACAM }}</pre>
         <button class="btn" type="button" (click)="copy(solicitudACAM)">Copiar plantilla</button>
       </section>
 
       <section id="anexo-cue">
         <h2>Anexo B — Plantilla de Cue Sheet</h2>
-        <pre class="card code">{{ cueSheet }}</pre>
+        <pre class="card reveal code">{{ cueSheet }}</pre>
         <button class="btn" type="button" (click)="copy(cueSheet)">Copiar plantilla</button>
       </section>
 

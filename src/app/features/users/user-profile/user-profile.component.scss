@@ -161,7 +161,7 @@
 
 /* Panels / About */
 .grid.two{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.panel{
+.profile-body .panel{
   background: rgba(255,255,255,.03);
   border:1px solid var(--line);
   border-radius: var(--radius-1); padding: 12px;

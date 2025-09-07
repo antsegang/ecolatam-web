@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero reveal">
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="eyebrow">Sobre nosotros</div>
@@ -37,16 +37,16 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section panel">
   <div class="container grid-2">
-    <article class="card">
+    <article class="card reveal">
       <h2>Misión</h2>
       <p class="muted">
         Construir infraestructura y herramientas abiertas que impulsen transparencia, colaboración y resiliencia
         en la región, conectando tecnología con territorio.
       </p>
     </article>
-    <article class="card">
+    <article class="card reveal">
       <h2>Visión</h2>
       <p class="muted">
         Ser referente de innovación sostenible: una comunidad donde perfiles, empresas y entidades públicas
@@ -56,9 +56,9 @@
   </div>
 </section>
 
-<section class="section alt">
+<section class="section panel alt">
   <div class="container">
-    <div class="card">
+    <div class="card reveal">
       <h2>Valores</h2>
       <div class="cards-4">
         <article class="mini" *ngFor="let v of values">
@@ -70,9 +70,9 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section panel">
   <div class="container cards-3">
-    <article class="card focus">
+    <article class="card reveal focus">
       <h2>Áreas de trabajo</h2>
       <ul class="tick">
         <li><strong>Plataforma Social:</strong> perfiles, publicaciones y validaciones comunitarias.</li>
@@ -82,7 +82,7 @@
       </ul>
     </article>
 
-    <article class="card focus">
+    <article class="card reveal focus">
       <h2>Cómo trabajamos</h2>
       <ul class="tick">
         <li>Diseño responsable y accesible.</li>
@@ -91,7 +91,7 @@
       </ul>
     </article>
 
-    <article class="card focus">
+    <article class="card reveal focus">
       <h2>Hoja de ruta</h2>
       <ol class="roadmap">
         <li><b>Infraestructura:</b> nodo/gateway IPFS y pinning.</li>
@@ -103,11 +103,11 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section panel">
   <div class="container">
     <h2>Equipo</h2>
     <div class="cards-3 team">
-      <article class="card member" *ngFor="let m of team">
+      <article class="card reveal member" *ngFor="let m of team">
         <img [src]="m.img" [alt]="m.name + ' – ' + m.role" loading="lazy"/>
         <div class="info">
           <h3>{{ m.name }}</h3>
@@ -119,7 +119,7 @@
   </div>
 </section>
 
-<section class="section alt">
+<section class="section panel alt">
   <div class="container card">
     <h2>Preguntas frecuentes</h2>
     <details>
@@ -137,7 +137,7 @@
   </div>
 </section>
 
-<section class="section alt">
+<section class="section panel alt">
   <div class="container card">
     <h2>¿Conectamos?</h2>
     <p class="muted">Buscamos aliados para proyectos de impacto. Escríbenos y conversemos.</p>
