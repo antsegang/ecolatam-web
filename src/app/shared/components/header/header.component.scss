@@ -33,6 +33,8 @@
 
 .header-inner{
   height:84px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+  flex-wrap:wrap;
+  > *{min-width:0}
 }
 .brand img{ height:56px; display:block }
 
@@ -114,3 +116,11 @@
 .site-search .see-all a{ justify-content:center; font-weight:800; }
 .site-search.mobile{ margin-top: 10px; }
 .site-search.mobile input{ width:100%; }
+
+@media (max-width:400px){
+  .nav a{ padding:6px 8px; font-size:14px }
+}
+
+@media (max-width:360px){
+  .nav a{ padding:5px 6px; font-size:13px }
+}
