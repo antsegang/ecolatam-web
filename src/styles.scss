@@ -51,6 +51,8 @@ body::before{
   pointer-events:none;
   z-index:-1;
 }
+
+body.body-offset{ padding-top:84px; }
 img{max-width:100%; display:block}
 a{
   color:var(--accent);

@@ -13,7 +13,7 @@
 
 /* Header sticky global con efecto glass y transición al ocultar */
 .site-header{
-  position: sticky; top: 0; z-index: 60;
+  position: fixed; top: 0; left:0; width:100%; z-index: 60;
   background: linear-gradient(180deg, rgba(6,9,15,.92), rgba(6,9,15,.66) 60%, rgba(6,9,15,0));
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);

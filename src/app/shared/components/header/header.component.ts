@@ -68,10 +68,13 @@ export class HeaderComponent implements OnDestroy {
   private ticking = false;
 
   constructor() {
-    // Cierra el menú al navegar
+    // Cierra el menú al navegar y recalcula el HUD
     this.sub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => (this.mobileOpen = false));
+      .subscribe(() => {
+        this.mobileOpen = false;
+        setTimeout(() => this.onScroll());
+      });
 
     // Buscar con debounce en header
     this.searchForm.controls.q.valueChanges
@@ -100,7 +103,7 @@ export class HeaderComponent implements OnDestroy {
     this.closeSearch();
   }
 
-  // Oculta al bajar, muestra al subir (umbral 12px)
+  // Oculta al bajar, muestra al subir (umbrales suavizados)
   @HostListener('window:scroll', [])
   onScroll() {
     if (this.ticking) return;
@@ -111,8 +114,8 @@ export class HeaderComponent implements OnDestroy {
       this.atTop = y <= 4;
 
       if (!this.mobileOpen) {
-        if (delta > 12 && y > 80) this.hidden = true;       // scroll down
-        else if (delta < -12 || y <= 80) this.hidden = false; // scroll up o cerca del top
+        if (delta > 8 && y > 60) this.hidden = true;       // scroll down
+        else if (delta < -8 || y <= 60) this.hidden = false; // scroll up o cerca del top
       }
 
       this.lastY = y;
