@@ -1,0 +1,27 @@
+@use './mixins' as *;
+
+/* Animaciones utilitarias */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sr-hidden { opacity: 0; transform: translateY(12px); }
+.fade-in  { @include fade-in(); }
+.slide-up { @include slide-up(); }
+.reveal   { animation: fade-in-up .4s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .sr-hidden { opacity: 1; transform: none; }
+}

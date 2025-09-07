@@ -57,3 +57,38 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Animations and UX utilities
+
+The `SharedUxModule` exposes common UX helpers like the `ScrollRevealDirective`, animation utility classes and SCSS mixins.
+
+### Usage
+
+Import the module in any standalone component that requires animations:
+
+```ts
+import { SharedUxModule } from './shared/shared-ux.module';
+
+@Component({
+  standalone: true,
+  imports: [SharedUxModule],
+  ...
+})
+export class ExampleComponent {}
+```
+
+Use the directive or utility classes in templates:
+
+```html
+<div appScrollReveal="slide-up" class="fade-in">Contenido</div>
+```
+
+SCSS mixins are available from `app/shared/styles/mixins`:
+
+```scss
+@use 'app/shared/styles/mixins' as *;
+
+.box {
+  @include fade-in();
+}
+```

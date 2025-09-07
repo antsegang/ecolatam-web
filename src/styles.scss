@@ -1,3 +1,6 @@
+@use "app/shared/styles/animations";
+@use "app/shared/styles/mixins" as *;
+
 /* =========================
    EcoLATAM – Global UI (bonis)
    ========================= */
@@ -155,17 +158,6 @@ input:disabled, select:disabled, textarea:disabled{opacity:.6; cursor:not-allowe
 }
 .pill:hover{transform:translateY(-1px); box-shadow:var(--shadow-1); filter:brightness(1.08)}
 
-/* Animaciones */
-@keyframes fade-in{from{opacity:0} to{opacity:1}}
-@keyframes slide-up{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)}}
-
-.sr-hidden{opacity:0; transform:translateY(12px)}
-.fade-in{animation:fade-in .6s ease both}
-.slide-up{animation:slide-up .6s ease both}
-
-/* Animación legacy */
-@keyframes fade-in-up{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
-.reveal{animation:fade-in-up .4s ease both}
 
 /* Responsive helpers */
 @media (max-width:520px){
@@ -173,8 +165,3 @@ input:disabled, select:disabled, textarea:disabled{opacity:.6; cursor:not-allowe
   button, .btn{width:100%}
 }
 
-/* Motion-safe */
-@media (prefers-reduced-motion: reduce){
-  *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important}
-  .sr-hidden{opacity:1; transform:none}
-}

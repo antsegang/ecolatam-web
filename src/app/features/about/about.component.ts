@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
+import { SharedUxModule } from '../../shared/shared-ux.module';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule, RouterLink, ScrollRevealDirective],
+  imports: [CommonModule, RouterLink, SharedUxModule],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
 })

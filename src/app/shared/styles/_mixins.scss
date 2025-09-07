@@ -5,3 +5,11 @@
     background-position: center;
     background-attachment: fixed;
 }
+
+@mixin fade-in($duration: .6s, $easing: ease) {
+    animation: fade-in $duration $easing both;
+}
+
+@mixin slide-up($duration: .6s, $easing: ease) {
+    animation: slide-up $duration $easing both;
+}
