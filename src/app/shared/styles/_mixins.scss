@@ -6,10 +6,14 @@
     background-attachment: fixed;
 }
 
-@mixin fade-in($duration: .6s, $easing: ease) {
+@mixin fade($duration: .2s, $easing: ease) {
     animation: fade-in $duration $easing both;
 }
 
-@mixin slide-up($duration: .6s, $easing: ease) {
+@mixin slide($duration: .2s, $easing: ease) {
     animation: slide-up $duration $easing both;
 }
+
+/* aliases for backwards compatibility */
+@mixin fade-in($duration: .2s, $easing: ease) { @include fade($duration, $easing); }
+@mixin slide-up($duration: .2s, $easing: ease) { @include slide($duration, $easing); }

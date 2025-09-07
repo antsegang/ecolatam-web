@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal, DestroyRef } from '@angular/core';
+import { Component, OnInit, inject, signal, DestroyRef , HostBinding} from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common'; // 👈 DatePipe
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -6,18 +6,21 @@ import { UsersApi } from '../data/users.api';
 import { Page, UserListItem } from '../data/users.models';
 import { debounceTime, distinctUntilChanged, finalize } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { fadeIn, slideIn } from '@shared/styles/animations';
 
 @Component({
   selector: 'app-users-list',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink, DatePipe], // 👈
   templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.scss']
+  styleUrls: ['./users-list.component.scss'],
+  animations: [fadeIn, slideIn],
 })
 export class UsersListComponent implements OnInit {
   private api = inject(UsersApi);
   private fb  = inject(FormBuilder);
   private destroyRef = inject(DestroyRef);
+  @HostBinding('@fadeIn') readonly fade = true;
 
   loading  = signal<boolean>(false);
   pageData = signal<Page<UserListItem> | null>(null);

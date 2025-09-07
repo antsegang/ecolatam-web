@@ -1,26 +1,77 @@
-<section class="section panel">
-  <div class="container">
-    <ng-container *ngIf="loading(); else ready">
-      <div class="skeleton profile" aria-live="polite"></div>
-    </ng-container>
+<section class="section profile-section">
+  <ng-container *ngIf="loading(); else ready">
+    <div class="skeleton profile" aria-live="polite"></div>
+  </ng-container>
 
-    <ng-template #ready>
-      <ng-container *ngIf="user() as u; else noUser">
-        <article class="profile-card">
-          <app-profile-cover [canEdit]="isSelf()"></app-profile-cover>
+  <ng-template #ready>
+    <ng-container *ngIf="user() as u; else noUser">
+      <!-- Cover full width -->
+      <app-profile-cover class="cover-full" [canEdit]="isSelf()"></app-profile-cover>
 
+      <!-- Three-column responsive layout -->
+      <div class="profile-grid">
+        <aside class="sidebar left">
+          <section class="card">
+          <div class="avatar-lg">
+            <img src="/avatar-placeholder.png" [alt]="(u.name || '') + ' ' + (u.lastname || '')" />
+          </div>
+          <h2 class="user-title">{{ (u.name || '') + (u.lastname ? ' ' + u.lastname : '') }}</h2>
+          <p class="muted" *ngIf="u.createdAt">Miembro desde {{ u.createdAt | date:'longDate':'UTC' }}</p>
+          <p *ngIf="locationLabel()" class="muted">{{ locationLabel() }}</p>
+          <dl class="kv compact">
+            <div *ngIf="u.birthdate"><dt>Nacimiento</dt><dd>{{ u.birthdate | date:'longDate':'UTC' }}</dd></div>
+            <div *ngIf="u.location"><dt>Ubicación</dt><dd>{{ u.location }}</dd></div>
+            <div *ngIf="u.zip"><dt>ZIP</dt><dd>{{ u.zip }}</dd></div>
+            <div *ngIf="u.cellphone"><dt>Celular</dt><dd>{{ u.cellphone }}</dd></div>
+            <div *ngIf="u.phone"><dt>Teléfono</dt><dd>{{ u.phone }}</dd></div>
+          </dl>
+          </section>
+
+          <section class="card businesses">
+            <h3>Negocios</h3>
+            <ng-container *ngIf="myBusinesses() as bs; else loadingBiz">
+              <ng-container *ngIf="bs.length; else emptyBiz">
+                <ul class="biz-list">
+                  <li *ngFor="let b of bs">
+                    <a [routerLink]="['/ecoguia', b.id]">
+                      <span class="cover" [style.background-image]="b.coverUrl ? 'url(' + b.coverUrl + ')' : ''"></span>
+                      <span class="name">{{ b.name }}</span>
+                      <span class="meta">{{ b.categoryLabel || b.locationLabel }}</span>
+                    </a>
+                  </li>
+                </ul>
+                <a class="btn-ghost" [routerLink]="['/ecoguia']">Ver más en EcoGuía</a>
+              </ng-container>
+              <ng-template #emptyBiz>
+                <p class="muted" *ngIf="isSelf(); else emptyOther">Aún no tienes negocios.</p>
+                <a *ngIf="isSelf()" class="btn" [routerLink]="['/ecoguia/create']">Crear negocio</a>
+                <ng-template #emptyOther><p class="muted">Este usuario no posee negocios.</p></ng-template>
+              </ng-template>
+            </ng-container>
+            <ng-template #loadingBiz><p class="muted">Cargando…</p></ng-template>
+          </section>
+        </aside>
+
+        <main class="main">
           <app-profile-header [user]="u" [isSelf]="isSelf()" [myRoles]="myRoles()" [kycPassed]="kycPassed()" [locationLabel]="locationLabel()" (kycClick)="openKycModal()"></app-profile-header>
 
-          <app-profile-stats [stats]="stats()" [kycPassed]="kycPassed()" [myRoles]="myRoles()"></app-profile-stats>
-
           <app-profile-tabs [tab]="tab()" (tabChange)="setTab($event)" [user]="u" [posts]="posts()" [isSelf]="isSelf()" [paisLabel]="getPaisLabel()" [provinciaLabel]="getProvinciaLabel()" [cantonLabel]="getCantonLabel()" [distritoLabel]="getDistritoLabel()"></app-profile-tabs>
-        </article>
-      </ng-container>
-      <ng-template #noUser>
-        <p class="muted">No se encontró el usuario.</p>
-      </ng-template>
+        </main>
+
+        <aside class="sidebar right">
+          <app-profile-stats [stats]="stats()" [kycPassed]="kycPassed()" [myRoles]="myRoles()"></app-profile-stats>
+          <section class="card highlight" *ngIf="isSelf() && !kycPassed()">
+            <h3>Verifica tu identidad</h3>
+            <p class="muted">Aumenta la confianza y habilita funciones adicionales.</p>
+            <button class="btn" (click)="openKycModal()">Presentar KYC</button>
+          </section>
+        </aside>
+      </div>
+    </ng-container>
+    <ng-template #noUser>
+      <p class="muted">No se encontró el usuario.</p>
     </ng-template>
-  </div>
+  </ng-template>
 </section>
 
 <!-- Modal KYC -->
@@ -29,12 +80,15 @@
   <div class="modal-content card" (click)="$event.stopPropagation()">
     <div class="modal-header">
       <h2>Presentar KYC</h2>
-      <button class="btn-ghost btn-icon" (click)="closeKycModal()" aria-label="Cerrar">✕</button>
+      <button class="btn-ghost btn-icon" (click)="closeKycModal()" aria-label="Cerrar">×</button>
     </div>
     <form [formGroup]="kycForm" (ngSubmit)="submitKycModal()">
       <div class="grid two">
         <label><span>Tipo de identificación (ID)</span>
-          <input type="number" formControlName="id_idtype" placeholder="Ej. 1" />
+          <select formControlName="id_idtype">
+            <option [ngValue]="undefined">Selecciona un tipo…</option>
+            <option *ngFor="let it of idTypes()" [ngValue]="it.id">{{ it.label }}</option>
+          </select>
         </label>
         <label><span>Número de identificación</span>
           <input type="text" formControlName="identity" placeholder="Tu documento" />

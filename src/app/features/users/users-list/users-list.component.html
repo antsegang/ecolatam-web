@@ -18,10 +18,10 @@
     @if (!loading()) {
       @if (pageData(); as page) {
         <div class="grid cards" [attr.aria-busy]="loading()">
-          <article class="card reveal user-tile" *ngFor="let u of page.items; trackBy: trackById">
+          <article class="card reveal user-tile" *ngFor="let u of page.items; trackBy: trackById" @slideIn>
             <a class="cover" [routerLink]="['/users', u.id]" aria-label="Ver perfil">
               <img [src]="'/avatar-placeholder.png'"
-                   [alt]="(u.name || '') + ' ' + (u.lastname || '')" loading="lazy" />
+                       [alt]="(u.name || '') + ' ' + (u.lastname || '')" loading="lazy" />
             </a>
 
             <div class="body">

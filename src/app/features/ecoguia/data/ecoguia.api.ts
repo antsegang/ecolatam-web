@@ -28,6 +28,15 @@ export class EcoguiaApi {
       .pipe(map(env => normalizeList(env.body, limit, offset, mapBusinessDtoToListItem)));
   }
 
+  /** Lista negocios por id de usuario (si el backend lo soporta con query user) */
+  listBusinessesByUser(userId: number, params: { limit?: number; offset?: number } = {}): Observable<Page<BusinessListItem>> {
+    const limit  = params.limit ?? 6;
+    const offset = params.offset ?? 0;
+    return this.api
+      .get<ApiEnvelope<BusinessListApiBody>>(EP.business, { user: userId, limit, offset })
+      .pipe(map(env => normalizeList(env.body, limit, offset, mapBusinessDtoToListItem)));
+  }
+
   getBusiness(id: number): Observable<BusinessDetail | null> {
     return this.api
       .get<ApiEnvelope<BusinessDTO | BusinessDTO[]>>(`${EP.business}/${id}`)

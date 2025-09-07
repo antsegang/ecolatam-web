@@ -5,7 +5,7 @@ import { ProfileStatsComponent } from './profile-stats/profile-stats.component';
 import { ProfileTabsComponent } from './profile-tabs/profile-tabs.component';
 import { ProfileCoverComponent } from './profile-cover/profile-cover.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 import { UsersApi } from '../data/users.api';
 import { UserDetail } from '../data/users.models';
@@ -20,13 +20,15 @@ import { Option } from '../../catalogs/data/catalogs.models';
 import { AuthService } from '@core/services/auth.service';
 import { KycApi, UserKycDTO } from '../data/kyc.api';
 import { IpfsService } from '@core/services/ipfs.service';
+import { EcoguiaApi } from '@features/ecoguia/data/ecoguia.api';
+import { BusinessListItem, Page } from '@features/ecoguia/data/ecoguia.models';
 
 type Tab = 'posts' | 'about' | 'activity';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ProfileHeaderComponent, ProfileStatsComponent, ProfileTabsComponent, ProfileCoverComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ProfileHeaderComponent, ProfileStatsComponent, ProfileTabsComponent, ProfileCoverComponent],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
@@ -39,10 +41,12 @@ export class UserProfileComponent implements OnInit {
   private kycApi   = inject(KycApi);
   private ipfs     = inject(IpfsService);
   private fb       = inject(FormBuilder);
+  private ecoApi   = inject(EcoguiaApi);
 
   loading = signal(true);
   user    = signal<UserDetail | null>(null);
   userKyc = signal<UserKycDTO | null>(null);
+  myBusinesses = signal<BusinessListItem[] | null>(null);
 
   // UI state (tabs / posts)
   tab = signal<Tab>('posts');
@@ -75,6 +79,8 @@ export class UserProfileComponent implements OnInit {
   private provinciaLabel = signal<string | undefined>(undefined);
   private cantonLabel    = signal<string | undefined>(undefined);
   private distritoLabel  = signal<string | undefined>(undefined);
+  // Catálogo: tipos de identificación (KYC)
+  idTypes = signal<Option[]>([]);
 
   // Etiqueta compuesta (Provincia, CantÃ³n, Distrito)
   locationLabel = computed(() => {
@@ -96,7 +102,20 @@ export class UserProfileComponent implements OnInit {
         ),
         takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe(u => { this.user.set(u); if (u) { this.loadCatalogLabels(u); this.kycApi.getByUserId(u.id).pipe(catchError(() => of(null))).subscribe(dto => this.userKyc.set(dto)); } });
+      .subscribe(u => {
+        this.user.set(u);
+        if (u) {
+          this.loadCatalogLabels(u);
+          this.kycApi.getByUserId(u.id).pipe(catchError(() => of(null))).subscribe(dto => this.userKyc.set(dto));
+          // Cargar negocios del usuario (si el backend soporta ?user=:id)
+          this.ecoApi.listBusinessesByUser(u.id, { limit: 6, offset: 0 })
+            .pipe(catchError(() => of({ items: [], limit: 6, offset: 0, hasMore: false } as Page<BusinessListItem>)))
+            .subscribe(p => this.myBusinesses.set(p.items));
+        }
+      });
+
+    // Precargar tipos de identificación para el modal KYC
+    this.catalogs.idTypes().pipe(catchError(() => of<Option[]>([]))).subscribe(list => this.idTypes.set(list));
   }
 
   // â”€â”€â”€ CatÃ¡logos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

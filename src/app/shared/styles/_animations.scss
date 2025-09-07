@@ -17,9 +17,9 @@
 }
 
 .sr-hidden { opacity: 0; transform: translateY(12px); }
-.fade-in  { @include fade-in(); }
-.slide-up { @include slide-up(); }
-.reveal   { animation: fade-in-up .4s ease both; }
+.fade-in, .fade  { @include fade(); }
+.slide-up, .slide { @include slide(); }
+.reveal   { animation: fade-in-up .25s ease both; }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }

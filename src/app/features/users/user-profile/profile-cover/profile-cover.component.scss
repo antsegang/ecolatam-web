@@ -1,6 +1,6 @@
 .cover{
   position: relative;
-  height: 180px;
+  height: clamp(220px, 28vh, 340px);
   background: var(--accent);
   background-size: cover;
   background-position: center;
@@ -8,13 +8,14 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
+:host(.cover-full) .cover{ height: clamp(260px, 34vh, 420px); border-radius: 0; }
 .cover-overlay{
   position:absolute; inset:0;
-  background: rgba(0,0,0,.25);
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%);
   pointer-events:none;
 }
 .change-btn{
-  margin: 8px;
+  margin: 12px;
   padding:4px 8px;
   border-radius: var(--radius-1);
   border:1px solid rgba(255,255,255,.4);

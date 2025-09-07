@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, HostBinding } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { fadeIn } from '@shared/styles/animations';
 import { UserDetail } from '../../data/users.models';
 
 export type Tab = 'posts' | 'about' | 'activity';
@@ -21,7 +22,8 @@ export type Tab = 'posts' | 'about' | 'activity';
       transition(':leave', [
         animate('200ms ease-in', style({ opacity: 0, transform: 'translateY(-10px)' }))
       ])
-    ])
+    ]),
+    fadeIn
   ]
 })
 export class ProfileTabsComponent {
@@ -34,4 +36,5 @@ export class ProfileTabsComponent {
   @Input() provinciaLabel?: string;
   @Input() cantonLabel?: string;
   @Input() distritoLabel?: string;
+  @HostBinding('@fadeIn') readonly fade = true;
 }

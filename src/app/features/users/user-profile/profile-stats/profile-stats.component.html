@@ -2,6 +2,12 @@
   <div class="stat"><span class="num">{{ stats.posts }}</span><span class="lbl">Publicaciones</span></div>
   <div class="stat"><span class="num">{{ stats.followers }}</span><span class="lbl">Seguidores</span></div>
   <div class="stat"><span class="num">{{ stats.following }}</span><span class="lbl">Siguiendo</span></div>
-  <div class="stat kyc" [class.ok]="kycPassed"><span class="num">{{ kycPassed ? '✔' : '✖' }}</span><span class="lbl">KYC</span></div>
-  <div class="stat role"><span class="num">{{ myRoles[0] || 'Usuario' }}</span><span class="lbl">Rol</span></div>
+  <div class="stat kyc" [class.ok]="kycPassed">
+    <span class="num">{{ kycPassed ? '✓' : 'Pendiente' }}</span>
+    <span class="lbl">KYC</span>
+  </div>
+  <div class="stat role">
+    <span class="num">{{ myRoles[0] || 'Usuario' }}</span>
+    <span class="lbl">Rol</span>
+  </div>
 </section>

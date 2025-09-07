@@ -1,31 +1,30 @@
 .tabs{
   display:flex;
-  gap:6px;
-  padding: 8px 8px 0;
-  border-top:1px solid var(--line);
-  background: rgba(255,255,255,.05);
+  gap:2px;
+  padding: 10px 10px 0;
+  border-top:0;
+  background: transparent;
   .tab{
     background: transparent;
     border:1px solid transparent;
     color: var(--muted);
-    padding: 10px 12px;
-    border-radius: 10px 10px 0 0;
+    padding: 10px 14px;
+    border-radius: 999px;
     cursor:pointer;
-    transition: color .2s ease, background .2s ease;
+    transition: color .2s ease, background .2s ease, border-color .2s ease;
   }
-  .tab:hover{ color: var(--txt); background: rgba(255,255,255,.1); }
+  .tab:hover{ color: var(--txt); background: rgba(255,255,255,.08); }
   .tab.active{
     color: var(--txt);
-    background: var(--surface);
+    background: rgba(255,255,255,.10);
     border-color: var(--line);
-    border-bottom-color: transparent;
   }
 }
 
 .profile-body{
-  padding: 14px 18px 18px;
-  background: var(--surface);
-  border-top:1px solid var(--line);
+  padding: 0;
+  background: transparent;
+  border-top:0;
 }
 
 .composer{

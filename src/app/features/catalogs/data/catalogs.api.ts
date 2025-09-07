@@ -15,6 +15,7 @@ const EP = {
   provincias: '/provincia',
   cantones: '/canton',
   distritos: '/distrito',
+  idtypes: '/idtype',
 };
 
 @Injectable({ providedIn: 'root' })
@@ -48,6 +49,13 @@ export class CatalogsApi {
   distritosByCanton(id_canton: number): Observable<Option[]> {
     return this.api.get<ApiEnvelope<DistritoDTO[]>>(EP.distritos, { canton: id_canton }).pipe(
       map(env => (env.body || []).map(d => ({ id: d.id, label: d.name })))
+    );
+  }
+
+  /** Tipos de identificación (para KYC) */
+  idTypes(): Observable<Option[]> {
+    return this.api.get<ApiEnvelope<Array<{ id: number; name: string }>>>(EP.idtypes).pipe(
+      map(env => (env.body || []).map(it => ({ id: it.id, label: it.name })))
     );
   }
 }
