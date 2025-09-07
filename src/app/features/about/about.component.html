@@ -1,4 +1,4 @@
-<section class="hero reveal">
+<section class="hero" appScrollReveal="fade-in">
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="eyebrow">Sobre nosotros</div>
@@ -39,14 +39,14 @@
 
 <section class="section panel">
   <div class="container grid-2">
-    <article class="card reveal">
+    <article class="card" appScrollReveal="slide-up">
       <h2>Misión</h2>
       <p class="muted">
         Construir infraestructura y herramientas abiertas que impulsen transparencia, colaboración y resiliencia
         en la región, conectando tecnología con territorio.
       </p>
     </article>
-    <article class="card reveal">
+    <article class="card" appScrollReveal="slide-up">
       <h2>Visión</h2>
       <p class="muted">
         Ser referente de innovación sostenible: una comunidad donde perfiles, empresas y entidades públicas
@@ -58,7 +58,7 @@
 
 <section class="section panel alt">
   <div class="container">
-    <div class="card reveal">
+    <div class="card" appScrollReveal="fade-in">
       <h2>Valores</h2>
       <div class="cards-4">
         <article class="mini" *ngFor="let v of values">
@@ -72,7 +72,7 @@
 
 <section class="section panel">
   <div class="container cards-3">
-    <article class="card reveal focus">
+    <article class="card focus" appScrollReveal="slide-up">
       <h2>Áreas de trabajo</h2>
       <ul class="tick">
         <li><strong>Plataforma Social:</strong> perfiles, publicaciones y validaciones comunitarias.</li>
@@ -82,7 +82,7 @@
       </ul>
     </article>
 
-    <article class="card reveal focus">
+    <article class="card focus" appScrollReveal="slide-up">
       <h2>Cómo trabajamos</h2>
       <ul class="tick">
         <li>Diseño responsable y accesible.</li>
@@ -91,7 +91,7 @@
       </ul>
     </article>
 
-    <article class="card reveal focus">
+    <article class="card focus" appScrollReveal="slide-up">
       <h2>Hoja de ruta</h2>
       <ol class="roadmap">
         <li><b>Infraestructura:</b> nodo/gateway IPFS y pinning.</li>
@@ -107,7 +107,7 @@
   <div class="container">
     <h2>Equipo</h2>
     <div class="cards-3 team">
-      <article class="card reveal member" *ngFor="let m of team">
+      <article class="card member" appScrollReveal="slide-up" *ngFor="let m of team">
         <img [src]="m.img" [alt]="m.name + ' – ' + m.role" loading="lazy"/>
         <div class="info">
           <h3>{{ m.name }}</h3>
@@ -120,7 +120,7 @@
 </section>
 
 <section class="section panel alt">
-  <div class="container card">
+  <div class="container card" appScrollReveal="fade-in">
     <h2>Preguntas frecuentes</h2>
     <details>
       <summary>¿Necesito ser empresa para aparecer en EcoGuía?</summary>
@@ -138,7 +138,7 @@
 </section>
 
 <section class="section panel alt">
-  <div class="container card">
+  <div class="container card" appScrollReveal="fade-in">
     <h2>¿Conectamos?</h2>
     <p class="muted">Buscamos aliados para proyectos de impacto. Escríbenos y conversemos.</p>
     <div class="cta-row">

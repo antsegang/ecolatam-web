@@ -1,12 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ScrollRevealDirective],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
