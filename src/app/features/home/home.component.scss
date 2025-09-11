@@ -1,11 +1,32 @@
 @use '../../shared/styles/mixins' as mixins;
 
-:host { display:block; }
+:host { display: block; }
 
-/* HERO */
+/* =========================
+   Barra de progreso superior
+   ========================= */
+.scroll-progress{
+  position: fixed;
+  left: 0; top: 10px;
+  height: 3px;
+  background: var(--accent-grad);
+  z-index: 2000;
+  pointer-events: none;
+  width: 0%;
+  box-shadow: 0 1px 8px rgba(16,185,129,.35);
+}
+
+/* Compensar header fijo al navegar por anclas/scrollIntoView */
+.section{ scroll-margin-top: var(--header-h, 84px); }
+
+/* =========================
+   HERO
+   ========================= */
 .hero {
   @include mixins.hero-bg;
   padding: 56px 0 24px;
+  position: relative;
+  z-index: 1; /* por debajo de roles */
 }
 .hero-inner{
   display:grid; grid-template-columns: 1.15fr .85fr; gap:28px; align-items:center;
@@ -23,6 +44,9 @@ h1{
   text-shadow: 0 1px 0 rgba(0,0,0,.25);
 }
 .lead{ color: var(--muted, #a8b4c7); max-width: 70ch; margin: 0 0 16px; font-size: clamp(16px, 2.6vw, 18px); }
+.hero-search{ display:flex; gap:10px; align-items:center; padding:12px; margin: 10px 0 6px; }
+.hero-search input{ flex:1; background: rgba(18,24,36,.55); border:1px solid var(--line); padding:12px 14px; }
+.hero-search .btn-neon{ white-space: nowrap; }
 .hero-ctas{ display:flex; gap:12px; flex-wrap:wrap; margin: 10px 0 8px; }
 .kpis{ display:flex; gap:12px; flex-wrap:wrap; margin:14px 0 6px; padding:0; list-style:none; }
 .kpis li{
@@ -44,12 +68,17 @@ h1{
 }
 .nowrap{ white-space: nowrap; }
 
-/* SECTIONS */
+/* =========================
+   SECCIONES GENERALES
+   ========================= */
+.section{ position: relative; isolation: isolate; padding: 42px 0; }
 .section.alt{
   background: linear-gradient(180deg, transparent, rgba(255,255,255,.02) 30%, transparent);
 }
 
-/* FEATURE CARDS */
+/* =========================
+   CARDS DESTACADAS
+   ========================= */
 .cards-4{
   display:grid;
   grid-template-columns: repeat(4, minmax(0,1fr));
@@ -57,6 +86,7 @@ h1{
 }
 .card.feature{
   display:flex; flex-direction:column; gap:12px;
+  transform-style: preserve-3d;
 }
 .feature-img{
   width: 100%; height: 180px; object-fit: cover;
@@ -68,57 +98,220 @@ h1{
 .link{ color: var(--accent, #22c55e); text-decoration:none; }
 .link:hover{ text-decoration:underline; }
 
-/* GRID 2 */
+.canvas3d {
+  width: 100%;
+  height: clamp(260px, 42vh, 560px); // dale altura visible
+  display: block; // quita gap de inline
+  border-radius: 16px;
+  outline: none;
+  /* opcional: un sutil borde/glass */
+  /* background: radial-gradient(120% 120% at 50% 20%, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); */
+}
+
+
+/* =========================
+   GRID 2 / LISTAS
+   ========================= */
 .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .tick{ margin: 10px 0 0 18px; li{ margin: 6px 0 } }
 .roadmap{ margin: 10px 0 0 18px; li{ margin: 6px 0 } }
 .small-note{ color: var(--muted-2, #94a3b8); font-size: 12px }
+/* =========================
+   ROLES — sticky + pin sin solapes
+   ========================= */
 
-/* ROLES */
-.roles-card{ display:block; }
-.roles-grid{
-  display:flex; flex-wrap:wrap; gap:10px; margin:10px 0 0; padding:0; list-style:none;
-}
-.pill{
-  padding:8px 12px; border-radius: 999px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(120,180,140,.35);
-  font-weight:800;
-  transition: transform .3s ease, box-shadow .3s ease, filter .3s ease;
-  &:hover{ transform: translateY(-2px); box-shadow: var(--shadow-1); filter:brightness(1.1); }
+/* La sección entra por debajo del header al navegar con anclas */
+.section.roles{
+  scroll-margin-top: calc(var(--header-h, 84px) + 16px);
+  /* aire mínimo arriba; el “spacer” de GSAP maneja el resto */
+  padding-top: clamp(8px, 1.5vh, 16px);
+  padding-bottom: 0;
+  margin-bottom: 0;
+  position: relative;
+  isolation: isolate; /* crea stacking context propio */
+  z-index: 3;         /* sobre hero/buscador si estos tienen z-index */
 }
 
-/* NEWSLETTER */
-.newsletter-card{
-  display:grid; grid-template-columns: 1.2fr .8fr; align-items:center; gap: 16px;
+/* layout 2 columnas: índice (sticky) + panel (pin) */
+.roles-layout{
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  align-items: start;
+  position: relative;
 }
-.newsletter-form{
-  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-  input{ flex:1 1 260px; }
-  .consent{
-    display:flex; align-items:center; gap:8px; font-size: 12px; color: var(--muted-2);
-    a{ color: var(--accent); }
+
+/* Índice fijo alineado con el borde inferior del header */
+.roles-index{
+  margin-top: 200px;
+  position: absolute;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 6; /* por encima del panel pinned */
+}
+
+.roles-index .item{
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.roles-index .item:hover{ transform: translateY(-1px); box-shadow: var(--shadow-1); }
+.roles-index .item.active{
+  background: var(--accent-grad);
+  color:#061a12;
+  font-weight: 800;
+  border-color: transparent;
+  box-shadow: 0 0 0 1px rgba(52,211,153,.20) inset;
+}
+
+/* Panel que GSAP “pinnea” — ocupa el viewport menos el header */
+.roles-panel{
+  margin-top: 200px;
+  position: relative;
+  /* la card se verá completa sin rebotar */
+  /* z-index sobre hero/buscador durante el pin */
+  z-index: 5;
+  /* micro-optimizaciones para scroll animado */
+  contain: layout paint;
+  will-change: transform;
+  overflow: hidden; /* evita fugas visuales en el pin */
+}
+
+/* Pista horizontal (lo mueve GSAP) */
+.roles-track{
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Tarjetas: llenan todo el alto del panel (ni más, ni menos) */
+.role-card{
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;              /* <- CLAVE: igual que el panel */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* título/beneficios/CTA distribuidos */
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-1);
+  overflow: hidden;           /* evita “salidas” durante el snap */
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  .roles-layout{
+    grid-template-columns: 1fr;
+  }
+  .roles-index{
+    position: sticky; /* mantiene sticky en mobile */
+    top: calc(var(--header-h, 84px) + 8px);
+    flex-direction: row;
+    overflow: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .roles-panel{
+    min-height: calc(100svh - var(--header-h, 84px) - 8px);
   }
 }
-.sr-only{
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
+
+
+/* =========================
+   PASOS (rail con progreso)
+   ========================= */
+.steps{ position: relative; display:grid; grid-template-columns: 140px 1fr; gap: 16px; }
+.steps .card {
+  margin-bottom: 20px;
+}
+.steps .rail{ position: relative; }
+.steps .rail::before{
+  content:""; position:absolute; left:50%; transform:translateX(-50%); top:0; bottom:0; width:3px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2)); border-radius: 2px; opacity:.35;
+}
+.rail-progress{
+  position:absolute; left:50%; transform:translateX(-50%); top:0; width:3px; height:100%;
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  border-radius: 2px;
 }
 
-/* SEO text block */
-.seo h2{ margin-top:0 }
+/* =========================
+   STICKY SECTION
+   ========================= */
+.sticky-section{ position: relative; min-height: min(100vh, 900px); display:flex; align-items:center; }
+.sticky-section .sticky-pane{
+  position: sticky; top: calc(var(--header-h, 84px) + 12px);
+  background: var(--surface); border:1px solid var(--line);
+  border-radius: 20px; backdrop-filter: blur(10px); padding: 20px; box-shadow: var(--shadow-1);
+}
 
-/* RESPONSIVE */
+/* =========================
+   CHAPTER / MEDIA
+   ========================= */
+.chapter{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 20px; align-items:center; }
+.chapter .media{ border-radius: 20px; border:1px solid var(--line); background: rgba(255,255,255,.04); box-shadow: var(--shadow-1); overflow:hidden; }
+.chapter .media img{ width:100%; height:auto; display:block; object-fit:cover; }
+.chapter .lead{ margin: 6px 0 12px; }
+
+/* =========================
+   SVG Figures
+   ========================= */
+.svg-figure{ display:block; width:100%; height:auto; }
+.svg-figure .wire{ stroke: var(--accent); stroke-width: 2.5; fill: none; opacity: .9; }
+.svg-figure .node{ fill: transparent; stroke: var(--accent-3); stroke-width: 2; }
+.svg-figure .hub{ fill: rgba(34,197,94,.18); stroke: var(--accent-2); stroke-width: 2; }
+
+/* =========================
+   KPI / Split / CTA
+   ========================= */
+.kpi-tiles{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+.kpi-tiles .tile{ background: rgba(255,255,255,.06); border:1px solid var(--line); border-radius: 16px; padding: 14px; box-shadow: var(--shadow-1); text-align:center; }
+.kpi-tiles .big{ font-size: clamp(22px, 4vw, 36px); font-weight: 800; }
+.split-panel{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.cta-block{ text-align:center; }
+.cta-block .actions{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
 @media (max-width: 1200px){
   .cards-4{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
+
 @media (max-width: 980px){
   .hero-inner{ grid-template-columns: 1fr; }
   .grid-2{ grid-template-columns: 1fr; }
-  .newsletter-card{ grid-template-columns: 1fr; }
+  .chapter{ grid-template-columns: 1fr; }
+
+  .roles-layout{ grid-template-columns: 1fr; }
+  .roles-index{
+    position: relative; top: 0;
+    flex-direction: row; gap: 8px; overflow:auto; align-items: center;
+    padding-bottom: 8px;
+  }
+  .roles-panel{
+    height: clamp(340px, 60vh, 580px);
+    min-height: 360px;
+  }
+
+  .kpi-tiles{ grid-template-columns: 1fr; }
+  .split-panel{ grid-template-columns: 1fr; }
 }
+
 @media (max-width: 520px){
   .hero{ padding-top: 44px; }
   .kpis li{ min-width: 160px; }
-  .newsletter-form .btn{ width:100%; }
   .cards-4{ grid-template-columns: 1fr; }
 }

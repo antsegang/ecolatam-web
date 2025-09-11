@@ -10,13 +10,15 @@
   display:grid;
   grid-template-columns: minmax(260px, 320px) minmax(0,1fr) minmax(280px, 360px);
   align-items: start;
-  gap: 20px;
+  gap: 28px;
   width: 100%;
   padding: clamp(12px, 3vw, 28px);
 }
 
 .sidebar{ position: sticky; top: 16px; align-self: start; }
 .sidebar.right{ top: 16px; }
+.sidebar.left > * + *{ margin-top: 14px; }
+.sidebar.right > * + *{ margin-top: 14px; }
 .sidebar.left.card,
 .sidebar.right .card{
   border-radius: var(--radius-2);
@@ -27,11 +29,19 @@
 }
 
 .sidebar.left .businesses h3{ margin: 0 0 10px; }
+.sidebar.left .businesses .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px }
 .biz-list{ list-style:none; padding:0; margin:0 0 10px; display:grid; gap:10px; }
 .biz-list a{ display:grid; grid-template-columns: 48px 1fr; gap:8px; align-items:center; color: var(--txt); }
 .biz-list .cover{ width:48px; height:48px; border-radius: 10px; background: rgba(255,255,255,.06); background-size: cover; background-position:center; border:1px solid var(--line); display:block; }
 .biz-list .name{ font-weight:700; }
 .biz-list .meta{ color: var(--muted); font-size: 12px; grid-column:2; }
+
+.card .card-actions{ display:flex; justify-content:flex-end; }
+.card .card-actions .sm{ padding:6px 10px; font-size:13px; border-radius:10px }
+/* Asegura que el botón Crear de negocios coincide con Editar perfil */
+.businesses .row .btn-ghost.sm{ padding:6px 10px; font-size:13px; border-radius:10px }
+/* small buttons unify size */
+.btn-ghost.sm, .btn.sm{ padding:6px 10px !important; font-size:13px !important; border-radius:10px !important; }
 
 .highlight{ background: linear-gradient(180deg, var(--surface) 0%, rgba(0,0,0,0.04) 100%); }
 

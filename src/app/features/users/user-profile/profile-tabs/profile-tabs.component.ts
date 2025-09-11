@@ -5,12 +5,12 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { fadeIn } from '@shared/styles/animations';
 import { UserDetail } from '../../data/users.models';
 
-export type Tab = 'posts' | 'about' | 'activity';
+export type Tab = 'posts' | 'activity';
 
 @Component({
   selector: 'app-profile-tabs',
   standalone: true,
-  imports: [CommonModule, RouterLink, DatePipe],
+  imports: [CommonModule, DatePipe],
   templateUrl: './profile-tabs.component.html',
   styleUrls: ['./profile-tabs.component.scss'],
   animations: [
@@ -32,9 +32,5 @@ export class ProfileTabsComponent {
   @Input() user!: UserDetail;
   @Input() posts: Array<{ id: number; content: string; createdAt: string }> = [];
   @Input() isSelf = false;
-  @Input() paisLabel?: string;
-  @Input() provinciaLabel?: string;
-  @Input() cantonLabel?: string;
-  @Input() distritoLabel?: string;
   @HostBinding('@fadeIn') readonly fade = true;
 }

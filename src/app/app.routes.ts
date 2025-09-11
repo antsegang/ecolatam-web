@@ -6,6 +6,7 @@ export const routes: Routes = [
   { path: 'login',                              loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent)                },
   { path: 'register',                           loadComponent: () => import('./features/auth/register/register.component').then(m => m.RegisterComponent)       },
   { path: 'blog',                               loadComponent: () => import('./features/blog/blog.component').then(m => m.BlogComponent)                        },
+  { path: 'demo-icons',                         loadComponent: () => import('./demo/demo-icons.component').then(m => m.DemoIconsComponent)                     },
 
   // NUEVO: rutas protegidas que muestra el header pero exige login al entrar
   { path: 'ecoguia',          canActivate: [authGuard], loadComponent: () => import('./features/ecoguia/ecoguia.component').then(m => m.EcoguiaComponent)       },

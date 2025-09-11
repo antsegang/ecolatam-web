@@ -1,5 +1,12 @@
+<!-- Header queda FUERA del smoother -->
 <app-site-header></app-site-header>
-<main id="main">
-  <router-outlet></router-outlet>
-</main>
-<app-site-footer></app-site-footer>
+
+<!-- ScrollSmoother solo para contenido + footer -->
+<div id="smooth-wrapper">
+  <div id="smooth-content">
+    <main id="main">
+      <router-outlet></router-outlet>
+    </main>
+    <app-site-footer></app-site-footer>
+  </div>
+</div>

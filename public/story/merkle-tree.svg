@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="740" viewBox="0 0 1200 740">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a1015"/><stop offset="100%" stop-color="#0b1420"/></linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#0ea5e9"/></linearGradient>
+  </defs>
+  <rect width="1200" height="740" fill="url(#bg)"/>
+  <g stroke="url(#acc)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M600 140 L420 260"/><path d="M600 140 L780 260"/>
+    <path d="M420 260 L320 380"/><path d="M420 260 L520 380"/>
+    <path d="M780 260 L680 380"/><path d="M780 260 L880 380"/>
+    <path d="M320 380 L260 520"/><path d="M320 380 L380 520"/>
+    <path d="M520 380 L460 520"/><path d="M520 380 L580 520"/>
+    <path d="M680 380 L620 520"/><path d="M680 380 L740 520"/>
+    <path d="M880 380 L820 520"/><path d="M880 380 L940 520"/>
+  </g>
+  <g fill="#0f172a" stroke="#2a405f" opacity="0.9">
+    <rect x="560" y="110" width="80" height="40" rx="8"/>
+    <rect x="380" y="240" width="80" height="40" rx="8"/>
+    <rect x="740" y="240" width="80" height="40" rx="8"/>
+    <rect x="280" y="360" width="80" height="40" rx="8"/>
+    <rect x="480" y="360" width="80" height="40" rx="8"/>
+    <rect x="640" y="360" width="80" height="40" rx="8"/>
+    <rect x="840" y="360" width="80" height="40" rx="8"/>
+    <rect x="240" y="500" width="80" height="40" rx="8"/>
+    <rect x="340" y="500" width="80" height="40" rx="8"/>
+    <rect x="440" y="500" width="80" height="40" rx="8"/>
+    <rect x="560" y="500" width="80" height="40" rx="8"/>
+    <rect x="600" y="110" width="80" height="40" rx="8"/>
+    <rect x="720" y="500" width="80" height="40" rx="8"/>
+    <rect x="820" y="500" width="80" height="40" rx="8"/>
+    <rect x="920" y="500" width="80" height="40" rx="8"/>
+  </g>
+  <text x="500" y="100" fill="#a8b4c7" font-family="Inter,ui-sans-serif" font-size="16">Merkle root (hash anclable)</text>
+</svg>
+

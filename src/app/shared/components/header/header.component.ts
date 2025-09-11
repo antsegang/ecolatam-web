@@ -1,67 +1,28 @@
 import { Component, HostListener, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
-import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { SearchService, SearchResult } from '@core/services/search.service';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
-type MenuItem = {
-  label: string;
-  path?: string;        // rutas internas
-  external?: string;    // enlaces externos
-  exact?: boolean;      // match exacto para Home
-  children?: MenuItem[]; // submenú
-};
+import { AuthService } from '@core/services/auth.service';
+import { FluentIconComponent } from '@shared/ui/fluent-icon';
 
 @Component({
   selector: 'app-site-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, FluentIconComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnDestroy {
   private router = inject(Router);
-  private fb = inject(FormBuilder);
-  private search = inject(SearchService);
+  private auth   = inject(AuthService);
   private sub?: Subscription;
 
-  logoAlt = 'EcoLATAM™';
+  logoAlt = 'EcoLATAM';
 
-  // Menú principal (solo exponer; la protección la hace el guard en rutas)
-  menu: MenuItem[] = [
-    { label: 'Inicio',      path: '/', exact: true },
-    {
-      label: 'Explorar',
-      children: [
-        { label: 'EcoGuía', path: '/ecoguia' },
-        { label: 'Social',  path: '/social'  },
-        { label: 'Soluciones', path: '/solutions' },
-      ]
-    },
-    {
-      label: 'Sobre',
-      children: [
-        { label: 'Nosotros', path: '/about' },
-        { label: 'Contacto', path: '/contact' },
-        { label: 'Blog',     path: '/blog' },
-      ]
-    },
-    { label: 'Gateway IPFS', external: 'https://ipfs.ecolatam.com' }
-  ];
-
-  mobileOpen = false;
-  openGroups: Record<number, boolean> = {};
-  desktopOpen: Record<number, boolean> = {};
-  private hoverTimers: Record<number, ReturnType<typeof setTimeout>> = {};
-
-  // Buscar en header
-  searchOpen = false;
-  searchForm = this.fb.nonNullable.group({ q: [''] });
-  results: SearchResult[] = [];
+  // Drawer lateral
+  drawerOpen = false;
 
   // Scroll/HUD
   hidden = false;
@@ -70,49 +31,24 @@ export class HeaderComponent implements OnDestroy {
   private ticking = false;
 
   constructor() {
-    // Cierra el menú al navegar y recalcula el HUD
+    // Cierra el drawer al navegar y recalcula el HUD
     this.sub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(() => {
-        this.mobileOpen = false;
+        this.drawerOpen = false;
         setTimeout(() => this.onScroll());
       });
-
-    // Buscar con debounce en header
-    this.searchForm.controls.q.valueChanges
-      .pipe(
-        debounceTime(250),
-        distinctUntilChanged(),
-        switchMap(q => {
-          const term = (q || '').trim();
-          if (term.length < 2) { this.results = []; return of([] as SearchResult[]); }
-          return this.search.search(term);
-        })
-      )
-      .subscribe(res => { this.results = res; this.searchOpen = !!res.length; });
   }
 
-  toggleMobile() { this.mobileOpen = !this.mobileOpen; }
-  closeMobile()  { this.mobileOpen = false; }
-  toggleGroup(i: number) { this.openGroups[i] = !this.openGroups[i]; }
+  toggleDrawer() { this.drawerOpen = !this.drawerOpen; }
+  closeDrawer()  { this.drawerOpen = false; }
 
-  openSubmenu(i: number) {
-    clearTimeout(this.hoverTimers[i]);
-    this.desktopOpen[i] = true;
-  }
-
-  closeSubmenu(i: number) {
-    this.hoverTimers[i] = setTimeout(() => this.desktopOpen[i] = false, 200);
-  }
-
-  openSearch() { this.searchOpen = true; }
-  closeSearch() { this.searchOpen = false; }
-  submitSearch() {
-    const term = this.searchForm.getRawValue().q?.trim();
-    if (!term) return;
-    this.router.navigate(['/ecoguia'], { queryParams: { q: term }});
-    this.closeSearch();
-  }
+  // Auth helpers
+  me() { return this.auth.getUser(); }
+  isLogged() { return !!this.auth.getToken(); }
+  roles() { return this.auth.getRoles(); }
+  isAdmin() { return this.auth.hasRole(['admin','superadmin']); }
+  logout(){ this.auth.logout(); this.router.navigate(['/']); }
 
   // Oculta al bajar, muestra al subir (umbrales suavizados)
   @HostListener('window:scroll', [])
@@ -124,7 +60,7 @@ export class HeaderComponent implements OnDestroy {
       const delta = y - this.lastY;
       this.atTop = y <= 4;
 
-      if (!this.mobileOpen) {
+      if (!this.drawerOpen) {
         if (delta > 8 && y > 60) this.hidden = true;       // scroll down
         else if (delta < -8 || y <= 60) this.hidden = false; // scroll up o cerca del top
       }

@@ -1,1 +1,125 @@
-<p>social works!</p>
+<section class="social section">
+  <div class="container">
+    <header class="social-header">
+      <nav class="tabs">
+        <button class="btn-ghost tab" [class.active]="activeTab() === 'all'" (click)="setTab('all')">Todo</button>
+        <button class="btn-ghost tab" [class.active]="activeTab() === 'business'" (click)="setTab('business')">Negocios</button>
+        <button class="btn-ghost tab" [class.active]="activeTab() === 'volunteer'" (click)="setTab('volunteer')">Voluntariado</button>
+        <button class="btn-ghost tab" [class.active]="activeTab() === 'guide'" (click)="setTab('guide')">Guías</button>
+        <button class="btn-ghost tab" [class.active]="activeTab() === 'vip'" (click)="setTab('vip')">VIP</button>
+      </nav>
+    </header>
+
+    <div class="grid grid-3">
+      <aside class="rail-left">
+        <div class="card profile-card">
+          <div class="avatar-skel"></div>
+          <div class="name-skel shimmer"></div>
+          <div class="stats">
+            <div><strong>250</strong><span>Posts</span></div>
+            <div><strong>1.2k</strong><span>Impacto</span></div>
+            <div><strong>320</strong><span>Créditos</span></div>
+          </div>
+          <button class="btn-ghost">Mi Perfil</button>
+        </div>
+
+        <nav class="card side-menu">
+          <a class="item active">Descubrir</a>
+          <a class="item">Tendencias</a>
+          <a class="item">Educación</a>
+          <a class="item">Proyectos</a>
+          <a class="item">Favoritos</a>
+          <hr class="divider" />
+          <a class="item">Eventos</a>
+          <a class="item">Guías</a>
+          <a class="item">Retos</a>
+          <a class="item">Comunidad</a>
+        </nav>
+      </aside>
+
+      <div class="main">
+        <!-- Crear publicación -->
+        <form class="card composer" [formGroup]="postForm" (ngSubmit)="submitPost()">
+          <textarea rows="3" placeholder="Comparte tu impacto, proyecto o necesidad ambiental..." formControlName="content"></textarea>
+          <div class="composer-actions">
+            <button type="submit" [disabled]="postForm.invalid">Publicar</button>
+          </div>
+        </form>
+
+        <div class="status muted" *ngIf="loading()">Cargando feed...</div>
+        <div class="skeletons" *ngIf="skeletons() > 0">
+          <div class="card skeleton" *ngFor="let s of [].constructor(skeletons())">
+            <div class="skeleton-line w-40"></div>
+            <div class="skeleton-line w-90"></div>
+            <div class="skeleton-img"></div>
+            <div class="skeleton-line w-60"></div>
+          </div>
+        </div>
+        <div class="error" *ngIf="errorMsg()">{{ errorMsg() }}</div>
+
+        <div class="feed" *ngIf="!loading()">
+          <app-post-card *ngFor="let p of feed()" [post]="p" (like)="like($event)"></app-post-card>
+        </div>
+      </div>
+
+      <aside class="aside">
+        <!-- Ofrecerme como voluntario -->
+        <div class="card">
+          <h3>Ofrecerme como voluntario</h3>
+          <form [formGroup]="volunteerForm" (ngSubmit)="submitVolunteer()">
+            <input type="text" placeholder="Habilidades" formControlName="skills" />
+            <input type="text" placeholder="Disponibilidad" formControlName="availability" />
+            <textarea rows="2" placeholder="Notas" formControlName="notes"></textarea>
+            <button type="submit" [disabled]="volunteerForm.invalid">Enviar</button>
+          </form>
+        </div>
+
+        <!-- Solicitar voluntarios (negocio) -->
+        <div class="card">
+          <h3>Solicitar voluntarios</h3>
+          <form [formGroup]="requestVolForm" (ngSubmit)="submitRequestVol()">
+            <input type="text" placeholder="Necesidad" formControlName="need" />
+            <textarea rows="2" placeholder="Detalles" formControlName="details"></textarea>
+            <button type="submit" [disabled]="requestVolForm.invalid">Solicitar</button>
+          </form>
+        </div>
+
+        <!-- Contactar guía -->
+        <div class="card">
+          <h3>Contactar guía</h3>
+          <form [formGroup]="guideForm" (ngSubmit)="submitGuide()">
+            <input type="text" placeholder="Tema" formControlName="topic" />
+            <textarea rows="2" placeholder="Mensaje" formControlName="message"></textarea>
+            <input type="date" formControlName="preferredDate" />
+            <button type="submit" [disabled]="guideForm.invalid">Contactar</button>
+          </form>
+        </div>
+
+        <!-- Solicitar inspección -->
+        <div class="card">
+          <h3>Solicitar inspección</h3>
+          <form [formGroup]="inspectionForm" (ngSubmit)="submitInspection()">
+            <select formControlName="targetType">
+              <option value="business">Negocio</option>
+              <option value="location">Ubicación</option>
+            </select>
+            <input type="text" placeholder="ID objetivo (opcional)" formControlName="targetId" />
+            <textarea rows="2" placeholder="Notas" formControlName="notes"></textarea>
+            <button type="submit" [disabled]="inspectionForm.invalid">Solicitar</button>
+          </form>
+        </div>
+
+        <!-- VIP -->
+        <div class="card vip" *ngIf="!isVip()">
+          <h3>Sección VIP</h3>
+          <p class="muted">Contenido exclusivo para miembros VIP.</p>
+          <a class="btn-ghost" routerLink="/about">Conoce beneficios</a>
+        </div>
+        <div class="card vip" *ngIf="isVip()">
+          <h3>VIP activo</h3>
+          <p class="muted">Ya puedes ver publicaciones exclusivas en la pestaña VIP.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

@@ -6,11 +6,12 @@ import { CatalogsApi } from '@features/catalogs/data/catalogs.api';
 import { Option } from '../../catalogs/data/catalogs.models';
 import { forkJoin, of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
+import { FluentIconComponent } from '@shared/ui/fluent-icon';
 
 @Component({
   selector: 'app-admin-catalogs',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FluentIconComponent],
   templateUrl: './admin-catalogs.component.html',
   styleUrls: ['./admin-catalogs.component.scss']
 })

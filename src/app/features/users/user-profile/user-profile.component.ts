@@ -22,13 +22,14 @@ import { KycApi, UserKycDTO } from '../data/kyc.api';
 import { IpfsService } from '@core/services/ipfs.service';
 import { EcoguiaApi } from '@features/ecoguia/data/ecoguia.api';
 import { BusinessListItem, Page } from '@features/ecoguia/data/ecoguia.models';
+import { FluentIconComponent } from '@shared/ui/fluent-icon';
 
-type Tab = 'posts' | 'about' | 'activity';
+type Tab = 'posts' | 'activity';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, ProfileHeaderComponent, ProfileStatsComponent, ProfileTabsComponent, ProfileCoverComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ProfileStatsComponent, ProfileTabsComponent, ProfileCoverComponent, FluentIconComponent],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })

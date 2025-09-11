@@ -1,7 +1,7 @@
 <section class="stats">
-  <div class="stat"><span class="num">{{ stats.posts }}</span><span class="lbl">Publicaciones</span></div>
-  <div class="stat"><span class="num">{{ stats.followers }}</span><span class="lbl">Seguidores</span></div>
-  <div class="stat"><span class="num">{{ stats.following }}</span><span class="lbl">Siguiendo</span></div>
+  <div class="stat"><span class="num">{{ stats.posts }}</span><span class="lbl">Publicaciones <fluent-icon name="content_view" [size]="20" iconStyle="regular"></fluent-icon></span></div>
+  <div class="stat"><span class="num">{{ stats.followers }}</span><span class="lbl">Seguidores <fluent-icon name="people_audience" [size]="20" iconStyle="regular"></fluent-icon></span></div>
+  <div class="stat"><span class="num">{{ stats.following }}</span><span class="lbl">Siguiendo <fluent-icon name="people" [size]="20" iconStyle="regular"></fluent-icon></span></div>
   <div class="stat kyc" [class.ok]="kycPassed">
     <span class="num">{{ kycPassed ? '✓' : 'Pendiente' }}</span>
     <span class="lbl">KYC</span>

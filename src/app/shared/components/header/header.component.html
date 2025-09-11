@@ -1,110 +1,103 @@
-<a class="skip-link" href="#main">Saltar al contenido</a>
+﻿<a class="skip-link" href="#main">Saltar al contenido</a>
 
 <header class="site-header" [class.hide]="hidden" [class.at-top]="atTop" role="banner">
   <div class="container header-inner">
-    <a class="brand" routerLink="/" aria-label="EcoLATAM - inicio">
-      <img src="/ecolatam-logo.png" alt="{{ logoAlt }}" height="44" />
-    </a>
-
-    <!-- Desktop nav con submenús -->
-    <nav class="nav desktop" aria-label="Navegación principal">
-      <ng-container *ngFor="let item of menu; index as i">
-        <!-- Con submenú -->
-        <div class="menu-group" *ngIf="item.children?.length; else leaf"
-             (mouseenter)="openSubmenu(i)" (mouseleave)="closeSubmenu(i)"
-             (focusin)="openSubmenu(i)" (focusout)="closeSubmenu(i)"
-             [class.open]="desktopOpen[i]">
-          <button class="group-btn" type="button" aria-haspopup="true"
-                  [attr.aria-expanded]="desktopOpen[i] ? 'true' : 'false'">{{ item.label }}</button>
-          <div class="submenu card">
-            <ng-container *ngFor="let c of item.children">
-              <a *ngIf="c.path; else ext2"
-                 [routerLink]="c.path" (click)="closeMobile()">{{ c.label }}</a>
-              <ng-template #ext2>
-                <a [href]="c.external!" target="_blank" rel="noopener">{{ c.label }}</a>
-              </ng-template>
-            </ng-container>
-          </div>
-        </div>
-        <!-- Hoja -->
-        <ng-template #leaf>
-          <a *ngIf="item.path; else ext"
-             [routerLink]="item.path"
-             routerLinkActive="active"
-             [routerLinkActiveOptions]="{ exact: !!item.exact }"
-             #rla="routerLinkActive"
-             [attr.aria-current]="rla.isActive ? 'page' : null"
-             (click)="closeMobile()">
-            {{ item.label }}
-          </a>
-          <ng-template #ext>
-            <a [href]="item.external!" target="_blank" rel="noopener" class="external">{{ item.label }}</a>
-          </ng-template>
-        </ng-template>
-      </ng-container>
-    </nav>
-
-    <!-- Search desktop -->
-    <form class="site-search" [formGroup]="searchForm" (ngSubmit)="submitSearch()" role="search" aria-label="Buscar">
-      <input type="search" formControlName="q" placeholder="Buscar en EcoGuía…" (focus)="openSearch()" aria-label="Buscar" />
-      <button class="btn-ghost sm" type="submit" aria-label="Buscar">Buscar</button>
-      <div class="search-panel card" *ngIf="searchOpen" (mouseleave)="closeSearch()">
-        <ul class="results" role="listbox">
-          <li *ngFor="let r of results" role="option">
-            <a [routerLink]="r.route" (click)="closeSearch()">
-              <span class="pill type">{{ r.type }}</span>
-              <span class="title">{{ r.title }}</span>
-              <span class="sub" *ngIf="r.subtitle">{{ r.subtitle }}</span>
-            </a>
-          </li>
-          <li class="see-all" *ngIf="(searchForm.value.q || '').length >= 2">
-            <a [routerLink]="['/ecoguia']" [queryParams]="{ q: searchForm.value.q }" (click)="closeSearch()">Ver todos los resultados</a>
-          </li>
-        </ul>
-      </div>
-    </form>
-
-    <!-- Toggle móvil -->
-    <button class="nav-toggle" type="button"
-            aria-label="Abrir menú"
-            aria-haspopup="true"
-            [attr.aria-expanded]="mobileOpen"
-            (click)="toggleMobile()">
-      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    <button class="nav-toggle" type="button" aria-label="Abrir menú" (click)="toggleDrawer()">
+      <fluent-icon name="panel_left" [size]="24" iconStyle="regular"></fluent-icon>
     </button>
-  </div>
-
-  <!-- Mobile drawer -->
-  <div class="mobile-drawer" [class.open]="mobileOpen" (click)="closeMobile()">
-    <nav class="nav mobile" aria-label="Navegación móvil" (click)="$event.stopPropagation()">
-      <ng-container *ngFor="let item of menu; index as i">
-        <ng-container *ngIf="item.children?.length; else leafM">
-          <button class="group-toggle" type="button" (click)="toggleGroup(i)">
-            {{ item.label }}
-            <span class="chev" [class.open]="openGroups[i]">▾</span>
-          </button>
-          <div class="submenuM" [class.open]="openGroups[i]">
-            <ng-container *ngFor="let c of item.children">
-              <a *ngIf="c.path; else extM2" [routerLink]="c.path" (click)="closeMobile()">{{ c.label }}</a>
-              <ng-template #extM2>
-                <a [href]="c.external!" target="_blank" rel="noopener">{{ c.label }}</a>
-              </ng-template>
-            </ng-container>
-          </div>
-        </ng-container>
-        <ng-template #leafM>
-          <a *ngIf="item.path; else extM"
-             [routerLink]="item.path" (click)="closeMobile()">{{ item.label }}</a>
-          <ng-template #extM>
-            <a [href]="item.external!" target="_blank" rel="noopener" class="external">{{ item.label }}</a>
-          </ng-template>
-        </ng-template>
-      </ng-container>
-      <!-- Search en móvil -->
-      <form class="site-search mobile" [formGroup]="searchForm" (ngSubmit)="submitSearch()" role="search" aria-label="Buscar en móvil">
-        <input type="search" formControlName="q" placeholder="Buscar personas, negocios…" aria-label="Buscar" />
-        <button class="btn" type="submit">Buscar</button>
-      </form>
-    </nav>
+    <a class="brand" routerLink="/" aria-label="EcoLATAM - inicio">
+      <img src="/ecolatam-logo.png" alt="{{ logoAlt }}" height="56" />
+    </a>
+    <span class="spacer"></span>
   </div>
 </header>
+
+<!-- Drawer lateral izquierdo (fuera del header para que el blur cubra toda la pantalla) -->
+<div class="drawer-overlay" *ngIf="drawerOpen" (click)="closeDrawer()"></div>
+<aside class="drawer" [class.open]="drawerOpen" aria-label="Menú principal" (click)="$event.stopPropagation()">
+  <div class="drawer-header">
+    <ng-container *ngIf="isLogged(); else guest">
+      <div class="avatar"><img src="/avatar-placeholder.png" alt="avatar" /></div>
+      <div class="who">
+        <strong>{{ me()?.name || 'Usuario' }}</strong>
+        <span class="muted">{{ me()?.email }}</span>
+      </div>
+    </ng-container>
+    <ng-template #guest>
+      <div class="auth-actions">
+        <a routerLink="/login" class="btn-ghost">Iniciar sesión</a>
+        <a routerLink="/register" class="btn">Crear cuenta</a>
+      </div>
+    </ng-template>
+  </div>
+
+  <nav class="drawer-nav">
+    <div class="group">
+      <p class="label">Explorar</p>
+      <a routerLink="/ecoguia" (click)="closeDrawer()">
+        <fluent-icon name="leaf_three" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>EcoGuía</span>
+      </a>
+      <a routerLink="/solutions" (click)="closeDrawer()">
+        <fluent-icon name="lightbulb" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Soluciones</span>
+      </a>
+      <a href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">
+        <fluent-icon name="cloud" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Gateway IPFS</span>
+      </a>
+    </div>
+    <div class="group">
+      <p class="label">Sobre</p>
+      <a routerLink="/about" (click)="closeDrawer()">
+        <fluent-icon name="info" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Nosotros</span>
+      </a>
+      <a routerLink="/contact" (click)="closeDrawer()">
+        <fluent-icon name="mail" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Contacto</span>
+      </a>
+      <a routerLink="/blog" (click)="closeDrawer()">
+        <fluent-icon name="news" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Blog</span>
+      </a>
+    </div>
+    <div class="group" *ngIf="isLogged()">
+      <p class="label">Cuenta</p>
+      <a [routerLink]="['/users', me()?.id]" (click)="closeDrawer()">
+        <fluent-icon name="person" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Mi perfil</span>
+      </a>
+      <a (click)="logout()">
+        <fluent-icon name="door" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Cerrar sesión</span>
+      </a>
+    </div>
+    <div class="group" *ngIf="!isLogged()">
+      <p class="label">Acceso</p>
+      <a routerLink="/login" (click)="closeDrawer()">
+        <fluent-icon name="person_key" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Iniciar sesión</span>
+      </a>
+      <a routerLink="/register" (click)="closeDrawer()">
+        <fluent-icon name="person_accounts" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Crear cuenta</span>
+      </a>
+    </div>
+    <div class="group" *ngIf="isAdmin()">
+      <p class="label">Admin</p>
+      <a routerLink="/admin" (click)="closeDrawer()">
+        <fluent-icon name="home" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/admin/categories" (click)="closeDrawer()">
+        <fluent-icon name="book" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Categorías</span>
+      </a>
+      <a routerLink="/admin/catalogs" (click)="closeDrawer()">
+        <fluent-icon name="database_lightning" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Catálogos</span>
+      </a>
+    </div>
+  </nav>
+</aside>

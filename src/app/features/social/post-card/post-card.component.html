@@ -1,0 +1,26 @@
+<article class="card post-card">
+  <header class="post-header">
+    <img *ngIf="post.authorAvatarUrl" class="avatar" [src]="post.authorAvatarUrl" alt="avatar" />
+    <div class="meta">
+      <div class="author">{{ post.authorName || ('Usuario #' + post.authorId) }}</div>
+      <div class="date">{{ post.createdAt | date:'medium' }}</div>
+    </div>
+    <div class="tags" *ngIf="post.roleTags?.length">
+      <span class="tag" *ngFor="let t of post.roleTags">{{ t }}</span>
+    </div>
+  </header>
+
+  <div class="content">{{ post.content }}</div>
+
+  <div class="media" *ngIf="post.media?.length">
+    <ng-container *ngFor="let m of post.media">
+      <!-- Simple render: imagen si es mime image/* o desconocido -->
+      <img [src]="srcFor(m.cid)" alt="media" />
+    </ng-container>
+  </div>
+
+  <footer class="actions">
+    <button class="btn-ghost" type="button" (click)="like.emit(post)">❤️ {{ post.likes || 0 }}</button>
+    <span class="comments">💬 {{ post.commentsCount || 0 }}</span>
+  </footer>
+</article>

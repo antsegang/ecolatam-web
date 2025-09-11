@@ -9,7 +9,7 @@
       <button class="tab" [class.active]="current()==='distrito'" (click)="setType('distrito')">Distritos</button>
       <button class="tab" [class.active]="current()==='idtype'" (click)="setType('idtype')">Tipos de ID</button>
       <div class="spacer"></div>
-      <button class="btn" (click)="openNew()">Nuevo</button>
+      <button class="btn" (click)="openNew()">Nuevo <fluent-icon name="add_circle" [size]="28" iconStyle="regular"></fluent-icon></button>
     </div>
 
     <div class="card reveal list" [attr.aria-busy]="loading()">
@@ -38,8 +38,8 @@
             <td *ngIf="current()==='distrito'">{{ it.provinciaLabel || '—' }}</td>
             <td *ngIf="current()==='distrito'">{{ it.paisLabel || '—' }}</td>
             <td class="actions">
-              <button class="btn-ghost sm" (click)="openEdit(it)">Editar</button>
-              <button class="btn-ghost sm" (click)="del(it)">Eliminar</button>
+              <button class="btn-ghost sm" (click)="openEdit(it)">Editar <fluent-icon name="edit" [size]="20" iconStyle="regular"></fluent-icon></button>
+              <button class="btn-ghost sm" (click)="del(it)">Eliminar <fluent-icon name="delete" [size]="20" iconStyle="regular"></fluent-icon></button>
             </td>
           </tr>
         </tbody>

@@ -1,16 +1,24 @@
-<section class="hero" appScrollReveal="fade-in">
+<!-- Progreso de scroll -->
+<div class="scroll-progress" [style.width.%]="scrollProgress"></div>
+
+<!-- HERO -->
+<section class="hero section" appScrollReveal="fade-in">
   <div class="container hero-inner">
-    <div class="hero-copy">
+    <div class="hero-copy" data-speed="1.02">
       <div class="eyebrow">Innovación sostenible</div>
       <h1>Plataforma Social + EcoGuía sobre IPFS para Latinoamérica</h1>
 
       <p class="lead">
         En <strong>EcoLATAM</strong> conectas tu <em>perfil</em>, creas tu <strong>perfil de empresa</strong> y
         publicas contenido direccionado por <abbr title="Content Identifier">CID</abbr> en <em>IPFS</em>.
-        Integramos <abbr title="Monitoreo, Reporte y Verificación">MRV</abbr> ambiental, verificación básica (KYC)
-        y roles comunitarios: <span class="nowrap">inspectores</span>, <span class="nowrap">voluntarios</span> y
-        <span class="nowrap">guías turísticos</span>.
+        Integramos <abbr title="Monitoreo, Reporte y Verificación">MRV</abbr> ambiental, verificación básica (KYC) y roles
+        comunitarios: <span class="nowrap">inspectores</span>, <span class="nowrap">voluntarios</span> y <span class="nowrap">guías turísticos</span>.
       </p>
+
+      <div class="hero-search card card-neo">
+        <input class="capsule" type="search" placeholder="Busca proyectos, negocios o iniciativas verdes..." />
+        <a class="btn-neon" routerLink="/ecoguia">Buscar en EcoGuía</a>
+      </div>
 
       <div class="hero-ctas">
         <a class="btn" routerLink="/about">Conoce EcoLATAM</a>
@@ -19,131 +27,404 @@
       </div>
 
       <ul class="kpis" aria-label="Puntos clave">
-        <li>
-          <span class="kpi-label">Publicación</span>
-          <span class="kpi-value">Contenido por CIDs (IPFS)</span>
-        </li>
-        <li>
-          <span class="kpi-label">Perfiles</span>
-          <span class="kpi-value">Usuario y Empresa (KYC opcional)</span>
-        </li>
-        <li>
-          <span class="kpi-label">Comunidad</span>
-          <span class="kpi-value">Inspectores · Voluntarios · Guías</span>
-        </li>
+        <li><span class="kpi-label">Publicación</span><span class="kpi-value">Contenido por CIDs (IPFS)</span></li>
+        <li><span class="kpi-label">Perfiles</span><span class="kpi-value">Usuario y Empresa (KYC opcional)</span></li>
+        <li><span class="kpi-label">Comunidad</span><span class="kpi-value">Inspectores · Voluntarios · Guías</span></li>
       </ul>
     </div>
 
-    <div class="hero-art" aria-hidden="true">
+    <div class="hero-art" aria-hidden="true" data-speed="0.9">
       <img src="/home/hero.png" alt="Red IPFS con datos ambientales y perfiles conectados" loading="eager" />
     </div>
   </div>
 </section>
 
+<!-- PRÓLOGO -->
+<section class="section">
+  <div class="container chapter">
+    <div data-speed="1.02">
+      <h2>Decidir bien es difícil</h2>
+      <p class="lead">¿Cómo eliges responsablemente cuando todo el mundo promete lo mismo?</p>
+      <p class="muted">
+        La región vive una urgencia climática visible (incendios récord, pérdida de bosque primario).
+        La trazabilidad de impactos ambientales y sociales es crítica: sin evidencia, no hay confianza.
+      </p>
+      <ul class="sources" aria-label="Fuentes de referencia">
+        <li>Reuters</li>
+        <li>The Guardian</li>
+      </ul>
+    </div>
+    <div class="media" data-speed="0.94">
+      <img src="/story/latam-map.svg" alt="Mapa de Latinoamérica con hotspots" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA (sticky) -->
+<section class="section sticky-section">
+  <div class="container">
+    <div class="sticky-pane" appScrollReveal="fade-in">
+      <h2>Promesas sin pruebas</h2>
+      <p class="muted">
+        El greenwashing confunde. Las reglas cambian, pero la necesidad de evidencia no:
+        la tendencia regulatoria y de mercado empuja hacia verificabilidad.
+      </p>
+      <ul class="tick">
+        <li>Falta evidencia verificable y comparabilidad.</li>
+        <li>La comunidad no tiene herramientas para validar.</li>
+        <li>Negocios responsables no se diferencian con claridad.</li>
+      </ul>
+      <ul class="sources" aria-label="Fuentes">
+        <li>Reuters</li>
+        <li>Latham &amp; Watkins</li>
+        <li>European Parliament</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section class="section">
+  <div class="container">
+    <div class="card neon-grid" appScrollReveal="slide-up">
+      <h2>EcoLATAM: evidencia, comunidad y trazabilidad</h2>
+
+      <div class="cards-4">
+        <article class="card-neo card" data-lag="0.12">
+          <h3>Perfiles</h3>
+          <p class="muted">Usuario y empresa, con KYC básico opcional.</p>
+        </article>
+        <article class="card-neo card" data-lag="0.12">
+          <h3>Publicación por CID (IPFS)</h3>
+          <p class="muted">Contenido direccionado por hash, versiones trazables.</p>
+        </article>
+        <article class="card-neo card" data-lag="0.12">
+          <h3>Validación comunitaria</h3>
+          <p class="muted">Inspectores y voluntarios apoyan con revisiones.</p>
+        </article>
+        <article class="card-neo card" data-lag="0.12">
+          <h3>MRV + Auditoría</h3>
+          <p class="muted">Flujos de MRV ambiental y, cuando aplique, on-chain.</p>
+        </article>
+      </div>
+
+      <!-- Mini-diagrama CID -->
+      <div class="chapter" style="margin-top:12px;">
+        <div>
+          <h3>Publica por CID, valida en comunidad</h3>
+          <p class="muted">Cuando publicas, dejas la huella exacta de tu evidencia. Si cambia, cambia su huella.</p>
+          <ul class="tick">
+            <li>CID visible y copiable.</li>
+            <li>Versiones trazables ante cambios.</li>
+            <li>Disponibilidad vía nodos/gateways (pinning).</li>
+          </ul>
+        </div>
+          <canvas #canvas3d class="canvas3d" id="canvas3d" aria-label="Escena 3D Spline"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASOS (rail con progreso) -->
+<section class="section">
+  <div class="container steps">
+    <div class="rail" aria-hidden="true"></div>
+    <div class="col">
+      <div class="step card" appScrollReveal="slide-up">
+        <div class="step-index">1</div>
+        <h3>Crea tu perfil</h3>
+        <p class="muted">Completa lo esencial y prepara tu presencia pública.</p>
+      </div>
+      <div class="step card" appScrollReveal="slide-up">
+        <div class="step-index">2</div>
+        <h3>Registra tu empresa (opcional)</h3>
+        <p class="muted">Completa KYC básico y vincula tu perfil de empresa.</p>
+      </div>
+      <div class="step card" appScrollReveal="slide-up">
+        <div class="step-index">3</div>
+        <h3>Publica por CID (IPFS)</h3>
+        <p class="muted">Sube contenido o archivos y obtén trazabilidad por hash.</p>
+      </div>
+      <div class="step card" appScrollReveal="slide-up">
+        <div class="step-index">4</div>
+        <h3>Validación de la comunidad</h3>
+        <p class="muted">Inspectores y voluntarios revisan y acompañan iniciativas.</p>
+      </div>
+      <div class="step card" appScrollReveal="slide-up">
+        <div class="step-index">5</div>
+        <h3>MRV ambiental</h3>
+        <p class="muted">Integra MRV y, cuando corresponda, ancla on-chain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES PRINCIPALES -->
 <section class="section">
   <div class="container cards-4">
-    <!-- Plataforma Social -->
     <article class="card feature" appScrollReveal="slide-up">
       <img class="feature-img" src="/placeholder-image-broken-square.png" alt="Plataforma Social EcoLATAM" loading="lazy" />
       <h2>Plataforma Social</h2>
-      <p class="muted">
-        Perfiles, publicaciones y seguimiento. Crea tu cuenta y participa en retos, convocatorias
-        y proyectos de innovación sostenible.
-      </p>
+      <p class="muted">Perfiles, publicaciones y seguimiento. Participa en retos, convocatorias y proyectos de innovación sostenible.</p>
       <a class="link" routerLink="/social">Ir a la Plataforma Social →</a>
     </article>
 
-    <!-- EcoGuía -->
     <article class="card feature" appScrollReveal="slide-up">
       <img class="feature-img" src="/placeholder-image-broken-square.png" alt="EcoGuía de negocios, productos y servicios" loading="lazy" />
       <h2>EcoGuía</h2>
-      <p class="muted">
-        Directorio de <strong>negocios, productos y servicios</strong>. Tu perfil de empresa nace
-        desde tu perfil de usuario y puede aparecer en la EcoGuía tras revisión básica.
-      </p>
+      <p class="muted">Directorio de <strong>negocios, productos y servicios</strong>. Tu empresa gana visibilidad con evidencia.</p>
       <a class="link" routerLink="/ecoguia">Explorar EcoGuía →</a>
     </article>
 
-    <!-- IPFS -->
     <article class="card feature" appScrollReveal="slide-up">
       <img class="feature-img" src="/home/ipfs.png" alt="Infraestructura IPFS" loading="lazy" />
       <h2>Nodo / Gateway IPFS</h2>
-      <p class="muted">
-        Publicación direccionada por hash (<em>CID</em>), versiones trazables y soberanía digital
-        con infraestructura local.
-      </p>
+      <p class="muted">Publicación direccionada por hash (<em>CID</em>), versiones trazables y soberanía digital.</p>
       <a class="link" href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">Abrir gateway →</a>
     </article>
 
-    <!-- MRV -->
     <article class="card feature" appScrollReveal="slide-up">
       <img class="feature-img" src="/home/mrv.png" alt="MRV ambiental con datos verificables" loading="lazy" />
       <h2>MRV Ambiental</h2>
-      <p class="muted">
-        Flujos para CSV/GeoJSON con metadatos verificables y (cuando aplique) anclaje <em>on-chain</em>
-        para auditorías transparentes.
-      </p>
+      <p class="muted">Flujos para CSV/GeoJSON con metadatos verificables y (cuando aplique) anclaje <em>on-chain</em>.</p>
       <a class="link" routerLink="/solutions">Ver soluciones →</a>
     </article>
   </div>
 </section>
 
-<section class="section alt">
-  <div class="container grid-2">
-    <article class="card steps" appScrollReveal="slide-up">
-      <h2>Cómo encaja todo</h2>
-      <ol class="roadmap">
-        <li><b>1.</b> Crea tu <strong>perfil de usuario</strong>.</li>
-        <li><b>2.</b> (Opcional) Registra tu <strong>perfil de empresa</strong> y completa KYC básico.</li>
-        <li><b>3.</b> Publica contenido como <em>posts</em> o archivos por <strong>CID</strong> (IPFS).</li>
-        <li><b>4.</b> Inspectores/voluntarios pueden <strong>validar y acompañar</strong> iniciativas.</li>
-        <li><b>5.</b> MRV ambiental y <strong>auditoría pública</strong> cuando corresponda.</li>
-      </ol>
-      <p class="small-note">
-        * Integramos APIs y dashboards para automatizar el ciclo completo con buenas prácticas de seguridad y privacidad.
-      </p>
-    </article>
-
-    <article class="card text" appScrollReveal="slide-up">
-      <h3>Compromiso con la región</h3>
-      <p>
-        Impulsamos datos abiertos y verificables para proyectos con impacto social y ambiental.
-        Colaboramos con academia, gobiernos, ONG y startups para soluciones escalables y accesibles.
-      </p>
-      <ul class="tick">
-        <li>Diseño responsable y accesible.</li>
-        <li>Buenas prácticas de seguridad y privacidad.</li>
-        <li>Colaboración y transferencia de conocimiento.</li>
-      </ul>
-    </article>
-  </div>
-</section>
-
+<!-- ROLES (scroll horizontal con pin) -->
 <section class="section roles">
-  <div class="container card roles-card" appScrollReveal="fade-in">
-    <h2>Roles de la comunidad</h2>
-    <ul class="roles-grid">
-      <li class="pill" appScrollReveal="slide-up">Usuario</li>
-      <li class="pill" appScrollReveal="slide-up">Empresa</li>
-      <li class="pill" appScrollReveal="slide-up">Inspector</li>
-      <li class="pill" appScrollReveal="slide-up">Voluntario</li>
-      <li class="pill" appScrollReveal="slide-up">Guía turístico</li>
-      <li class="pill" appScrollReveal="slide-up">Usuario VIP</li>
-    </ul>
-    <p class="muted small">
-      La visibilidad en EcoGuía depende del cumplimiento de nuestras <a routerLink="/terms">Políticas de Uso</a>
-      y <a routerLink="/privacy">Privacidad</a>.
-    </p>
+  <div id="roles-section" class="container roles-layout">
+    <!-- Índice (queda pineado sin tapar) -->
+    <nav class="roles-index" aria-label="Índice de roles">
+      <a class="item pill" [class.active]="activeRole==='user'" (click)="scrollToRole('user')">
+        <fluent-icon name="person" iconStyle="regular" [size]="24"></fluent-icon>
+        Usuario
+      </a>
+      <a class="item pill" [class.active]="activeRole==='business'" (click)="scrollToRole('business')">
+        <fluent-icon name="building_multiple" iconStyle="regular" [size]="24"></fluent-icon>
+        Empresa
+      </a>
+      <a class="item pill" [class.active]="activeRole==='inspector'" (click)="scrollToRole('inspector')">
+        <fluent-icon name="person_feedback" iconStyle="regular" [size]="24"></fluent-icon>
+        Inspector
+      </a>
+      <a class="item pill" [class.active]="activeRole==='volunteer'" (click)="scrollToRole('volunteer')">
+        <fluent-icon name="handshake" iconStyle="regular" [size]="24"></fluent-icon>
+        Voluntario
+      </a>
+      <a class="item pill" [class.active]="activeRole==='guide'" (click)="scrollToRole('guide')">
+        <fluent-icon name="person_question_mark" iconStyle="regular" [size]="24"></fluent-icon>
+        Guía
+      </a>
+      <a class="item pill" [class.active]="activeRole==='vip'" (click)="scrollToRole('vip')">
+        <fluent-icon name="person_star" iconStyle="regular" [size]="24"></fluent-icon>
+        Usuario VIP
+      </a>
+    </nav>
+
+    <!-- Panel horizontal (queda pineado) -->
+    <div class="roles-panel card">
+      <div class="roles-track">
+        <article id="role-user" class="card role-card" appScrollReveal="slide-up">
+          <h3>Usuario — Tu impacto cuenta</h3>
+          <p class="muted">Comparte avances de tu proyecto. Publica por CID y recibe feedback real.</p>
+          <ul class="benefits">
+            <li>Perfil público</li>
+            <li>Publicaciones trazables</li>
+            <li>Comunidad activa</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" type="button" (click)="goRoleCta('user')">Crear perfil</button>
+          </div>
+          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
+        </article>
+
+        <article id="role-business" class="card role-card" appScrollReveal="slide-up">
+          <h3>Empresa — Visibilidad con evidencia</h3>
+          <p class="muted">Perfil de empresa, reseñas y MRV mejoran tu posición en EcoGuía.</p>
+          <ul class="benefits">
+            <li>Perfil verificado</li>
+            <li>Mejores posiciones</li>
+            <li>Leads calificados</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" type="button" (click)="goRoleCta('business')">Aparecer en EcoGuía</button>
+          </div>
+          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
+        </article>
+
+        <article id="role-inspector" class="card role-card" appScrollReveal="slide-up">
+          <h3>Inspector — Verifica y mejora la calidad</h3>
+          <p class="muted">Revisa evidencia y certifica buenas prácticas.</p>
+          <ul class="benefits">
+            <li>Herramientas de revisión</li>
+            <li>Reputación profesional</li>
+            <li>Impacto regional</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" type="button" (click)="goRoleCta('inspector')">Postular inspector</button>
+          </div>
+          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
+        </article>
+
+        <article id="role-volunteer" class="card role-card" appScrollReveal="slide-up">
+          <h3>Voluntario — Suma a proyectos reales</h3>
+          <p class="muted">Vincúlate a necesidades locales y reporta avances.</p>
+          <ul class="benefits">
+            <li>Match con proyectos</li>
+            <li>Registro de horas</li>
+            <li>Comunidad</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" type="button" (click)="goRoleCta('volunteer')">Unirme como voluntario</button>
+          </div>
+          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
+        </article>
+
+        <article id="role-guide" class="card role-card" appScrollReveal="slide-up">
+          <h3>Guía — Turismo responsable y local</h3>
+          <p class="muted">Muestra reseñas, prácticas y destinos verificados.</p>
+          <ul class="benefits">
+            <li>Perfil destacado</li>
+            <li>Rutas avaladas</li>
+            <li>Confianza del viajero</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" type="button" (click)="goRoleCta('guide')">Ser guía verificado</button>
+          </div>
+          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
+        </article>
+
+        <article id="role-vip" class="card role-card" appScrollReveal="slide-up">
+          <h3>Usuario VIP — Beneficios exclusivos</h3>
+          <p class="muted">Accede a contenido y experiencias premium que apoyan el ecosistema.</p>
+          <ul class="benefits">
+            <li>Contenido exclusivo</li>
+            <li>Acceso anticipado</li>
+            <li>Reconocimiento</li>
+          </ul>
+          <div class="actions">
+            <button class="btn" type="button" (click)="goRoleCta('vip')">Explorar beneficios VIP</button>
+          </div>
+          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
+        </article>
+      </div>
+    </div>
+    <!-- Los spacers para pin los inyecta el TS (.roles-index-spacer y .roles-spacer) -->
   </div>
 </section>
 
-<section class="section newsletter">
+<!-- SEÑALES DE CONFIANZA EN LA UI -->
+<section class="section">
+  <div class="container cards-4">
+    <article class="card" appScrollReveal="fade-in">
+      <h3>CID visible</h3>
+      <p class="muted">Huella copiable del contenido y su estado de disponibilidad.</p>
+    </article>
+    <article class="card" appScrollReveal="fade-in">
+      <h3>Badge MRV</h3>
+      <p class="muted">Nivel (básico/avanzado) y última verificación con resumen verificable.</p>
+    </article>
+    <article class="card" appScrollReveal="fade-in">
+      <h3>Credenciales verificables (VC)</h3>
+      <p class="muted">Sello VC para empresa/guía/inspector con emisor y vigencia.</p>
+    </article>
+    <article class="card" appScrollReveal="fade-in">
+      <h3>Reseñas con señal de utilidad</h3>
+      <p class="muted">Mezcla realista; la utilidad pondera la visibilidad.</p>
+    </article>
+  </div>
+</section>
+
+<!-- KPIs -->
+<section class="section">
+  <div class="container kpi-tiles">
+    <div class="tile" appScrollReveal="fade-in">
+      <div class="big">+82% confianza</div>
+      <p class="muted">cuando hay evidencia verificable</p>
+    </div>
+    <div class="tile" appScrollReveal="fade-in">
+      <div class="big">5/5</div>
+      <p class="muted">negocios con MRV auditado</p>
+    </div>
+    <div class="tile" appScrollReveal="fade-in">
+      <div class="big">CID</div>
+      <p class="muted">contenido trazable por hash</p>
+    </div>
+  </div>
+</section>
+
+<!-- INFRAESTRUCTURA / MERKLE -->
+<section class="section">
+  <div class="container chapter">
+    <div>
+      <h2>De historia a infraestructura</h2>
+      <p class="muted">
+        De un post a una auditoría abierta en 5 pasos: datos → hash → Merkle proof → (opcional) anclaje público → verificación independiente.
+      </p>
+      <ul class="sources" aria-label="Referencias">
+        <li>World Bank Climate Warehouse</li>
+        <li>Nature Tech Collective</li>
+      </ul>
+    </div>
+    <div class="media">
+      <svg id="merkle-mini" class="svg-figure" viewBox="0 0 520 240" role="img" aria-label="Diagrama simplificado de árbol de Merkle">
+        <g stroke-linecap="round" fill="none">
+          <path class="wire" d="M260 40  L180 100" />
+          <path class="wire" d="M260 40  L340 100" />
+          <path class="wire" d="M180 100 L140 160" />
+          <path class="wire" d="M180 100 L220 160" />
+          <path class="wire" d="M340 100 L300 160" />
+          <path class="wire" d="M340 100 L380 160" />
+        </g>
+        <circle class="hub" cx="260" cy="40" r="16"/>
+        <circle class="node" cx="180" cy="100" r="12"/>
+        <circle class="node" cx="340" cy="100" r="12"/>
+        <circle class="node" cx="140" cy="160" r="10"/>
+        <circle class="node" cx="220" cy="160" r="10"/>
+        <circle class="node" cx="300" cy="160" r="10"/>
+        <circle class="node" cx="380" cy="160" r="10"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT: IPFS / MRV -->
+<section class="section">
+  <div class="container split-panel">
+    <article class="card" appScrollReveal="slide-up">
+      <h2>Infraestructura IPFS</h2>
+      <p class="muted">Publicación direccionada por hash y versiones trazables.</p>
+      <a class="btn-ghost" href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">Abrir gateway</a>
+    </article>
+    <article class="card" appScrollReveal="slide-up">
+      <h2>MRV Ambiental</h2>
+      <p class="muted">Flujos de MRV y auditoría cuando aplique.</p>
+      <a class="btn-ghost" routerLink="/solutions">Ver soluciones</a>
+    </article>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section">
+  <div class="container card cta-block" appScrollReveal="fade-in">
+    <h2>Únete a la comunidad</h2>
+    <p class="muted">Publica por CID, valida con pares y crece con evidencia.</p>
+    <div class="actions">
+      <a class="btn" routerLink="/register">Crear cuenta</a>
+      <a class="btn btn-ghost" routerLink="/ecoguia">Explorar EcoGuía</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section">
   <div class="container card newsletter-card" appScrollReveal="fade-in">
     <div class="newsletter-copy">
       <h2>Únete a la comunidad</h2>
       <p class="muted">Noticias, convocatorias y recursos de innovación sostenible.</p>
     </div>
-
     <form class="newsletter-form" (submit)="$event.preventDefault()" aria-label="Formulario de suscripción" appScrollReveal="slide-up">
       <label class="sr-only" for="email">Correo electrónico</label>
       <input id="email" name="email" type="email" inputmode="email" placeholder="tu@email.com" />
@@ -155,14 +436,14 @@
   </div>
 </section>
 
-<section class="section seo">
+<!-- SEO TEXT BLOCK -->
+<section class="section alt">
   <div class="container">
     <div class="card" appScrollReveal="fade-in">
       <h2>Innovación sostenible en Latinoamérica</h2>
       <p class="muted">
         Desplegamos infraestructura, herramientas y métodos para facilitar transparencia y colaboración.
-        Desde capacitación e investigación hasta implementación, acompañamos a organizaciones en su
-        transición digital sostenible.
+        Desde capacitación e investigación hasta implementación, acompañamos a organizaciones en su transición digital sostenible.
       </p>
     </div>
   </div>

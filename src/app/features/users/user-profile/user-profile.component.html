@@ -12,23 +12,29 @@
       <div class="profile-grid">
         <aside class="sidebar left">
           <section class="card">
-          <div class="avatar-lg">
-            <img src="/avatar-placeholder.png" [alt]="(u.name || '') + ' ' + (u.lastname || '')" />
-          </div>
-          <h2 class="user-title">{{ (u.name || '') + (u.lastname ? ' ' + u.lastname : '') }}</h2>
-          <p class="muted" *ngIf="u.createdAt">Miembro desde {{ u.createdAt | date:'longDate':'UTC' }}</p>
-          <p *ngIf="locationLabel()" class="muted">{{ locationLabel() }}</p>
+            <div class="card-actions" *ngIf="isSelf()">
+              <a class="btn-ghost sm" [routerLink]="['/users', u.id, 'edit']">Editar perfil</a>
+            </div>
+            <div class="avatar-lg">
+              <img src="/avatar-placeholder.png" [alt]="(u.name || '') + ' ' + (u.lastname || '')" />
+            </div>
+            <h2 class="user-title">{{ (u.name || '') + (u.lastname ? ' ' + u.lastname : '') }}</h2>
+            <p class="muted" *ngIf="u.createdAt">Miembro desde {{ u.createdAt | date:'longDate':'UTC' }}</p>
+            <p *ngIf="locationLabel()" class="muted"><fluent-icon name="location" [size]="20" iconStyle="regular"></fluent-icon> {{ locationLabel() }}</p>
           <dl class="kv compact">
-            <div *ngIf="u.birthdate"><dt>Nacimiento</dt><dd>{{ u.birthdate | date:'longDate':'UTC' }}</dd></div>
-            <div *ngIf="u.location"><dt>Ubicación</dt><dd>{{ u.location }}</dd></div>
-            <div *ngIf="u.zip"><dt>ZIP</dt><dd>{{ u.zip }}</dd></div>
-            <div *ngIf="u.cellphone"><dt>Celular</dt><dd>{{ u.cellphone }}</dd></div>
-            <div *ngIf="u.phone"><dt>Teléfono</dt><dd>{{ u.phone }}</dd></div>
+            <div *ngIf="u.birthdate"><fluent-icon name="food_cake" [size]="20" iconStyle="regular"></fluent-icon><dt>Nacimiento</dt><dd>{{ u.birthdate | date:'longDate':'UTC' }}</dd></div>
+            <div *ngIf="u.location"><fluent-icon name="location" [size]="20" iconStyle="regular"></fluent-icon><dt>Ubicación</dt><dd>{{ u.location }}</dd></div>
+            <div *ngIf="u.zip"><fluent-icon name="location" [size]="20" iconStyle="regular"></fluent-icon><dt>ZIP</dt><dd>{{ u.zip }}</dd></div>
+            <div *ngIf="u.cellphone"><fluent-icon name="phone" [size]="20" iconStyle="regular"></fluent-icon><dt>Celular</dt><dd>{{ u.cellphone }}</dd></div>
+            <div *ngIf="u.phone"><fluent-icon name="call" [size]="20" iconStyle="regular"></fluent-icon><dt>Teléfono</dt><dd>{{ u.phone }}</dd></div>
           </dl>
           </section>
 
           <section class="card businesses">
-            <h3>Negocios</h3>
+            <div class="row">
+              <h3>Negocios</h3>
+              <a *ngIf="isSelf()" class="btn-ghost sm" [routerLink]="['/ecoguia/create']">Crear</a>
+            </div>
             <ng-container *ngIf="myBusinesses() as bs; else loadingBiz">
               <ng-container *ngIf="bs.length; else emptyBiz">
                 <ul class="biz-list">
@@ -53,9 +59,7 @@
         </aside>
 
         <main class="main">
-          <app-profile-header [user]="u" [isSelf]="isSelf()" [myRoles]="myRoles()" [kycPassed]="kycPassed()" [locationLabel]="locationLabel()" (kycClick)="openKycModal()"></app-profile-header>
-
-          <app-profile-tabs [tab]="tab()" (tabChange)="setTab($event)" [user]="u" [posts]="posts()" [isSelf]="isSelf()" [paisLabel]="getPaisLabel()" [provinciaLabel]="getProvinciaLabel()" [cantonLabel]="getCantonLabel()" [distritoLabel]="getDistritoLabel()"></app-profile-tabs>
+          <app-profile-tabs [tab]="tab()" (tabChange)="setTab($event)" [user]="u" [posts]="posts()" [isSelf]="isSelf()"></app-profile-tabs>
         </main>
 
         <aside class="sidebar right">

@@ -4,4 +4,22 @@
   display: flex;
   flex-direction: column;
 }
-#main{ flex: 1 0 auto; }
+
+/* Header fuera del smoother, permanece fijo/pegajoso como lo tengas */
+#smooth-wrapper{
+  flex: 1 0 auto;           /* ocupa el espacio entre header y el final */
+  position: relative;
+  overflow: hidden;          /* requerido por Smoother */
+  z-index: 0;
+}
+#smooth-content{
+  position: relative;
+  min-height: 100%;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+  display: flex;
+  flex-direction: column;
+}
+
+/* El main crece dentro del smoother */
+#main{ flex: 1 0 auto; padding-top: 20px;}

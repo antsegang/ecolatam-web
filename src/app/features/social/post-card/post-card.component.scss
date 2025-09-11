@@ -1,0 +1,12 @@
+.post-card { display: flex; flex-direction: column; gap: 10px; }
+.post-header { display: flex; gap: 10px; align-items: center; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border:1px solid var(--line); }
+.meta { display: flex; flex-direction: column; line-height: 1.1; }
+.author { font-weight: 600; }
+.date { font-size: 12px; color: var(--muted); }
+.tags { margin-left: auto; display: flex; gap: 6px; }
+.tag { font-size: 11px; background: rgba(255,255,255,.05); color: var(--txt); border:1px solid rgba(120,180,140,.35); border-radius: 10px; padding: 2px 8px; }
+.media { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.media img { width: 100%; border-radius: var(--radius-1); object-fit: cover; border:1px solid var(--line); }
+.content { white-space: pre-wrap; }
+.actions { display: flex; align-items: center; gap: 12px; opacity: .95; }
