@@ -1,26 +1,220 @@
-<section class="section panel admin-dashboard">
+﻿<section class="section panel admin-dashboard">
   <div class="container">
-    <h1>Panel de Administración</h1>
-    <p class="muted">Accesos rápidos a secciones clave.</p>
+    <header class="dashboard-header">
+      <div>
+        <h1>Dashboard administrativo</h1>
+        <p class="muted">Monitorea la actividad de usuarios, verificaciones y catálogos.</p>
+      </div>
+      <div class="header-actions">
+        <a class="btn" routerLink="/admin/kyc">Revisar KYC</a>
+        <a class="btn btn-ghost" routerLink="/admin/catalogs">Gestionar catálogos</a>
+      </div>
+    </header>
 
-    <div class="grid cards">
-      <a class="card reveal tile" routerLink="/admin/catalogs">
-        <h3>Catálogos</h3>
-        <p class="muted">País, Provincia, Cantón, Distrito, Tipos de ID</p>
-      </a>
-      <a class="card reveal tile" routerLink="/admin/categories">
-        <h3>Categorías de negocio</h3>
-        <p class="muted">Gestiona categorías para EcoGuía</p>
-      </a>
-      <a class="card reveal tile" routerLink="/admin/kyc">
-        <h3>Aprobación KYC</h3>
-        <p class="muted">Revisa y aprueba verificaciones</p>
-      </a>
-      <a class="card reveal tile" routerLink="/admin/roles">
-        <h3>Roles de usuario</h3>
-        <p class="muted">Asigna o revoca roles</p>
-      </a>
+    <ng-template #statsLoading>
+      <div class="stats-grid loading">
+        <article class="card stat" *ngFor="let _ of [0,1,2]">
+          <div class="skeleton title"></div>
+          <div class="skeleton value"></div>
+          <div class="skeleton bar"></div>
+        </article>
+      </div>
+    </ng-template>
+
+    <ng-container *ngIf="overview$ | async as overview; else statsLoading">
+      <div class="stats-grid">
+        <article class="card stat">
+          <h2>Usuarios totales</h2>
+          <p class="value">{{ overview.users.total | number }}</p>
+          <div class="stat-meta">
+            <span class="badge success">{{ overview.users.kycApproved | number }} con KYC</span>
+            <span class="badge warning">{{ overview.users.kycPending | number }} pendientes</span>
+          </div>
+          <div class="progress" role="presentation">
+            <div class="progress-fill" [style.width.%]="overview.users.kycRate"></div>
+          </div>
+          <small>{{ overview.users.kycRate }}% con verificación completada</small>
+        </article>
+
+        <article class="card stat">
+          <h2>Negocios registrados</h2>
+          <p class="value">{{ overview.business.total | number }}</p>
+          <div class="stat-meta">
+            <span class="badge success">{{ overview.business.kycApproved | number }} aprobados</span>
+            <span class="badge warning">{{ overview.business.kycPending | number }} pendientes</span>
+          </div>
+          <small>Promedio de ofertas por negocio: {{ overview.business.avgCatalogPerBusiness | number:'1.0-1' }}</small>
+        </article>
+
+        <article class="card stat">
+          <h2>Inventario publicado</h2>
+          <p class="value">{{ overview.catalog.totalItems | number }}</p>
+          <div class="stat-meta">
+            <span class="badge info">{{ overview.catalog.products | number }} productos</span>
+            <span class="badge info">{{ overview.catalog.services | number }} servicios</span>
+          </div>
+          <small>Todo contenido aprobado visible en EcoGuía.</small>
+        </article>
+      </div>
+    </ng-container>
+
+    <section class="card quick-links">
+      <header>
+        <h2>Accesos rápidos</h2>
+        <p class="muted">Navega a las herramientas administrativas más utilizadas.</p>
+      </header>
+      <div class="link-grid">
+        <a class="tile" *ngFor="let link of quickLinks" [routerLink]="link.link">
+          <h3>{{ link.label }}</h3>
+          <p class="muted">{{ link.description }}</p>
+        </a>
+      </div>
+    </section>
+
+    <div class="panels-grid">
+      <section class="card">
+        <header class="card-header">
+          <h2>Usuarios recientes</h2>
+          <p class="muted">Últimas altas en la plataforma.</p>
+        </header>
+        <ng-container *ngIf="latestUsers$ | async as users; else listLoading">
+          <ng-container *ngIf="users.length; else emptyUsers">
+            <ul class="entity-list">
+              <li *ngFor="let user of users">
+                <div class="entity-main">
+                  <strong>{{ user.name }} {{ user.lastname }}</strong>
+                  <span class="muted">{{ user.email || user.username || 'Sin dato de contacto' }}</span>
+                </div>
+                <span class="chip" *ngIf="user.createdAt as created">{{ created | date:'mediumDate' }}</span>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </section>
+
+      <section class="card">
+        <header class="card-header">
+          <h2>Solicitudes KYC (usuarios)</h2>
+          <p class="muted">Pendientes de aprobación.</p>
+        </header>
+        <ng-container *ngIf="pendingUserKycs$ | async as kycs; else listLoading">
+          <ng-container *ngIf="kycs.length; else emptyKycs">
+            <ul class="entity-list">
+              <li *ngFor="let item of kycs">
+                <div class="entity-main">
+                  <strong>ID usuario #{{ item.id_user }}</strong>
+                  <span class="muted">Enviada {{ item.sended_at ? (item.sended_at | date:'mediumDate') : 'sin fecha' }}</span>
+                </div>
+                <span class="chip warning">Pendiente</span>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </section>
+
+      <section class="card">
+        <header class="card-header">
+          <h2>Solicitudes KYC (negocios)</h2>
+          <p class="muted">Últimas empresas por revisar.</p>
+        </header>
+        <ng-container *ngIf="pendingBusinessKycs$ | async as kycs; else listLoading">
+          <ng-container *ngIf="kycs.length; else emptyBusinessKycs">
+            <ul class="entity-list">
+              <li *ngFor="let item of kycs">
+                <div class="entity-main">
+                  <strong>ID negocio #{{ item.id_business }}</strong>
+                  <span class="muted">Solicitud #{{ item.id }}</span>
+                </div>
+                <span class="chip warning">Pendiente</span>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </section>
+
+      <section class="card">
+        <header class="card-header">
+          <h2>Negocios activos</h2>
+          <p class="muted">Muestras visibles en EcoGuía.</p>
+        </header>
+        <ng-container *ngIf="latestBusinesses$ | async as businesses; else listLoading">
+          <ng-container *ngIf="businesses.length; else emptyBusinesses">
+            <ul class="entity-list">
+              <li *ngFor="let business of businesses">
+                <div class="entity-main">
+                  <strong>{{ business.name }}</strong>
+                  <span class="muted">{{ business.locationLabel || 'Ubicación sin definir' }}</span>
+                </div>
+                <span class="chip">ID {{ business.id }}</span>
+              </li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </section>
+
+      <section class="card wide">
+        <header class="card-header">
+          <h2>Resumen de catálogos</h2>
+          <p class="muted">Primeros elementos publicados recientemente.</p>
+        </header>
+        <ng-container *ngIf="catalogSnapshot$ | async as snapshot; else listLoading">
+          <div class="catalog-grid" *ngIf="snapshot.products.length || snapshot.services.length; else emptyCatalog">
+            <div>
+              <h3>Productos</h3>
+              <ul class="entity-list compact">
+                <li *ngFor="let product of snapshot.products">
+                  <div class="entity-main">
+                    <strong>{{ product.name }}</strong>
+                    <span class="muted">Negocio #{{ product.businessId }}</span>
+                  </div>
+                  <span class="chip" *ngIf="product.price != null">{{ product.price | number:'1.0-0' }} {{ product.currency || 'CRC' }}</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3>Servicios</h3>
+              <ul class="entity-list compact">
+                <li *ngFor="let service of snapshot.services">
+                  <div class="entity-main">
+                    <strong>{{ service.name }}</strong>
+                    <span class="muted">Negocio #{{ service.businessId }}</span>
+                  </div>
+                  <span class="chip" *ngIf="service.price != null">{{ service.price | number:'1.0-0' }} {{ service.currency || 'CRC' }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+      </section>
     </div>
+
+    <ng-template #listLoading>
+      <ul class="entity-list loading">
+        <li *ngFor="let _ of [0,1,2,3]">
+          <div class="skeleton text"></div>
+          <div class="skeleton badge"></div>
+        </li>
+      </ul>
+    </ng-template>
+
+    <ng-template #emptyUsers>
+      <p class="empty">Aún no hay usuarios registrados.</p>
+    </ng-template>
+
+    <ng-template #emptyKycs>
+      <p class="empty">No hay solicitudes de KYC pendientes.</p>
+    </ng-template>
+
+    <ng-template #emptyBusinessKycs>
+      <p class="empty">No hay KYC de negocio en espera.</p>
+    </ng-template>
+
+    <ng-template #emptyBusinesses>
+      <p class="empty">No hay negocios recientes para mostrar.</p>
+    </ng-template>
+
+    <ng-template #emptyCatalog>
+      <p class="empty">Aún no existen productos o servicios publicados.</p>
+    </ng-template>
   </div>
 </section>
-

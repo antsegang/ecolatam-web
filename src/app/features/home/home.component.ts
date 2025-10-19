@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, inject, AfterViewInit, OnDestroy, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, HostListener, OnInit, inject, AfterViewInit, OnDestroy, ElementRef, ViewChild, Inject, PLATFORM_ID, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SharedUxModule } from '../../shared/shared-ux.module';
@@ -18,6 +18,7 @@ import { Application } from '@splinetool/runtime';
   imports: [CommonModule, RouterLink, SharedUxModule, FluentIconComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private title = inject(Title);
@@ -25,6 +26,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private doc = inject(DOCUMENT);
   private router = inject(Router);
   private readonly isBrowser: boolean;
+  @ViewChild('coin3d', { static: true }) coin3d!: ElementRef<HTMLElement>;
+
+  private defaultOrbit?: {theta: number; phi: number; radius: number;};
+  private defaultTarget?: {x: number; y: number; z: number;};
 
   auth = inject(AuthService);
   
@@ -112,6 +117,25 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async ngAfterViewInit(): Promise<void> {
+    const mv = this.coin3d.nativeElement as any;
+
+    mv.addEventListener('load', () => {
+      this.defaultOrbit = mv.getCameraOrbit();
+      this.defaultTarget = mv.getCameraTarget();
+    });
+
+    const resetPose = () => {
+      if (!this.defaultOrbit || !this.defaultTarget) return;
+      const { theta, phi, radius } = this.defaultOrbit;
+      const { x, y, z } = this.defaultTarget;
+
+      mv.cameraOrbit = `${theta}rad ${phi}rad ${radius}m`;
+      mv.cameraTarget = `${x}m ${y}m ${z}m`;
+
+      mv.autoRotate = false;
+      mv.autoRotate = true;
+    };
+
     if (this.isBrowser && this.canvasRef?.nativeElement) {
       const canvas = this.canvasRef.nativeElement;
 
@@ -149,6 +173,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.initSvgAnimations();
       this.initMicroInteractions();
     });
+
+    mv.addEventListener('pointerup', resetPose);
+    mv.addEventListener('mouseleave', resetPose);
+    mv.addEventListener('touchend', resetPose, { passive: true });
   }
 
   ngOnDestroy(): void {

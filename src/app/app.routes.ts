@@ -20,6 +20,7 @@ export const routes: Routes = [
 
   { path: 'about',                              loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent)                     },
   { path: 'solutions',                          loadComponent: () => import('./features/solutions/solutions.component').then(m => m.SolutionsComponent)         },
+  { path: 'services',                          loadComponent: () => import('./features/services/services.component').then(m => m.ServicesComponent)         },
   { path: 'contact',                            loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent)               },
   { path: 'privacy',                            loadComponent: () => import('./features/privacy/privacy.component').then(m => m.PrivacyComponent)               },
   { path: 'terms',                              loadComponent: () => import('./features/terms/terms.component').then(m => m.TermsComponent)                     },
@@ -27,5 +28,8 @@ export const routes: Routes = [
   { path: 'takedown',                           loadComponent: () => import('./features/takedown/takedown.component').then(m => m.TakedownComponent)            },
   { path: 'acam-notice',                        loadComponent: () => import('./features/acam-notice/acam-notice.component').then(m => m.AcamNoticeComponent)    },
   { path: 'disclaimers',                        loadComponent: () => import('./features/disclaimers/disclaimers.component').then(m => m.DisclaimersComponent)   },
-  { path: '**',                                 loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent)           },
+  { path: 'ods',                                loadComponent: () => import('./features/ods/ods-page.component').then(m => m.OdsPageComponent)                  },
+  { path: '**',                                 loadComponent: () => import('./features/not-found/not-found.component').then(m => m.NotFoundComponent)          },
 ];
+
+

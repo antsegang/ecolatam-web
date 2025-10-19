@@ -1,0 +1,83 @@
+<section class="ods-hero">
+  <div class="container hero-inner">
+    <div class="hero-copy card">
+      <div class="eyebrow">ODS · Agenda 2030</div>
+      <h1>Prioridades ODS de EcoLATAM</h1>
+      <p class="lead muted">
+        Aceleramos impacto con infraestructuras abiertas y datos verificables. Priorizamos los ODS 6, 7, 11 y 13; y
+        trabajamos transversalmente con 3, 4, 5, 9, 12, 16 y 17.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">Principales: 6 · 7 · 11 · 13</span>
+        <span class="badge">Transversales: 3 · 4 · 5 · 9 · 12 · 16 · 17</span>
+      </div>
+    </div>
+    <div class="hero-3d card">
+      <canvas #splineCanvas aria-hidden="true"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- Carrusel horizontal: Principales -->
+<section id="ods-principales" class="h-section">
+  <div class="h-panel">
+    <div class="h-track">
+      <article class="h-card card" *ngFor="let o of main">
+        <div class="h-card-media">
+          <img [src]="o.img" [alt]="'ODS ' + o.id + ' — ' + o.title" loading="lazy" />
+          <div class="pill"><span>ODS {{o.id}}</span><em>{{ o.relation }}</em></div>
+        </div>
+        <div class="h-card-body">
+          <h2>{{ o.title }}</h2>
+          <p class="muted">{{ o.text }}</p>
+          <ul class="tick" *ngIf="o.bullets?.length">
+            <li *ngFor="let b of o.bullets">{{ b }}</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Respiro vertical -->
+<section class="v-break">
+  <div class="container">
+    <div class="card v-card">
+      <h3>¿Cómo lo llevamos a la práctica?</h3>
+      <p class="muted">
+        Publicamos datasets con CIDs, anclamos evidencia, y activamos comunidad para co-crear soluciones.
+        Cada proyecto enlaza objetivos, métricas y auditorías abiertas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Carrusel horizontal: Transversales -->
+<section id="ods-transversales" class="h-section">
+  <div class="h-panel">
+    <div class="h-track">
+      <article class="h-card card small" *ngFor="let o of xcut">
+        <div class="h-card-media">
+          <img [src]="o.img" [alt]="'ODS ' + o.id + ' — ' + o.title" loading="lazy" />
+          <div class="pill"><span>ODS {{o.id}}</span><em>{{ o.relation }}</em></div>
+        </div>
+        <div class="h-card-body">
+          <h2>{{ o.title }}</h2>
+          <p class="muted">{{ o.text }}</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section class="ods-cta">
+  <div class="container card">
+    <h2>¿Conectamos ODS con tus metas?</h2>
+    <p class="muted">Conversemos sobre MRV, datos abiertos y participación para acelerar resultados.</p>
+    <div class="cta-row">
+      <a class="btn" routerLink="/contact">Agendar conversación</a>
+      <a class="btn-ghost" routerLink="/solutions">Ver soluciones</a>
+    </div>
+  </div>
+</section>

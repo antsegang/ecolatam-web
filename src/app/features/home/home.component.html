@@ -11,8 +11,10 @@
       <p class="lead">
         En <strong>EcoLATAM</strong> conectas tu <em>perfil</em>, creas tu <strong>perfil de empresa</strong> y
         publicas contenido direccionado por <abbr title="Content Identifier">CID</abbr> en <em>IPFS</em>.
-        Integramos <abbr title="Monitoreo, Reporte y Verificación">MRV</abbr> ambiental, verificación básica (KYC) y roles
-        comunitarios: <span class="nowrap">inspectores</span>, <span class="nowrap">voluntarios</span> y <span class="nowrap">guías turísticos</span>.
+        Integramos <abbr title="Monitoreo, Reporte y Verificación">MRV</abbr> ambiental, verificación básica (KYC) y
+        roles
+        comunitarios: <span class="nowrap">inspectores</span>, <span class="nowrap">voluntarios</span> y <span
+          class="nowrap">guías turísticos</span>.
       </p>
 
       <div class="hero-search card card-neo">
@@ -29,7 +31,8 @@
       <ul class="kpis" aria-label="Puntos clave">
         <li><span class="kpi-label">Publicación</span><span class="kpi-value">Contenido por CIDs (IPFS)</span></li>
         <li><span class="kpi-label">Perfiles</span><span class="kpi-value">Usuario y Empresa (KYC opcional)</span></li>
-        <li><span class="kpi-label">Comunidad</span><span class="kpi-value">Inspectores · Voluntarios · Guías</span></li>
+        <li><span class="kpi-label">Comunidad</span><span class="kpi-value">Inspectores · Voluntarios · Guías</span>
+        </li>
       </ul>
     </div>
 
@@ -55,8 +58,11 @@
       </ul>
     </div>
     <div class="media" data-speed="0.94">
-      <img src="/story/latam-map.svg" alt="Mapa de Latinoamérica con hotspots" loading="lazy" />
+      <model-viewer #coin3d src="https://ipfs.ecolatam.com/ipfs/QmWGjbeLGdiUUWx7p5HEjauPMC9YF5u49qvbN6rjqye8H5" alt="Moneda EcoLATAM 3D" camera-controls disable-zoom disable-pan auto-rotate
+         auto-rotate-delay="1500" interaction-prompt="none" rotation-per-second="15deg" exposure="1.0" shadow-intensity="0"
+        style="width:100%;height:auto;aspect-ratio:16/9;background:transparent;"></model-viewer>
     </div>
+
   </div>
 </section>
 
@@ -119,7 +125,7 @@
             <li>Disponibilidad vía nodos/gateways (pinning).</li>
           </ul>
         </div>
-          <canvas #canvas3d class="canvas3d" id="canvas3d" aria-label="Escena 3D Spline"></canvas>
+        <canvas #canvas3d class="canvas3d" id="canvas3d" aria-label="Escena 3D Spline"></canvas>
       </div>
     </div>
   </div>
@@ -163,16 +169,20 @@
 <section class="section">
   <div class="container cards-4">
     <article class="card feature" appScrollReveal="slide-up">
-      <img class="feature-img" src="/placeholder-image-broken-square.png" alt="Plataforma Social EcoLATAM" loading="lazy" />
+      <img class="feature-img" src="/placeholder-image-broken-square.png" alt="Plataforma Social EcoLATAM"
+        loading="lazy" />
       <h2>Plataforma Social</h2>
-      <p class="muted">Perfiles, publicaciones y seguimiento. Participa en retos, convocatorias y proyectos de innovación sostenible.</p>
+      <p class="muted">Perfiles, publicaciones y seguimiento. Participa en retos, convocatorias y proyectos de
+        innovación sostenible.</p>
       <a class="link" routerLink="/social">Ir a la Plataforma Social →</a>
     </article>
 
     <article class="card feature" appScrollReveal="slide-up">
-      <img class="feature-img" src="/placeholder-image-broken-square.png" alt="EcoGuía de negocios, productos y servicios" loading="lazy" />
+      <img class="feature-img" src="/placeholder-image-broken-square.png"
+        alt="EcoGuía de negocios, productos y servicios" loading="lazy" />
       <h2>EcoGuía</h2>
-      <p class="muted">Directorio de <strong>negocios, productos y servicios</strong>. Tu empresa gana visibilidad con evidencia.</p>
+      <p class="muted">Directorio de <strong>negocios, productos y servicios</strong>. Tu empresa gana visibilidad con
+        evidencia.</p>
       <a class="link" routerLink="/ecoguia">Explorar EcoGuía →</a>
     </article>
 
@@ -186,7 +196,8 @@
     <article class="card feature" appScrollReveal="slide-up">
       <img class="feature-img" src="/home/mrv.png" alt="MRV ambiental con datos verificables" loading="lazy" />
       <h2>MRV Ambiental</h2>
-      <p class="muted">Flujos para CSV/GeoJSON con metadatos verificables y (cuando aplique) anclaje <em>on-chain</em>.</p>
+      <p class="muted">Flujos para CSV/GeoJSON con metadatos verificables y (cuando aplique) anclaje <em>on-chain</em>.
+      </p>
       <a class="link" routerLink="/solutions">Ver soluciones →</a>
     </article>
   </div>
@@ -361,7 +372,8 @@
     <div>
       <h2>De historia a infraestructura</h2>
       <p class="muted">
-        De un post a una auditoría abierta en 5 pasos: datos → hash → Merkle proof → (opcional) anclaje público → verificación independiente.
+        De un post a una auditoría abierta en 5 pasos: datos → hash → Merkle proof → (opcional) anclaje público →
+        verificación independiente.
       </p>
       <ul class="sources" aria-label="Referencias">
         <li>World Bank Climate Warehouse</li>
@@ -369,7 +381,8 @@
       </ul>
     </div>
     <div class="media">
-      <svg id="merkle-mini" class="svg-figure" viewBox="0 0 520 240" role="img" aria-label="Diagrama simplificado de árbol de Merkle">
+      <svg id="merkle-mini" class="svg-figure" viewBox="0 0 520 240" role="img"
+        aria-label="Diagrama simplificado de árbol de Merkle">
         <g stroke-linecap="round" fill="none">
           <path class="wire" d="M260 40  L180 100" />
           <path class="wire" d="M260 40  L340 100" />
@@ -378,13 +391,13 @@
           <path class="wire" d="M340 100 L300 160" />
           <path class="wire" d="M340 100 L380 160" />
         </g>
-        <circle class="hub" cx="260" cy="40" r="16"/>
-        <circle class="node" cx="180" cy="100" r="12"/>
-        <circle class="node" cx="340" cy="100" r="12"/>
-        <circle class="node" cx="140" cy="160" r="10"/>
-        <circle class="node" cx="220" cy="160" r="10"/>
-        <circle class="node" cx="300" cy="160" r="10"/>
-        <circle class="node" cx="380" cy="160" r="10"/>
+        <circle class="hub" cx="260" cy="40" r="16" />
+        <circle class="node" cx="180" cy="100" r="12" />
+        <circle class="node" cx="340" cy="100" r="12" />
+        <circle class="node" cx="140" cy="160" r="10" />
+        <circle class="node" cx="220" cy="160" r="10" />
+        <circle class="node" cx="300" cy="160" r="10" />
+        <circle class="node" cx="380" cy="160" r="10" />
       </svg>
     </div>
   </div>
@@ -425,7 +438,8 @@
       <h2>Únete a la comunidad</h2>
       <p class="muted">Noticias, convocatorias y recursos de innovación sostenible.</p>
     </div>
-    <form class="newsletter-form" (submit)="$event.preventDefault()" aria-label="Formulario de suscripción" appScrollReveal="slide-up">
+    <form class="newsletter-form" (submit)="$event.preventDefault()" aria-label="Formulario de suscripción"
+      appScrollReveal="slide-up">
       <label class="sr-only" for="email">Correo electrónico</label>
       <input id="email" name="email" type="email" inputmode="email" placeholder="tu@email.com" />
       <label class="consent">
@@ -443,7 +457,8 @@
       <h2>Innovación sostenible en Latinoamérica</h2>
       <p class="muted">
         Desplegamos infraestructura, herramientas y métodos para facilitar transparencia y colaboración.
-        Desde capacitación e investigación hasta implementación, acompañamos a organizaciones en su transición digital sostenible.
+        Desde capacitación e investigación hasta implementación, acompañamos a organizaciones en su transición digital
+        sostenible.
       </p>
     </div>
   </div>

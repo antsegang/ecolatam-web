@@ -1,4 +1,4 @@
-﻿<a class="skip-link" href="#main">Saltar al contenido</a>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
 <header class="site-header" [class.hide]="hidden" [class.at-top]="atTop" role="banner">
   <div class="container header-inner">
@@ -41,6 +41,10 @@
       <a routerLink="/solutions" (click)="closeDrawer()">
         <fluent-icon name="lightbulb" [size]="20" iconStyle="regular"></fluent-icon>
         <span>Soluciones</span>
+      </a>
+      <a routerLink="/services" (click)="closeDrawer()">
+        <fluent-icon name="briefcase" [size]="20" iconStyle="regular"></fluent-icon>
+        <span>Servicios</span>
       </a>
       <a href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">
         <fluent-icon name="cloud" [size]="20" iconStyle="regular"></fluent-icon>
