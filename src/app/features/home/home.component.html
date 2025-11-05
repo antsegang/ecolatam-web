@@ -5,461 +5,323 @@
 <section class="hero section" appScrollReveal="fade-in">
   <div class="container hero-inner">
     <div class="hero-copy" data-speed="1.02">
-      <div class="eyebrow">Innovación sostenible</div>
-      <h1>Plataforma Social + EcoGuía sobre IPFS para Latinoamérica</h1>
+      <div class="eyebrow">Historias que necesitan verdad</div>
+      <h1>En EcoLATAM cuidamos la memoria viva de tu territorio</h1>
 
       <p class="lead">
-        En <strong>EcoLATAM</strong> conectas tu <em>perfil</em>, creas tu <strong>perfil de empresa</strong> y
-        publicas contenido direccionado por <abbr title="Content Identifier">CID</abbr> en <em>IPFS</em>.
-        Integramos <abbr title="Monitoreo, Reporte y Verificación">MRV</abbr> ambiental, verificación básica (KYC) y
-        roles
-        comunitarios: <span class="nowrap">inspectores</span>, <span class="nowrap">voluntarios</span> y <span
-          class="nowrap">guías turísticos</span>.
+        Empezamos porque nos duele ver esfuerzos invisibles. Vemos a la abuela que ya no cree en promesas, al emprendedor
+        que trabaja sin vitrina y a la autoridad que debe decidir con papeles sueltos. En EcoLATAM reunimos esas voces en
+        una plataforma social cercana, guardamos la evidencia en una biblioteca digital segura y mostramos lo verdadero en
+        EcoGu&iacute;a, el Directorio de la Confianza.
       </p>
-
-      <div class="hero-search card card-neo">
-        <input class="capsule" type="search" placeholder="Busca proyectos, negocios o iniciativas verdes..." />
-        <a class="btn-neon" routerLink="/ecoguia">Buscar en EcoGuía</a>
-      </div>
 
       <div class="hero-ctas">
-        <a class="btn" routerLink="/about">Conoce EcoLATAM</a>
-        <a class="btn btn-ghost" routerLink="/ecoguia">Explorar EcoGuía</a>
-        <a class="btn btn-ghost" href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">Gateway IPFS</a>
+        <a class="btn" routerLink="/solutions" [appHoverSound]="'play.mp3'" [hoverVolume]="0.35">Tejamos la red de confianza</a>
+        <button class="btn btn-ghost" type="button" [appHoverSound]="'play.mp3'" [hoverVolume]="0.35"
+          (click)="openWaitlist()">Explorar el Directorio de la Confianza</button>
       </div>
 
-      <ul class="kpis" aria-label="Puntos clave">
-        <li><span class="kpi-label">Publicación</span><span class="kpi-value">Contenido por CIDs (IPFS)</span></li>
-        <li><span class="kpi-label">Perfiles</span><span class="kpi-value">Usuario y Empresa (KYC opcional)</span></li>
-        <li><span class="kpi-label">Comunidad</span><span class="kpi-value">Inspectores · Voluntarios · Guías</span>
-        </li>
+      <ul class="kpis" aria-label="Aspectos clave">
+        <li><span class="kpi-label">Plaza del Pueblo Digital</span><span class="kpi-value">Perfiles verificados que muestran su
+            compromiso real</span></li>
+        <li><span class="kpi-label">B&oacute;veda de la Memoria Local</span><span class="kpi-value">Archivos protegidos que
+            conservan cada huella</span></li>
+        <li><span class="kpi-label">EcoGu&iacute;a</span><span class="kpi-value">La gu&iacute;a de lo verdadero para decidir con
+            esperanza</span></li>
       </ul>
     </div>
 
-    <div class="hero-art" aria-hidden="true" data-speed="0.9">
-      <img src="/home/hero.png" alt="Red IPFS con datos ambientales y perfiles conectados" loading="eager" />
+    <div class="hero-art" [appAudioToggle]="'jingle.wav'" [volume]="0.3" [loop]="true" [label]="'EcoLATAM Jingle'"
+      aria-hidden="false" data-speed="0.9">
+      <img src="/home/leaf.png" alt="Ilustraci&oacute;n de una red de confianza que abraza comunidades" loading="eager" />
     </div>
   </div>
 </section>
 
-<!-- PRÓLOGO -->
-<section class="section">
-  <div class="container chapter">
-    <div data-speed="1.02">
-      <h2>Decidir bien es difícil</h2>
-      <p class="lead">¿Cómo eliges responsablemente cuando todo el mundo promete lo mismo?</p>
-      <p class="muted">
-        La región vive una urgencia climática visible (incendios récord, pérdida de bosque primario).
-        La trazabilidad de impactos ambientales y sociales es crítica: sin evidencia, no hay confianza.
-      </p>
-      <ul class="sources" aria-label="Fuentes de referencia">
-        <li>Reuters</li>
-        <li>The Guardian</li>
-      </ul>
-    </div>
-    <div class="media" data-speed="0.94">
-      <model-viewer #coin3d src="https://ipfs.ecolatam.com/ipfs/QmWGjbeLGdiUUWx7p5HEjauPMC9YF5u49qvbN6rjqye8H5" alt="Moneda EcoLATAM 3D" camera-controls disable-zoom disable-pan auto-rotate
-         auto-rotate-delay="1500" interaction-prompt="none" rotation-per-second="15deg" exposure="1.0" shadow-intensity="0"
-        style="width:100%;height:auto;aspect-ratio:16/9;background:transparent;"></model-viewer>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROBLEMA (sticky) -->
-<section class="section sticky-section">
+<!-- ACTO 1 -->
+<section class="section story-section" appScrollReveal="fade-in">
   <div class="container">
-    <div class="sticky-pane" appScrollReveal="fade-in">
-      <h2>Promesas sin pruebas</h2>
+    <div class="card story-intro">
+      <h2>Cuando las historias se apagan</h2>
       <p class="muted">
-        El greenwashing confunde. Las reglas cambian, pero la necesidad de evidencia no:
-        la tendencia regulatoria y de mercado empuja hacia verificabilidad.
+        La sostenibilidad es un tejido de personas, ecosistemas y econom&iacute;as. Cuando no existe un lugar confiable para
+        contar lo que sucede, ese tejido se rompe y cada pilar queda sin voz.
+      </p>
+    </div>
+
+    <div class="story-grid">
+      <article class="card story-card" data-lag="0.12">
+        <h3>La familia que ya no conf&iacute;a</h3>
+        <p class="muted">
+          Viajeras, vecinos y organizaciones comunitarias escuchan promesas bonitas pero nunca ven pruebas. Se cansan de
+          aplaudir esfuerzos que desaparecen en papeles guardados.
+        </p>
+        <ul class="tick">
+          <li>Historias valiosas quedan en carpetas que nadie ve.</li>
+          <li>Los logros sociales no aparecen en la memoria colectiva.</li>
+          <li>La comunidad deja de participar porque no sabe a qui&eacute;n creer.</li>
+        </ul>
+      </article>
+
+      <article class="card story-card" data-lag="0.12">
+        <h3>Quien emprende se siente invisible</h3>
+        <p class="muted">
+          Personas y negocios que cuidan del territorio trabajan con amor, pero pierden espacio frente a quienes solo
+          invierten en marketing. Sus rese&ntilde;as se diluyen, su legado no encuentra vitrina.
+        </p>
+        <ul class="tick">
+          <li>Proyectos ambientales y sociales quedan fuera de los focos.</li>
+          <li>Esfuerzos genuinos compiten con promesas vac&iacute;as.</li>
+          <li>Se sienten solos al buscar aliados que crean en su palabra.</li>
+        </ul>
+      </article>
+
+      <article class="card story-card" data-lag="0.12">
+        <h3>Quien decide camina a ciegas</h3>
+        <p class="muted">
+          Gobernantes y empresas responsables quieren cuidar presupuestos y ecosistemas, pero reciben informes dispersos y
+          versiones que cambian seg&uacute;n quien las cuente. La desconfianza frena cualquier inversi&oacute;n.
+        </p>
+        <ul class="tick">
+          <li>Tomar decisiones se vuelve apostar sin evidencia clara.</li>
+          <li>La comunidad sospecha porque nunca ve resultados ordenados.</li>
+          <li>Los proyectos se atrasan esperando documentos que nadie encuentra.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCION -->
+<section class="section steps-section">
+  <div class="container">
+    <div class="card steps-card" appScrollReveal="slide-up">
+      <h2>El puente que vuelve a unirnos</h2>
+      <ol class="steps-list" aria-label="Pasos de la experiencia EcoLATAM">
+        <li>
+          <h3>La Plaza del Pueblo Digital</h3>
+          <p>
+            Abrimos un espacio donde cualquier persona u organizaci&oacute;n puede crear su perfil, compartir avances y recibir
+            rese&ntilde;as sinceras. Al confirmar su identidad tambi&eacute;n pueden mostrar su emprendimiento y los gestos que cuidan al
+            territorio.
+          </p>
+        </li>
+        <li>
+          <h3>La B&oacute;veda de la Memoria Local</h3>
+          <p>
+            Tras bambalinas construimos una biblioteca digital segura donde gobiernos, empresas y ONG resguardan lo que m&aacute;s
+            importa. Es un archivo que no se altera, que deja huella de cada cambio y que permanece bajo sus propias llaves.
+          </p>
+        </li>
+        <li>
+          <h3>La Magia de la Colaboraci&oacute;n</h3>
+          <p>
+            Cuando una instituci&oacute;n decide compartir la parte p&uacute;blica de su b&oacute;veda, la Plaza del Pueblo Digital se ilumina con
+            historias verificadas. Sin cadenas de correos, la informaci&oacute;n fluye y la comunidad puede ver el progreso real que antes
+            estaba escondido.
+          </p>
+        </li>
+      </ol>
+      <div class="steps-footer">
+        <p class="muted">
+          Utilizamos innovaci&oacute;n sostenible para un prop&oacute;sito sencillo: cuidar a las personas y al planeta con transparencia, para
+          que la memoria del territorio se convierta en un legado compartido.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTO 3 -->
+<section class="section future-section" appScrollReveal="fade-in">
+  <div class="container card future-card">
+    <h2>El futuro que ya sentimos</h2>
+    <p class="lead">
+      Cuando la Plaza del Pueblo Digital y la B&oacute;veda de la Memoria Local trabajan juntas, la confianza vuelve a ser el centro.
+      Las comunidades se ven y se reconocen, los gobiernos toman decisiones seguras y los negocios honestos florecen sin
+      adornos.
+    </p>
+    <div class="future-grid">
+      <article>
+        <h3>Comunidad unida</h3>
+        <p class="muted">
+          Las familias saben qui&eacute;n cumple y celebran a quienes cuidan su hogar. La memoria deja de ser un rumor y se convierte
+          en un legado compartido.
+        </p>
+      </article>
+      <article>
+        <h3>Gobiernos con certeza</h3>
+        <p class="muted">
+          Las autoridades cuentan con archivos que no se pueden alterar y paneles que muestran el avance real. Pueden invertir
+          donde el impacto es tangible y ganan la confianza de su gente.
+        </p>
+      </article>
+      <article>
+        <h3>Econom&iacute;as que florecen</h3>
+        <p class="muted">
+          Negocios y organizaciones responsables consiguen aliados porque su trabajo habla por s&iacute; mismo. Encuentran apoyo sin
+          depender de anuncios ni promesas vac&iacute;as.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SEGURIDAD -->
+<section class="section security-section alt" appScrollReveal="fade-in">
+  <div class="container chapter">
+    <div class="media" data-speed="0.94">
+      <img src="/home/ipfs.png" alt="Ilustraci&oacute;n de una b&oacute;veda digital que protege la memoria local"
+        loading="lazy" />
+    </div>
+    <div data-speed="1.02">
+      <h2>La confidencialidad va primero</h2>
+      <p class="lead">
+        Lo que guardas en la B&oacute;veda de la Memoria Local permanece en casa. Cuando decides compartir un logro p&uacute;blico, la
+        Plaza del Pueblo Digital lo muestra; lo que necesita privacidad se queda protegido con tus mismas llaves.
       </p>
       <ul class="tick">
-        <li>Falta evidencia verificable y comparabilidad.</li>
-        <li>La comunidad no tiene herramientas para validar.</li>
-        <li>Negocios responsables no se diferencian con claridad.</li>
+        <li>Permisos claros para compartir solo con quienes deben participar.</li>
+        <li>Historial verificable que acompa&ntilde;a auditor&iacute;as y cambios de gesti&oacute;n.</li>
+        <li>Sin anuncios ni venta de datos: la evidencia se mueve solo con tu consentimiento.</li>
       </ul>
-      <ul class="sources" aria-label="Fuentes">
-        <li>Reuters</li>
-        <li>Latham &amp; Watkins</li>
-        <li>European Parliament</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUCIÓN -->
-<section class="section">
-  <div class="container">
-    <div class="card neon-grid" appScrollReveal="slide-up">
-      <h2>EcoLATAM: evidencia, comunidad y trazabilidad</h2>
-
-      <div class="cards-4">
-        <article class="card-neo card" data-lag="0.12">
-          <h3>Perfiles</h3>
-          <p class="muted">Usuario y empresa, con KYC básico opcional.</p>
-        </article>
-        <article class="card-neo card" data-lag="0.12">
-          <h3>Publicación por CID (IPFS)</h3>
-          <p class="muted">Contenido direccionado por hash, versiones trazables.</p>
-        </article>
-        <article class="card-neo card" data-lag="0.12">
-          <h3>Validación comunitaria</h3>
-          <p class="muted">Inspectores y voluntarios apoyan con revisiones.</p>
-        </article>
-        <article class="card-neo card" data-lag="0.12">
-          <h3>MRV + Auditoría</h3>
-          <p class="muted">Flujos de MRV ambiental y, cuando aplique, on-chain.</p>
-        </article>
-      </div>
-
-      <!-- Mini-diagrama CID -->
-      <div class="chapter" style="margin-top:12px;">
-        <div>
-          <h3>Publica por CID, valida en comunidad</h3>
-          <p class="muted">Cuando publicas, dejas la huella exacta de tu evidencia. Si cambia, cambia su huella.</p>
-          <ul class="tick">
-            <li>CID visible y copiable.</li>
-            <li>Versiones trazables ante cambios.</li>
-            <li>Disponibilidad vía nodos/gateways (pinning).</li>
-          </ul>
-        </div>
-        <canvas #canvas3d class="canvas3d" id="canvas3d" aria-label="Escena 3D Spline"></canvas>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PASOS (rail con progreso) -->
-<section class="section">
-  <div class="container steps">
-    <div class="rail" aria-hidden="true"></div>
-    <div class="col">
-      <div class="step card" appScrollReveal="slide-up">
-        <div class="step-index">1</div>
-        <h3>Crea tu perfil</h3>
-        <p class="muted">Completa lo esencial y prepara tu presencia pública.</p>
-      </div>
-      <div class="step card" appScrollReveal="slide-up">
-        <div class="step-index">2</div>
-        <h3>Registra tu empresa (opcional)</h3>
-        <p class="muted">Completa KYC básico y vincula tu perfil de empresa.</p>
-      </div>
-      <div class="step card" appScrollReveal="slide-up">
-        <div class="step-index">3</div>
-        <h3>Publica por CID (IPFS)</h3>
-        <p class="muted">Sube contenido o archivos y obtén trazabilidad por hash.</p>
-      </div>
-      <div class="step card" appScrollReveal="slide-up">
-        <div class="step-index">4</div>
-        <h3>Validación de la comunidad</h3>
-        <p class="muted">Inspectores y voluntarios revisan y acompañan iniciativas.</p>
-      </div>
-      <div class="step card" appScrollReveal="slide-up">
-        <div class="step-index">5</div>
-        <h3>MRV ambiental</h3>
-        <p class="muted">Integra MRV y, cuando corresponda, ancla on-chain.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES PRINCIPALES -->
-<section class="section">
-  <div class="container cards-4">
-    <article class="card feature" appScrollReveal="slide-up">
-      <img class="feature-img" src="/placeholder-image-broken-square.png" alt="Plataforma Social EcoLATAM"
-        loading="lazy" />
-      <h2>Plataforma Social</h2>
-      <p class="muted">Perfiles, publicaciones y seguimiento. Participa en retos, convocatorias y proyectos de
-        innovación sostenible.</p>
-      <a class="link" routerLink="/social">Ir a la Plataforma Social →</a>
-    </article>
-
-    <article class="card feature" appScrollReveal="slide-up">
-      <img class="feature-img" src="/placeholder-image-broken-square.png"
-        alt="EcoGuía de negocios, productos y servicios" loading="lazy" />
-      <h2>EcoGuía</h2>
-      <p class="muted">Directorio de <strong>negocios, productos y servicios</strong>. Tu empresa gana visibilidad con
-        evidencia.</p>
-      <a class="link" routerLink="/ecoguia">Explorar EcoGuía →</a>
-    </article>
-
-    <article class="card feature" appScrollReveal="slide-up">
-      <img class="feature-img" src="/home/ipfs.png" alt="Infraestructura IPFS" loading="lazy" />
-      <h2>Nodo / Gateway IPFS</h2>
-      <p class="muted">Publicación direccionada por hash (<em>CID</em>), versiones trazables y soberanía digital.</p>
-      <a class="link" href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">Abrir gateway →</a>
-    </article>
-
-    <article class="card feature" appScrollReveal="slide-up">
-      <img class="feature-img" src="/home/mrv.png" alt="MRV ambiental con datos verificables" loading="lazy" />
-      <h2>MRV Ambiental</h2>
-      <p class="muted">Flujos para CSV/GeoJSON con metadatos verificables y (cuando aplique) anclaje <em>on-chain</em>.
-      </p>
-      <a class="link" routerLink="/solutions">Ver soluciones →</a>
-    </article>
-  </div>
-</section>
-
-<!-- ROLES (scroll horizontal con pin) -->
-<section class="section roles">
-  <div id="roles-section" class="container roles-layout">
-    <!-- Índice (queda pineado sin tapar) -->
-    <nav class="roles-index" aria-label="Índice de roles">
-      <a class="item pill" [class.active]="activeRole==='user'" (click)="scrollToRole('user')">
-        <fluent-icon name="person" iconStyle="regular" [size]="24"></fluent-icon>
-        Usuario
-      </a>
-      <a class="item pill" [class.active]="activeRole==='business'" (click)="scrollToRole('business')">
-        <fluent-icon name="building_multiple" iconStyle="regular" [size]="24"></fluent-icon>
-        Empresa
-      </a>
-      <a class="item pill" [class.active]="activeRole==='inspector'" (click)="scrollToRole('inspector')">
-        <fluent-icon name="person_feedback" iconStyle="regular" [size]="24"></fluent-icon>
-        Inspector
-      </a>
-      <a class="item pill" [class.active]="activeRole==='volunteer'" (click)="scrollToRole('volunteer')">
-        <fluent-icon name="handshake" iconStyle="regular" [size]="24"></fluent-icon>
-        Voluntario
-      </a>
-      <a class="item pill" [class.active]="activeRole==='guide'" (click)="scrollToRole('guide')">
-        <fluent-icon name="person_question_mark" iconStyle="regular" [size]="24"></fluent-icon>
-        Guía
-      </a>
-      <a class="item pill" [class.active]="activeRole==='vip'" (click)="scrollToRole('vip')">
-        <fluent-icon name="person_star" iconStyle="regular" [size]="24"></fluent-icon>
-        Usuario VIP
-      </a>
-    </nav>
-
-    <!-- Panel horizontal (queda pineado) -->
-    <div class="roles-panel card">
-      <div class="roles-track">
-        <article id="role-user" class="card role-card" appScrollReveal="slide-up">
-          <h3>Usuario — Tu impacto cuenta</h3>
-          <p class="muted">Comparte avances de tu proyecto. Publica por CID y recibe feedback real.</p>
-          <ul class="benefits">
-            <li>Perfil público</li>
-            <li>Publicaciones trazables</li>
-            <li>Comunidad activa</li>
-          </ul>
-          <div class="actions">
-            <button class="btn" type="button" (click)="goRoleCta('user')">Crear perfil</button>
-          </div>
-          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
-        </article>
-
-        <article id="role-business" class="card role-card" appScrollReveal="slide-up">
-          <h3>Empresa — Visibilidad con evidencia</h3>
-          <p class="muted">Perfil de empresa, reseñas y MRV mejoran tu posición en EcoGuía.</p>
-          <ul class="benefits">
-            <li>Perfil verificado</li>
-            <li>Mejores posiciones</li>
-            <li>Leads calificados</li>
-          </ul>
-          <div class="actions">
-            <button class="btn" type="button" (click)="goRoleCta('business')">Aparecer en EcoGuía</button>
-          </div>
-          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
-        </article>
-
-        <article id="role-inspector" class="card role-card" appScrollReveal="slide-up">
-          <h3>Inspector — Verifica y mejora la calidad</h3>
-          <p class="muted">Revisa evidencia y certifica buenas prácticas.</p>
-          <ul class="benefits">
-            <li>Herramientas de revisión</li>
-            <li>Reputación profesional</li>
-            <li>Impacto regional</li>
-          </ul>
-          <div class="actions">
-            <button class="btn" type="button" (click)="goRoleCta('inspector')">Postular inspector</button>
-          </div>
-          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
-        </article>
-
-        <article id="role-volunteer" class="card role-card" appScrollReveal="slide-up">
-          <h3>Voluntario — Suma a proyectos reales</h3>
-          <p class="muted">Vincúlate a necesidades locales y reporta avances.</p>
-          <ul class="benefits">
-            <li>Match con proyectos</li>
-            <li>Registro de horas</li>
-            <li>Comunidad</li>
-          </ul>
-          <div class="actions">
-            <button class="btn" type="button" (click)="goRoleCta('volunteer')">Unirme como voluntario</button>
-          </div>
-          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
-        </article>
-
-        <article id="role-guide" class="card role-card" appScrollReveal="slide-up">
-          <h3>Guía — Turismo responsable y local</h3>
-          <p class="muted">Muestra reseñas, prácticas y destinos verificados.</p>
-          <ul class="benefits">
-            <li>Perfil destacado</li>
-            <li>Rutas avaladas</li>
-            <li>Confianza del viajero</li>
-          </ul>
-          <div class="actions">
-            <button class="btn" type="button" (click)="goRoleCta('guide')">Ser guía verificado</button>
-          </div>
-          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
-        </article>
-
-        <article id="role-vip" class="card role-card" appScrollReveal="slide-up">
-          <h3>Usuario VIP — Beneficios exclusivos</h3>
-          <p class="muted">Accede a contenido y experiencias premium que apoyan el ecosistema.</p>
-          <ul class="benefits">
-            <li>Contenido exclusivo</li>
-            <li>Acceso anticipado</li>
-            <li>Reconocimiento</li>
-          </ul>
-          <div class="actions">
-            <button class="btn" type="button" (click)="goRoleCta('vip')">Explorar beneficios VIP</button>
-          </div>
-          <p class="role-note">La visibilidad en EcoGuía depende de Políticas de Uso y Privacidad.</p>
-        </article>
-      </div>
-    </div>
-    <!-- Los spacers para pin los inyecta el TS (.roles-index-spacer y .roles-spacer) -->
-  </div>
-</section>
-
-<!-- SEÑALES DE CONFIANZA EN LA UI -->
-<section class="section">
-  <div class="container cards-4">
-    <article class="card" appScrollReveal="fade-in">
-      <h3>CID visible</h3>
-      <p class="muted">Huella copiable del contenido y su estado de disponibilidad.</p>
-    </article>
-    <article class="card" appScrollReveal="fade-in">
-      <h3>Badge MRV</h3>
-      <p class="muted">Nivel (básico/avanzado) y última verificación con resumen verificable.</p>
-    </article>
-    <article class="card" appScrollReveal="fade-in">
-      <h3>Credenciales verificables (VC)</h3>
-      <p class="muted">Sello VC para empresa/guía/inspector con emisor y vigencia.</p>
-    </article>
-    <article class="card" appScrollReveal="fade-in">
-      <h3>Reseñas con señal de utilidad</h3>
-      <p class="muted">Mezcla realista; la utilidad pondera la visibilidad.</p>
-    </article>
-  </div>
-</section>
-
-<!-- KPIs -->
-<section class="section">
-  <div class="container kpi-tiles">
-    <div class="tile" appScrollReveal="fade-in">
-      <div class="big">+82% confianza</div>
-      <p class="muted">cuando hay evidencia verificable</p>
-    </div>
-    <div class="tile" appScrollReveal="fade-in">
-      <div class="big">5/5</div>
-      <p class="muted">negocios con MRV auditado</p>
-    </div>
-    <div class="tile" appScrollReveal="fade-in">
-      <div class="big">CID</div>
-      <p class="muted">contenido trazable por hash</p>
-    </div>
-  </div>
-</section>
-
-<!-- INFRAESTRUCTURA / MERKLE -->
-<section class="section">
-  <div class="container chapter">
-    <div>
-      <h2>De historia a infraestructura</h2>
       <p class="muted">
-        De un post a una auditoría abierta en 5 pasos: datos → hash → Merkle proof → (opcional) anclaje público →
-        verificación independiente.
+        Esto permite que actores soberanos coordinen proyectos conjuntos sin sacrificar seguridad, mientras las comunidades
+        conf&iacute;an en que las decisiones se respaldan con hechos reales.
       </p>
-      <ul class="sources" aria-label="Referencias">
-        <li>World Bank Climate Warehouse</li>
-        <li>Nature Tech Collective</li>
-      </ul>
-    </div>
-    <div class="media">
-      <svg id="merkle-mini" class="svg-figure" viewBox="0 0 520 240" role="img"
-        aria-label="Diagrama simplificado de árbol de Merkle">
-        <g stroke-linecap="round" fill="none">
-          <path class="wire" d="M260 40  L180 100" />
-          <path class="wire" d="M260 40  L340 100" />
-          <path class="wire" d="M180 100 L140 160" />
-          <path class="wire" d="M180 100 L220 160" />
-          <path class="wire" d="M340 100 L300 160" />
-          <path class="wire" d="M340 100 L380 160" />
-        </g>
-        <circle class="hub" cx="260" cy="40" r="16" />
-        <circle class="node" cx="180" cy="100" r="12" />
-        <circle class="node" cx="340" cy="100" r="12" />
-        <circle class="node" cx="140" cy="160" r="10" />
-        <circle class="node" cx="220" cy="160" r="10" />
-        <circle class="node" cx="300" cy="160" r="10" />
-        <circle class="node" cx="380" cy="160" r="10" />
-      </svg>
     </div>
   </div>
 </section>
 
-<!-- SPLIT: IPFS / MRV -->
-<section class="section">
-  <div class="container split-panel">
-    <article class="card" appScrollReveal="slide-up">
-      <h2>Infraestructura IPFS</h2>
-      <p class="muted">Publicación direccionada por hash y versiones trazables.</p>
-      <a class="btn-ghost" href="https://ipfs.ecolatam.com" target="_blank" rel="noopener">Abrir gateway</a>
-    </article>
-    <article class="card" appScrollReveal="slide-up">
-      <h2>MRV Ambiental</h2>
-      <p class="muted">Flujos de MRV y auditoría cuando aplique.</p>
-      <a class="btn-ghost" routerLink="/solutions">Ver soluciones</a>
-    </article>
+<!-- ECOGUIA -->
+<section class="section alt ecoguia-section">
+  <div class="container chapter">
+    <div class="media" data-speed="0.94">
+      <img src="/home/social.png" alt="Vista previa del Directorio de la Confianza con rese&ntilde;as reales"
+        loading="lazy" />
+    </div>
+    <div data-speed="1.02">
+      <h2>EcoGu&iacute;a es el Directorio de la Confianza</h2>
+      <p class="lead">
+        Viajeros, activistas, equipos de sostenibilidad y due&ntilde;os de negocio encuentran en EcoGu&iacute;a una gu&iacute;a de lo verdadero.
+        Aqu&iacute; cada historia aparece porque una comunidad la respalda y porque su evidencia fue cuidada en la B&oacute;veda de la
+        Memoria Local.
+      </p>
+      <ul class="tick">
+        <li>Rese&ntilde;as verificadas que muestran el contexto social, ambiental y econ&oacute;mico.</li>
+        <li>Productos y servicios visibles cuando el negocio confirma su identidad y su compromiso.</li>
+        <li>Paneles de impacto para gobiernos y empresas que necesitan reportes vivos y confiables.</li>
+      </ul>
+      <p class="muted">
+        EcoGu&iacute;a alimenta el lado social del relato mientras tus datos sensibles permanecen protegidos. Quien viaja, invierte o
+        supervisa entiende de inmediato qu&eacute; problema est&aacute;s resolviendo y c&oacute;mo lo logras.
+      </p>
+      <div class="actions">
+        <button class="btn" type="button" [appHoverSound]="'play.mp3'" [hoverVolume]="0.35" (click)="openWaitlist()">
+          Unirme a la lista de espera
+        </button>
+        <a class="btn btn-ghost" [appHoverSound]="'play.mp3'" [hoverVolume]="0.35" routerLink="/register">Crear mi perfil
+          EcoLATAM</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <section class="section">
   <div class="container card cta-block" appScrollReveal="fade-in">
-    <h2>Únete a la comunidad</h2>
-    <p class="muted">Publica por CID, valida con pares y crece con evidencia.</p>
+    <h2>Tejamos juntos la historia de tu territorio</h2>
+    <p class="muted">
+      En EcoLATAM caminamos contigo desde la primera conversaci&oacute;n hasta que la comunidad ve resultados. Cada paso cuida tus
+      datos, pone en valor tus logros y construye confianza duradera.
+    </p>
     <div class="actions">
-      <a class="btn" routerLink="/register">Crear cuenta</a>
-      <a class="btn btn-ghost" routerLink="/ecoguia">Explorar EcoGuía</a>
+      <a class="btn" [appHoverSound]="'play.mp3'" [hoverVolume]="0.35" routerLink="/contact">Agendar una reuni&oacute;n</a>
+      <a class="btn btn-ghost" [appHoverSound]="'play.mp3'" [hoverVolume]="0.35" routerLink="/about">Conocer EcoLATAM</a>
     </div>
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="section">
-  <div class="container card newsletter-card" appScrollReveal="fade-in">
-    <div class="newsletter-copy">
-      <h2>Únete a la comunidad</h2>
-      <p class="muted">Noticias, convocatorias y recursos de innovación sostenible.</p>
+<div class="waitlist-backdrop" *ngIf="waitlistOpen" (click)="closeWaitlist()"></div>
+<div class="waitlist-modal" *ngIf="waitlistOpen" role="dialog" aria-modal="true" aria-labelledby="ecoguia-waitlist-title">
+  <div class="waitlist-dialog card" (click)="$event.stopPropagation()">
+    <div class="waitlist-header">
+      <h3 id="ecoguia-waitlist-title">Unirse a la lista de espera de EcoGu&iacute;a</h3>
+      <button class="waitlist-close" type="button" (click)="closeWaitlist()" aria-label="Cerrar waitlist">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <form class="newsletter-form" (submit)="$event.preventDefault()" aria-label="Formulario de suscripción"
-      appScrollReveal="slide-up">
-      <label class="sr-only" for="email">Correo electrónico</label>
-      <input id="email" name="email" type="email" inputmode="email" placeholder="tu@email.com" />
-      <label class="consent">
-        <input type="checkbox" name="consent" /> Acepto la <a routerLink="/privacy">Política de Privacidad</a>
-      </label>
-      <button class="btn" type="submit">Suscribirme</button>
-    </form>
-  </div>
-</section>
+    <p class="muted">
+      Prioriza tu acceso cuando lancemos EcoGu&iacute;a para gobiernos, destinos y negocios sostenibles. Cuanta m&aacute;s informaci&oacute;n
+      tengamos, m&aacute;s r&aacute;pido podremos acompa&ntilde;arte con tu espacio personalizado y tu panel de gesti&oacute;n.
+    </p>
 
-<!-- SEO TEXT BLOCK -->
-<section class="section alt">
-  <div class="container">
-    <div class="card" appScrollReveal="fade-in">
-      <h2>Innovación sostenible en Latinoamérica</h2>
-      <p class="muted">
-        Desplegamos infraestructura, herramientas y métodos para facilitar transparencia y colaboración.
-        Desde capacitación e investigación hasta implementación, acompañamos a organizaciones en su transición digital
-        sostenible.
-      </p>
-    </div>
+    <ng-container *ngIf="!waitlistSubmitted; else waitlistSuccess">
+      <form class="waitlist-form" [formGroup]="waitlistForm" (ngSubmit)="submitWaitlist()">
+        <div class="field">
+          <label for="waitlist-name">Nombre completo</label>
+          <input id="waitlist-name" type="text" formControlName="name"
+            [class.invalid]="waitlistControls.name.touched && waitlistControls.name.invalid" />
+          <div class="error-msg" *ngIf="waitlistControls.name.touched && waitlistControls.name.hasError('required')">Ingresa un
+            nombre.</div>
+          <div class="error-msg" *ngIf="waitlistControls.name.touched && waitlistControls.name.hasError('minlength')">M&iacute;nimo 2
+            caracteres.</div>
+        </div>
+
+        <div class="field">
+          <label for="waitlist-email">Correo de contacto</label>
+          <input id="waitlist-email" type="email" formControlName="email" autocomplete="email"
+            [class.invalid]="waitlistControls.email.touched && waitlistControls.email.invalid" />
+          <div class="error-msg" *ngIf="waitlistControls.email.touched && waitlistControls.email.hasError('required')">Necesitamos
+            un correo.</div>
+          <div class="error-msg" *ngIf="waitlistControls.email.touched && waitlistControls.email.hasError('email')">Formato de correo
+            no v&aacute;lido.</div>
+        </div>
+
+        <div class="field-group">
+          <div class="field">
+            <label for="waitlist-organization">Organizaci&oacute;n o entidad</label>
+            <input id="waitlist-organization" type="text" formControlName="organization" />
+          </div>
+          <div class="field">
+            <label for="waitlist-role">Rol principal</label>
+            <select id="waitlist-role" formControlName="role">
+              <option value="">Selecciona una opci&oacute;n</option>
+              <option value="government">Gobierno / Instituci&oacute;n p&uacute;blica</option>
+              <option value="private">Empresa privada / Corporativo</option>
+              <option value="ngo">ONG / Fundaci&oacute;n</option>
+              <option value="advisor">Consultor / Hub de innovaci&oacute;n</option>
+              <option value="other">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="waitlist-notes">Necesidades o casos de uso</label>
+          <textarea id="waitlist-notes" rows="4" formControlName="notes"
+            placeholder="Cu&eacute;ntanos sobre proyectos, destinos o datos que necesitas conectar."></textarea>
+        </div>
+
+        <div class="error-msg" *ngIf="waitlistError">{{ waitlistError }}</div>
+
+        <div class="waitlist-actions">
+          <button class="btn" type="submit" [disabled]="waitlistSubmitting">
+            {{ waitlistSubmitting ? 'Enviando...' : 'Unirme a la waitlist' }}
+          </button>
+          <button class="btn btn-ghost" type="button" (click)="closeWaitlist()">Cancelar</button>
+        </div>
+      </form>
+    </ng-container>
+
+    <ng-template #waitlistSuccess>
+      <div class="waitlist-success">
+        <h4>Gracias por unirte</h4>
+        <p class="muted">
+          Registramos tus datos y te contactaremos cuando abramos EcoGu&iacute;a o necesitemos pilotos para nuestra red de confianza.
+          Si deseas agendar una reuni&oacute;n antes, escr&iacute;benos a hola&64;ecolatam.com.
+        </p>
+        <button class="btn" type="button" (click)="closeWaitlist()">Cerrar</button>
+      </div>
+    </ng-template>
   </div>
-</section>
+</div>

@@ -1,0 +1,130 @@
+<section class="esim container" aria-labelledby="esim-title">
+  <header class="hero card">
+    <div class="hero-badges">
+      <span class="badge">eSIM EcoLATAM</span>
+      <span class="badge">Instalación en minutos</span>
+    </div>
+
+    <h1 id="esim-title">Conéctate sin chips físicos</h1>
+    <p class="muted">
+      Viaja ligero: compra, escanea el QR y listo. Sin filas, sin roaming sorpresa.
+      Cobertura global con soporte EcoLATAM.
+    </p>
+
+    <div class="cta-row">
+      <button type="button" class="btn" (click)="scrollToPlans()">
+        Ver planes disponibles
+      </button>
+      <a class="btn btn-ghost" href="#preguntas">¿Cómo funciona?</a>
+    </div>
+  </header>
+
+  <section class="benefits">
+    <article class="b card">
+      <h3>Activación instantánea</h3>
+      <p class="muted">Compra online, escanea el QR y navega en minutos.</p>
+    </article>
+    <article class="b card">
+      <h3>Ahorro inteligente</h3>
+      <p class="muted">Elige datos por días o GB. Paga solo lo que usas.</p>
+    </article>
+    <article class="b card">
+      <h3>Soporte humano</h3>
+      <p class="muted">Acompañamiento EcoLATAM por chat y email.</p>
+    </article>
+  </section>
+
+  <section #planes id="planes" class="plans">
+    <h2>Planes recomendados</h2>
+    <div class="cards">
+      <article class="plan card">
+        <h3>LatAm 7 días</h3>
+        <ul class="tick">
+          <li>3 GB a velocidad 4G/5G</li>
+          <li>Cobertura regional</li>
+          <li>Soporte EcoLATAM</li>
+        </ul>
+        <div class="plan-bottom">
+          <div class="price">
+            <strong>$12</strong><span class="muted">/7 días</span>
+          </div>
+          <button class="btn">Lo quiero</button>
+        </div>
+      </article>
+
+      <article class="plan card">
+        <h3>LatAm 15 días</h3>
+        <ul class="tick">
+          <li>5 GB 4G/5G</li>
+          <li>Cobertura regional</li>
+          <li>Soporte EcoLATAM</li>
+        </ul>
+        <div class="plan-bottom">
+          <div class="price">
+            <strong>$20</strong><span class="muted">/15 días</span>
+          </div>
+          <button class="btn">Lo quiero</button>
+        </div>
+      </article>
+
+      <article class="plan card">
+        <h3>Global 30 días</h3>
+        <ul class="tick">
+          <li>10 GB 4G/5G</li>
+          <li>+70 países</li>
+          <li>Soporte EcoLATAM</li>
+        </ul>
+        <div class="plan-bottom">
+          <div class="price">
+            <strong>$39</strong><span class="muted">/30 días</span>
+          </div>
+          <button class="btn">Lo quiero</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="interes" class="lead-form card" aria-labelledby="interes-title">
+    <h2 id="interes-title">¿Te interesa una eSIM?</h2>
+    <p class="muted">Déjanos tu correo y te enviamos el paso a paso y promociones.</p>
+
+    <form [formGroup]="leadForm" (ngSubmit)="sendLead()" novalidate>
+      <div class="grid">
+        <label>
+          <span>Nombre</span>
+          <input formControlName="name" type="text" placeholder="Tu nombre" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input formControlName="email" type="email" placeholder="tu@email.com" />
+        </label>
+      </div>
+
+      <div class="actions">
+        <button class="btn" type="submit" [disabled]="leadForm.invalid || sending">
+          {{ sending ? 'Enviando…' : 'Quiero recibir info' }}
+        </button>
+        <span class="muted tiny">No spam. 1–2 emails/mes.</span>
+      </div>
+
+      <p *ngIf="success" class="success">¡Listo! Te contactaremos pronto.</p>
+      <p *ngIf="error" class="error">Ups, no pudimos guardar tus datos. Intenta de nuevo.</p>
+    </form>
+  </section>
+
+  <section id="preguntas" class="faq card" aria-labelledby="faq-title">
+    <h2 id="faq-title">Preguntas frecuentes</h2>
+    <details>
+      <summary>¿Mi teléfono soporta eSIM?</summary>
+      <p class="muted">La mayoría de modelos recientes iPhone/Android la soportan. Ajustes → Datos móviles → Agregar eSIM.</p>
+    </details>
+    <details>
+      <summary>¿Cómo se instala?</summary>
+      <p class="muted">Compras el plan, recibes un QR, lo escaneas y activas datos. Toma 2–3 minutos.</p>
+    </details>
+    <details>
+      <summary>¿Puedo seguir usando mi número?</summary>
+      <p class="muted">Sí, la eSIM es para datos. Tu línea física (o eSIM principal) puede seguir recibiendo llamadas.</p>
+    </details>
+  </section>
+</section>

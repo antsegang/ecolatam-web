@@ -1,0 +1,23 @@
+<div class="loader-wrapper"
+     [class.active]="active"
+     [class.closing]="isClosing"
+     role="status"
+     aria-live="polite"
+     [attr.aria-busy]="active">
+
+  <!-- Backdrop borroso con glass -->
+  <div class="backdrop"></div>
+
+  <!-- Contenido del loader (por defecto: anillo). Puedes reemplazarlo con ng-content -->
+  <div class="loader-content card" *ngIf="!hasProjectedLoader">
+    <div class="ring"></div>
+    <p class="muted" *ngIf="message">{{ message }}</p>
+  </div>
+
+  <!-- Slot para tu loader personalizado -->
+  <ng-content select="[loader]" (projectedContent)="hasProjectedLoader=true"></ng-content>
+
+  <!-- Paneles del split reveal -->
+  <div class="panel top"></div>
+  <div class="panel bottom"></div>
+</div>

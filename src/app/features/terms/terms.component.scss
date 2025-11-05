@@ -19,7 +19,37 @@ h1{ font-size:clamp(28px,6vw,44px); line-height:1.1; margin:6px 0 8px; }
   gap:20px;
   align-items:start;
 }
-.toc { position: sticky; top: 16px; }
+/* 1) El aside en sticky debe poder "encogerse" y alinearse arriba */
+.toc{
+  position: sticky;
+  top: 16px;
+  align-self: start;    /* si el padre es grid/flex */
+  height: max-content;  /* evita que se estire a la altura de la columna */
+  z-index: 5;           /* por si hay headers/glass encima */
+}
+
+/* 2) Tu .card trae overflow:hidden; para la TOC conviene liberarlo */
+.toc.card{
+  overflow: visible;    /* evita clipping y bugs de sticky en Safari/Chrome */
+}
+
+/* 3) Si la TOC vive en una columna de grid, asegúrate de esto: */
+.layout-2col, .split-panel, .chapter{
+  align-items: start;   /* IMPORTANTÍSIMO: no centrar verticalmente las columnas */
+}
+
+/* 4) (Opcional) Estilo de TOC bonito */
+.toc nav{
+  display: grid;
+  gap: 8px;
+}
+.toc a{
+  color: var(--txt);
+  text-decoration: none;
+  font-size: 14px;
+  opacity: .9;
+}
+.toc a:hover{ color: var(--accent); opacity: 1; }
 .toc nav{ display:flex; flex-direction:column; gap:8px; }
 .toc a{
   color:var(--txt);

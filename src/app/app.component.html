@@ -1,3 +1,10 @@
+<app-smart-loader [watchRouter]="true" [message]="'Cargando…'">
+  <div loader #customLoader class="card" style="padding:18px 22px; text-align:center;">
+    <img src="/ecolatam-logo.png" alt="EcoLATAM" style="width:84px; margin:0 auto 8px;">
+    <div class="pulse" style="width:10px;height:10px;border-radius:999px;background:var(--accent);margin:0 auto; animation:pulse 1.2s ease-in-out infinite;"></div>
+  </div>
+</app-smart-loader>
+<div class="scroll-progress" [style.width.%]="scrollPct"></div>
 <!-- Header queda FUERA del smoother -->
 <app-site-header></app-site-header>
 

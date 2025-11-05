@@ -3,11 +3,12 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { SharedUxModule } from '../../shared/shared-ux.module';
 import { Meta, Title } from '@angular/platform-browser';
+import { EsimPromoComponent } from './esim-promo/esim-promo.component';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule, RouterLink, SharedUxModule],
+  imports: [CommonModule, RouterLink, SharedUxModule, EsimPromoComponent],
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss'],
 })

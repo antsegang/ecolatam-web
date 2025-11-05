@@ -29,9 +29,9 @@ export class AboutComponent implements OnInit, OnDestroy {
   ];
 
   team = [
-    { name: 'Anthony Segura A.', role: 'CEO & CTO', img: '/placeholder-image-broken-square.png', linkedin: 'https://www.linkedin.com/in/anthony-segura-angulo-112202142' },
-    { name: 'Elías Cambronero S.', role: 'CMO',    img: '/placeholder-image-broken-square.png', linkedin: 'https://www.linkedin.com/in/gerardo-elías-cambronero-sibaja-34796a216' },
-    { name: 'Por anunciar',       role: 'Ecosistema', img: '/placeholder-image-broken-square.png', linkedin: '#' },
+    { name: 'Anthony Segura A.', role: 'Chief Executive Officer & Chief Technology Officer', img: '/placeholder-image-broken-square.png', linkedin: 'https://www.linkedin.com/in/anthony-segura-angulo-112202142' },
+    { name: 'Elías Cambronero S.', role: 'Chief Marketing Officer',    img: '/placeholder-image-broken-square.png', linkedin: 'https://www.linkedin.com/in/gerardo-elías-cambronero-sibaja-34796a216' },
+    { name: 'Gabriela Cambronero S.',       role: 'Chief Legal Officer', img: '/placeholder-image-broken-square.png', linkedin: 'https://www.linkedin.com/in/gabriela-cambronero-sibaja-16782b354/' },
   ];
 
   ngOnInit(): void {

@@ -103,6 +103,13 @@ h1 {
   border:1px solid rgba(52,211,153,.25);
   pointer-events:none;
 }
+.plan-bottom {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  gap: 12px;
+  width: 100%;
+}
 .plan-pill {
   display:inline-flex;
   align-items:center;
@@ -127,6 +134,7 @@ h1 {
 .link:hover { text-decoration:underline; }
 .cta-row {
   display:flex;
+  flex-direction: column;
   gap:12px;
   flex-wrap:wrap;
 }

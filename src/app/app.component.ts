@@ -1,18 +1,70 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, Inject, PLATFORM_ID, HostListener, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-import { gsap } from 'gsap';
+import { SmartLoaderComponent } from './shared/smart-loader/smart-loader.component';
+import { SmartLoaderService } from './shared/smart-loader/smart-loader.service';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, SmartLoaderComponent],
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
   private smoother: any | null = null;
+
+  scrollPct = 0;
+  private isBrowser = false;
+  loader = inject(SmartLoaderService);
+  active = this.loader.active;   // signal<boolean>
+  message = this.loader.message; // signal<string>
+
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  ngOnInit() {
+    if (!this.isBrowser) return;
+    // primer cálculo
+    this.updateProgress();
+    // recalcular después de cargar imágenes/contenido
+    window.addEventListener('load', this.updateProgress, { passive: true, once: true });
+    // fallback por si el contenido se expande (fuentes, imágenes tardías)
+    setTimeout(this.updateProgress, 400);
+    setTimeout(this.updateProgress, 1200);
+  }
+
+  // Scroll y Resize
+  @HostListener('window:scroll', ['$event'])
+  onScroll() { if (this.isBrowser) this.updateProgress(); }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() { if (this.isBrowser) this.updateProgress(); }
+
+  // Cálculo del % leído
+  updateProgress = () => {
+    const doc = document.documentElement;
+    const body = document.body;
+
+    const scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+
+    // altura total scrolleable (contenido - viewport)
+    const docHeight = Math.max(
+      body.scrollHeight, doc.scrollHeight,
+      body.offsetHeight, doc.offsetHeight,
+      body.clientHeight, doc.clientHeight
+    );
+
+    const winH = window.innerHeight || doc.clientHeight;
+    const scrollable = Math.max(1, docHeight - winH); // evita div/0
+
+    const pct = Math.min(100, Math.max(0, (scrollTop / scrollable) * 100));
+    this.scrollPct = Math.round(pct);
+  };
 
   async ngAfterViewInit() {
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
